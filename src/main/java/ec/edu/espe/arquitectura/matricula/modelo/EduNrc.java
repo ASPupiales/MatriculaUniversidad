@@ -27,28 +27,31 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_nrc")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EduNrc.findAll", query = "SELECT e FROM EduNrc e")})
 public class EduNrc implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected EduNrcPK eduNrcPK;
+    
     @Basic(optional = false)
     @Column(name = "cupos")
     private int cupos;
+    
     @JoinColumn(name = "cod_docente", referencedColumnName = "cod_docente")
     @ManyToOne
     private EduAsignacionDocente codDocente;
+    
     @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia")
     @ManyToOne(optional = false)
     private EduMateria codMateria;
+    
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private EduPeriodo eduPeriodo;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduNrc")
     private List<EduMatricula> eduMatriculaList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduNrc")
     private List<EduNrcAula> eduNrcAulaList;
 
