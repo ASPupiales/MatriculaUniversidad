@@ -27,34 +27,36 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_periodo")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EduPeriodo.findAll", query = "SELECT e FROM EduPeriodo e")})
 public class EduPeriodo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "cod_periodo")
     private Integer codPeriodo;
+    
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    
     @Basic(optional = false)
     @Column(name = "nivel")
     private String nivel;
+    
     @Basic(optional = false)
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    
     @Basic(optional = false)
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
+    
     @Basic(optional = false)
     @Column(name = "parciales")
     private short parciales;
+    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "eduPeriodo")
     private EduNrc eduNrc;
 
@@ -63,15 +65,6 @@ public class EduPeriodo implements Serializable {
 
     public EduPeriodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
-    }
-
-    public EduPeriodo(Integer codPeriodo, String nombre, String nivel, Date fechaInicio, Date fechaFin, short parciales) {
-        this.codPeriodo = codPeriodo;
-        this.nombre = nombre;
-        this.nivel = nivel;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.parciales = parciales;
     }
 
     public Integer getCodPeriodo() {
@@ -152,7 +145,7 @@ public class EduPeriodo implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduPeriodo[ codPeriodo=" + codPeriodo + " ]";
+        return "codPeriodo=" + codPeriodo;
     }
     
 }

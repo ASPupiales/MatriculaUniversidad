@@ -25,44 +25,53 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_calificacion")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EduCalificacion.findAll", query = "SELECT e FROM EduCalificacion e")})
 public class EduCalificacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "cod_calificacion")
     private Integer codCalificacion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    
     @Column(name = "nota1")
     private BigDecimal nota1;
+    
     @Column(name = "nota2")
     private BigDecimal nota2;
+    
     @Column(name = "nota3")
     private BigDecimal nota3;
+    
     @Column(name = "nota4")
     private BigDecimal nota4;
+    
     @Column(name = "nota5")
     private BigDecimal nota5;
+    
     @Column(name = "nota6")
     private BigDecimal nota6;
+    
     @Column(name = "nota7")
     private BigDecimal nota7;
+    
     @Column(name = "nota8")
     private BigDecimal nota8;
+    
     @Column(name = "nota9")
     private BigDecimal nota9;
+    
     @Column(name = "nota10")
     private BigDecimal nota10;
+    
     @Column(name = "promedio")
     private BigDecimal promedio;
+    
     @Column(name = "estado")
     private String estado;
+    
     @Column(name = "observacion")
     private String observacion;
+    
     @JoinColumn(name = "cod_inscripcion", referencedColumnName = "cod_matricula")
     @ManyToOne(optional = false)
     private EduMatricula codInscripcion;
@@ -216,7 +225,7 @@ public class EduCalificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduCalificacion[ codCalificacion=" + codCalificacion + " ]";
+        return "codCalificacion=" + codCalificacion;
     }
     
 }
