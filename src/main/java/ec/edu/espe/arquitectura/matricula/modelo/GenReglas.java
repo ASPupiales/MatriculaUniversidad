@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -10,25 +6,16 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_reglas")
-@NamedQueries({
-    @NamedQuery(name = "GenReglas.findAll", query = "SELECT g FROM GenReglas g")})
 public class GenReglas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_regla", nullable = false, length = 30)
     private String codRegla;
     @Basic(optional = false)
@@ -68,18 +55,6 @@ public class GenReglas implements Serializable {
 
     public GenReglas(String codRegla) {
         this.codRegla = codRegla;
-    }
-
-    public GenReglas(String codRegla, String descripcion, String tipo, String unidad, String clasificacion, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codRegla = codRegla;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.unidad = unidad;
-        this.clasificacion = clasificacion;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodRegla() {
@@ -187,7 +162,6 @@ public class GenReglas implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenReglas)) {
             return false;
         }
@@ -200,7 +174,7 @@ public class GenReglas implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.GenReglas[ codRegla=" + codRegla + " ]";
+        return "GenReglas[ codRegla=" + codRegla + " ]";
     }
     
 }

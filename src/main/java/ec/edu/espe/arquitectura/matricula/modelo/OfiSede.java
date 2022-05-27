@@ -1,44 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_sede")
-@NamedQueries({
-    @NamedQuery(name = "OfiSede.findAll", query = "SELECT o FROM OfiSede o")})
 public class OfiSede implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_sede", nullable = false, length = 8)
     private String codSede;
     @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    @Column(name = "direccion", length = 10)
+    @Column(name = "direccion", length = 256)
     private String direccion;
     @Basic(optional = false)
     @Column(name = "es_principal", nullable = false, length = 1)
@@ -56,8 +41,6 @@ public class OfiSede implements Serializable {
     @Basic(optional = false)
     @Column(name = "version", nullable = false)
     private int version;
-    @OneToMany(mappedBy = "codSede")
-    private List<OfiEdificio> ofiEdificioList;
     @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion")
     @ManyToOne
     private OfiInstitucion codInstitucion;
@@ -67,16 +50,6 @@ public class OfiSede implements Serializable {
 
     public OfiSede(String codSede) {
         this.codSede = codSede;
-    }
-
-    public OfiSede(String codSede, String nombre, String esPrincipal, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codSede = codSede;
-        this.nombre = nombre;
-        this.esPrincipal = esPrincipal;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodSede() {
@@ -143,14 +116,6 @@ public class OfiSede implements Serializable {
         this.version = version;
     }
 
-    public List<OfiEdificio> getOfiEdificioList() {
-        return ofiEdificioList;
-    }
-
-    public void setOfiEdificioList(List<OfiEdificio> ofiEdificioList) {
-        this.ofiEdificioList = ofiEdificioList;
-    }
-
     public OfiInstitucion getCodInstitucion() {
         return codInstitucion;
     }
@@ -168,7 +133,6 @@ public class OfiSede implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof OfiSede)) {
             return false;
         }
@@ -181,7 +145,7 @@ public class OfiSede implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.OfiSede[ codSede=" + codSede + " ]";
+        return "OfiSede[ codSede=" + codSede + " ]";
     }
     
 }

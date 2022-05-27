@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -13,26 +9,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_edificio")
-@NamedQueries({
-    @NamedQuery(name = "OfiEdificio.findAll", query = "SELECT o FROM OfiEdificio o")})
 public class OfiEdificio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_edificio", nullable = false, length = 8)
     private String codEdificio;
     @Basic(optional = false)
@@ -75,28 +62,12 @@ public class OfiEdificio implements Serializable {
     private OfiSede codSede;
     @OneToMany(mappedBy = "codEdificio")
     private List<OfiEdificioBloque> ofiEdificioBloqueList;
-    @OneToMany(mappedBy = "codEdificio")
-    private List<OfiAula> ofiAulaList;
 
     public OfiEdificio() {
     }
 
     public OfiEdificio(String codEdificio) {
         this.codEdificio = codEdificio;
-    }
-
-    public OfiEdificio(String codEdificio, String nombre, String descripcion, String direccion, String manejaBloques, String poseeAulas, short pisos, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codEdificio = codEdificio;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.direccion = direccion;
-        this.manejaBloques = manejaBloques;
-        this.poseeAulas = poseeAulas;
-        this.pisos = pisos;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodEdificio() {
@@ -219,14 +190,6 @@ public class OfiEdificio implements Serializable {
         this.ofiEdificioBloqueList = ofiEdificioBloqueList;
     }
 
-    public List<OfiAula> getOfiAulaList() {
-        return ofiAulaList;
-    }
-
-    public void setOfiAulaList(List<OfiAula> ofiAulaList) {
-        this.ofiAulaList = ofiAulaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -236,7 +199,6 @@ public class OfiEdificio implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof OfiEdificio)) {
             return false;
         }
@@ -249,7 +211,7 @@ public class OfiEdificio implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.OfiEdificio[ codEdificio=" + codEdificio + " ]";
+        return "OfiEdificio[ codEdificio=" + codEdificio + " ]";
     }
     
 }
