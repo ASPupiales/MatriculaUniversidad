@@ -19,7 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,7 +26,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_institucion_educativa")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduInstitucionEducativa.findAll", query = "SELECT e FROM EduInstitucionEducativa e")})
 public class EduInstitucionEducativa implements Serializable {
@@ -36,31 +34,31 @@ public class EduInstitucionEducativa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_institucion_educativa")
+    @Column(name = "cod_institucion_educativa", nullable = false)
     private Integer codInstitucionEducativa;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 500)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
+    @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int", nullable = false)
     @ManyToOne(optional = false)
     private GenUbicacionGeografica codUbicacionGeoInt;
 

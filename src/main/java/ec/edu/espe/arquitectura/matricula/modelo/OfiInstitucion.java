@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,7 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ofi_institucion")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OfiInstitucion.findAll", query = "SELECT o FROM OfiInstitucion o")})
 public class OfiInstitucion implements Serializable {
@@ -34,31 +31,31 @@ public class OfiInstitucion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_institucion")
+    @Column(name = "cod_institucion", nullable = false)
     private Short codInstitucion;
     @Basic(optional = false)
-    @Column(name = "ruc")
+    @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
     @Basic(optional = false)
-    @Column(name = "razon_social")
+    @Column(name = "razon_social", nullable = false, length = 250)
     private String razonSocial;
     @Basic(optional = false)
-    @Column(name = "nombre_comercial")
+    @Column(name = "nombre_comercial", nullable = false, length = 250)
     private String nombreComercial;
-    @Column(name = "dominio")
+    @Column(name = "dominio", length = 128)
     private String dominio;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(mappedBy = "codInstitucion")
     private List<OfiSede> ofiSedeList;
@@ -153,7 +150,6 @@ public class OfiInstitucion implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<OfiSede> getOfiSedeList() {
         return ofiSedeList;
     }

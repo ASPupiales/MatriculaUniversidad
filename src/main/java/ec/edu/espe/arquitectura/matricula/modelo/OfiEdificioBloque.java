@@ -19,8 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ofi_edificio_bloque")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OfiEdificioBloque.findAll", query = "SELECT o FROM OfiEdificioBloque o")})
 public class OfiEdificioBloque implements Serializable {
@@ -36,25 +33,25 @@ public class OfiEdificioBloque implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_edificio_bloque")
+    @Column(name = "cod_edificio_bloque", nullable = false, length = 8)
     private String codEdificioBloque;
     @Basic(optional = false)
-    @Column(name = "nombre_bloque")
+    @Column(name = "nombre_bloque", nullable = false, length = 128)
     private String nombreBloque;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 500)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
@@ -142,7 +139,6 @@ public class OfiEdificioBloque implements Serializable {
         this.codEdificio = codEdificio;
     }
 
-    @XmlTransient
     public List<OfiAula> getOfiAulaList() {
         return ofiAulaList;
     }

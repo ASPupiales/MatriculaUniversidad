@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_periodo")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduPeriodo.findAll", query = "SELECT e FROM EduPeriodo e")})
 public class EduPeriodo implements Serializable {
@@ -33,24 +31,24 @@ public class EduPeriodo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_periodo")
+    @Column(name = "cod_periodo", nullable = false)
     private Short codPeriodo;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "nivel")
+    @Column(name = "nivel", nullable = false, length = 32)
     private String nivel;
     @Basic(optional = false)
-    @Column(name = "fecha_inicio")
+    @Column(name = "fecha_inicio", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Basic(optional = false)
-    @Column(name = "fecha_fin")
+    @Column(name = "fecha_fin", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
     @Basic(optional = false)
-    @Column(name = "parciales")
+    @Column(name = "parciales", nullable = false)
     private short parciales;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "eduPeriodo")
     private EduNrc eduNrc;

@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -7,35 +11,44 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author labox
+ */
 @Entity
 @Table(name = "gen_institucion")
+@NamedQueries({
+    @NamedQuery(name = "GenInstitucion.findAll", query = "SELECT g FROM GenInstitucion g")})
 public class GenInstitucion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "ruc")
+    @Basic(optional = false)
+    @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
     @Basic(optional = false)
-    @Column(name = "razon_social")
+    @Column(name = "razon_social", nullable = false, length = 128)
     private String razonSocial;
     @Basic(optional = false)
-    @Column(name = "nombre_comercial")
+    @Column(name = "nombre_comercial", nullable = false, length = 128)
     private String nombreComercial;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "dominio")
+    @Column(name = "dominio", nullable = false, length = 64)
     private String dominio;
-    @Column(name = "url_info")
+    @Column(name = "url_info", length = 128)
     private String urlInfo;
     @Basic(optional = false)
-    @Column(name = "url_sistema")
+    @Column(name = "url_sistema", nullable = false, length = 128)
     private String urlSistema;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
     @ManyToOne
@@ -46,6 +59,16 @@ public class GenInstitucion implements Serializable {
 
     public GenInstitucion(String ruc) {
         this.ruc = ruc;
+    }
+
+    public GenInstitucion(String ruc, String razonSocial, String nombreComercial, String direccion, String dominio, String urlSistema, int version) {
+        this.ruc = ruc;
+        this.razonSocial = razonSocial;
+        this.nombreComercial = nombreComercial;
+        this.direccion = direccion;
+        this.dominio = dominio;
+        this.urlSistema = urlSistema;
+        this.version = version;
     }
 
     public String getRuc() {
@@ -129,6 +152,7 @@ public class GenInstitucion implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenInstitucion)) {
             return false;
         }
@@ -141,7 +165,7 @@ public class GenInstitucion implements Serializable {
 
     @Override
     public String toString() {
-        return "GenInstitucion[ ruc=" + ruc + " ]";
+        return "ec.edu.espe.arquitectura.matricula.modelo.GenInstitucion[ ruc=" + ruc + " ]";
     }
     
 }

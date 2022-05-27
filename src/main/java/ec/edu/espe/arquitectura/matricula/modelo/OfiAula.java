@@ -22,8 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ofi_aula")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OfiAula.findAll", query = "SELECT o FROM OfiAula o")})
 public class OfiAula implements Serializable {
@@ -40,29 +37,29 @@ public class OfiAula implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_aula")
+    @Column(name = "cod_aula", nullable = false)
     private Integer codAula;
     @Basic(optional = false)
-    @Column(name = "cod_alterno")
+    @Column(name = "cod_alterno", nullable = false, length = 10)
     private String codAlterno;
     @Basic(optional = false)
-    @Column(name = "capacidad")
+    @Column(name = "capacidad", nullable = false)
     private short capacidad;
     @Basic(optional = false)
-    @Column(name = "piso")
+    @Column(name = "piso", nullable = false)
     private short piso;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ofiAula")
     private List<EduNrcHorario> eduNrcHorarioList;
@@ -158,7 +155,6 @@ public class OfiAula implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<EduNrcHorario> getEduNrcHorarioList() {
         return eduNrcHorarioList;
     }

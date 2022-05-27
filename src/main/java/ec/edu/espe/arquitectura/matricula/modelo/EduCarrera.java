@@ -20,8 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,7 +27,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_carrera")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduCarrera.findAll", query = "SELECT e FROM EduCarrera e")})
 public class EduCarrera implements Serializable {
@@ -38,43 +35,43 @@ public class EduCarrera implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_carrera")
+    @Column(name = "cod_carrera", nullable = false)
     private Integer codCarrera;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "total_semestres")
+    @Column(name = "total_semestres", nullable = false)
     private int totalSemestres;
     @Basic(optional = false)
-    @Column(name = "grado")
+    @Column(name = "grado", nullable = false, length = 25)
     private String grado;
     @Basic(optional = false)
-    @Column(name = "perfil_profesional")
+    @Column(name = "perfil_profesional", nullable = false, length = 500)
     private String perfilProfesional;
     @Basic(optional = false)
-    @Column(name = "nivel")
+    @Column(name = "nivel", nullable = false, length = 32)
     private String nivel;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "total_creditos")
+    @Column(name = "total_creditos", nullable = false, precision = 5, scale = 2)
     private BigDecimal totalCreditos;
     @Basic(optional = false)
-    @Column(name = "total_horas")
+    @Column(name = "total_horas", nullable = false, precision = 5, scale = 2)
     private BigDecimal totalHoras;
     @Basic(optional = false)
-    @Column(name = "siglas")
+    @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
     @Basic(optional = false)
-    @Column(name = "precio_credito")
+    @Column(name = "precio_credito", nullable = false, precision = 5, scale = 2)
     private BigDecimal precioCredito;
-    @Column(name = "modalidad")
+    @Column(name = "modalidad", length = 64)
     private String modalidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
     private List<EduMallaCarrera> eduMallaCarreraList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
     private List<EduMatricula> eduMatriculaList;
-    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")
+    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)
     @ManyToOne(optional = false)
     private EduDepartamento codDepartamento;
 
@@ -186,7 +183,6 @@ public class EduCarrera implements Serializable {
         this.modalidad = modalidad;
     }
 
-    @XmlTransient
     public List<EduMallaCarrera> getEduMallaCarreraList() {
         return eduMallaCarreraList;
     }
@@ -195,7 +191,6 @@ public class EduCarrera implements Serializable {
         this.eduMallaCarreraList = eduMallaCarreraList;
     }
 
-    @XmlTransient
     public List<EduMatricula> getEduMatriculaList() {
         return eduMatriculaList;
     }

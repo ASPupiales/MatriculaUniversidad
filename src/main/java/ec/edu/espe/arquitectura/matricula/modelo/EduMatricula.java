@@ -21,16 +21,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author labox
  */
 @Entity
-@Table(name = "edu_matricula")
-@XmlRootElement
+@Table(name = "edu_matricula", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"cod_periodo"})})
 @NamedQueries({
     @NamedQuery(name = "EduMatricula.findAll", query = "SELECT e FROM EduMatricula e")})
 public class EduMatricula implements Serializable {
@@ -39,22 +38,22 @@ public class EduMatricula implements Serializable {
     @EmbeddedId
     protected EduMatriculaPK eduMatriculaPK;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
     @Basic(optional = false)
-    @Column(name = "fecha")
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Basic(optional = false)
-    @Column(name = "costo")
+    @Column(name = "costo", nullable = false)
     private double costo;
-    @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera")
+    @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private EduCarrera codCarrera;
-    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo")
+    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false)
     @OneToOne(optional = false)
     private EduPeriodo codPeriodo;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMatricula")
@@ -134,7 +133,6 @@ public class EduMatricula implements Serializable {
         this.perPersona = perPersona;
     }
 
-    @XmlTransient
     public List<EduMatriculaNrc> getEduMatriculaNrcList() {
         return eduMatriculaNrcList;
     }

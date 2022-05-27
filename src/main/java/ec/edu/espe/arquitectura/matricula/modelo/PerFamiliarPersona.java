@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "per_familiar_persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerFamiliarPersona.findAll", query = "SELECT p FROM PerFamiliarPersona p")})
 public class PerFamiliarPersona implements Serializable {
@@ -34,34 +32,34 @@ public class PerFamiliarPersona implements Serializable {
     @EmbeddedId
     protected PerFamiliarPersonaPK perFamiliarPersonaPK;
     @Basic(optional = false)
-    @Column(name = "tipo_familiar")
+    @Column(name = "tipo_familiar", nullable = false, length = 3)
     private String tipoFamiliar;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    @Column(name = "tipo_identificacion")
+    @Column(name = "tipo_identificacion", length = 3)
     private String tipoIdentificacion;
-    @Column(name = "identificacion")
+    @Column(name = "identificacion", length = 20)
     private String identificacion;
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 20)
     private String telefono;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
 

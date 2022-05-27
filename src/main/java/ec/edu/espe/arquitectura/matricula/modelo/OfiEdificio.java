@@ -19,8 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "ofi_edificio")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OfiEdificio.findAll", query = "SELECT o FROM OfiEdificio o")})
 public class OfiEdificio implements Serializable {
@@ -36,42 +33,42 @@ public class OfiEdificio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_edificio")
+    @Column(name = "cod_edificio", nullable = false, length = 8)
     private String codEdificio;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    @Column(name = "cod_alterno")
+    @Column(name = "cod_alterno", length = 16)
     private String codAlterno;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 256)
     private String direccion;
-    @Column(name = "comentario")
+    @Column(name = "comentario", length = 1000)
     private String comentario;
     @Basic(optional = false)
-    @Column(name = "maneja_bloques")
+    @Column(name = "maneja_bloques", nullable = false, length = 1)
     private String manejaBloques;
     @Basic(optional = false)
-    @Column(name = "posee_aulas")
+    @Column(name = "posee_aulas", nullable = false, length = 1)
     private String poseeAulas;
     @Basic(optional = false)
-    @Column(name = "pisos")
+    @Column(name = "pisos", nullable = false)
     private short pisos;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @JoinColumn(name = "cod_sede", referencedColumnName = "cod_sede")
     @ManyToOne
@@ -214,7 +211,6 @@ public class OfiEdificio implements Serializable {
         this.codSede = codSede;
     }
 
-    @XmlTransient
     public List<OfiEdificioBloque> getOfiEdificioBloqueList() {
         return ofiEdificioBloqueList;
     }
@@ -223,7 +219,6 @@ public class OfiEdificio implements Serializable {
         this.ofiEdificioBloqueList = ofiEdificioBloqueList;
     }
 
-    @XmlTransient
     public List<OfiAula> getOfiAulaList() {
         return ofiAulaList;
     }

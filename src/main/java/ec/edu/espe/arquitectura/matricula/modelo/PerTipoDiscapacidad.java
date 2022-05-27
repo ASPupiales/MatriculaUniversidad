@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,7 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "per_tipo_discapacidad")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerTipoDiscapacidad.findAll", query = "SELECT p FROM PerTipoDiscapacidad p")})
 public class PerTipoDiscapacidad implements Serializable {
@@ -34,23 +31,23 @@ public class PerTipoDiscapacidad implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_tipo_discapacidad")
+    @Column(name = "cod_tipo_discapacidad", nullable = false, length = 8)
     private String codTipoDiscapacidad;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(mappedBy = "codTipoDiscapacidad")
     private List<PerPersona> perPersonaList;
@@ -119,7 +116,6 @@ public class PerTipoDiscapacidad implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<PerPersona> getPerPersonaList() {
         return perPersonaList;
     }
