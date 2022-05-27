@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -22,20 +15,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "edu_malla_carrera")
-@NamedQueries({
-    @NamedQuery(name = "EduMallaCarrera.findAll", query = "SELECT e FROM EduMallaCarrera e")})
 public class EduMallaCarrera implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_materiacarrera", nullable = false)
     private Integer codMateriacarrera;
+    
     @Column(name = "nivel")
     private Integer nivel;
+    
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private EduCarrera codCarrera;
+    
     @JoinColumns({
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
@@ -103,7 +96,7 @@ public class EduMallaCarrera implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduMallaCarrera[ codMateriacarrera=" + codMateriacarrera + " ]";
+        return "codMateriacarrera=" + codMateriacarrera;
     }
     
 }

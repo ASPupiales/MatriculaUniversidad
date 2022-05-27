@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -64,12 +54,6 @@ public class EduCarrera implements Serializable {
     
     @Column(name = "modalidad", length = 64)
     private String modalidad;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
-    private List<EduMallaCarrera> eduMallaCarreraList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
-    private List<EduMatricula> eduMatriculaList;
     
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)
     @ManyToOne(optional = false)
@@ -170,22 +154,6 @@ public class EduCarrera implements Serializable {
         this.modalidad = modalidad;
     }
 
-    public List<EduMallaCarrera> getEduMallaCarreraList() {
-        return eduMallaCarreraList;
-    }
-
-    public void setEduMallaCarreraList(List<EduMallaCarrera> eduMallaCarreraList) {
-        this.eduMallaCarreraList = eduMallaCarreraList;
-    }
-
-    public List<EduMatricula> getEduMatriculaList() {
-        return eduMatriculaList;
-    }
-
-    public void setEduMatriculaList(List<EduMatricula> eduMatriculaList) {
-        this.eduMatriculaList = eduMatriculaList;
-    }
-
     public EduDepartamento getCodDepartamento() {
         return codDepartamento;
     }
@@ -203,7 +171,6 @@ public class EduCarrera implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof EduCarrera)) {
             return false;
         }

@@ -193,7 +193,7 @@ public class GenUbicacionGeografica implements Serializable {
     public void setCodUbicacionGeoPadre(GenUbicacionGeografica codUbicacionGeoPadre) {
         this.codUbicacionGeoPadre = codUbicacionGeoPadre;
     }
-
+  
     @Override
     public int hashCode() {
         int hash = 0;
