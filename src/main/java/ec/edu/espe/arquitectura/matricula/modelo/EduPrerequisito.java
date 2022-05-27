@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -33,14 +34,18 @@ public class EduPrerequisito implements Serializable {
     @Column(name = "cod_prerequisito")
     private Integer codPrerequisito;
     @Basic(optional = false)
-    @Column(name = "agrupacion_prerequisitos")
-    private int agrupacionPrerequisitos;
-    @JoinColumn(name = "cod_materia_padre", referencedColumnName = "cod_materia")
+    @Column(name = "tipo")
+    private String tipo;
+    @JoinColumns({
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia"),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")})
     @ManyToOne(optional = false)
-    private EduMateria codMateriaPadre;
-    @JoinColumn(name = "edu_cod_materia", referencedColumnName = "cod_materia")
+    private EduMateria eduMateria;
+    @JoinColumns({
+        @JoinColumn(name = "cod_materia_prerequisito", referencedColumnName = "cod_materia"),
+        @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento")})
     @ManyToOne(optional = false)
-    private EduMateria eduCodMateria;
+    private EduMateria eduMateria1;
 
     public EduPrerequisito() {
     }
@@ -49,9 +54,9 @@ public class EduPrerequisito implements Serializable {
         this.codPrerequisito = codPrerequisito;
     }
 
-    public EduPrerequisito(Integer codPrerequisito, int agrupacionPrerequisitos) {
+    public EduPrerequisito(Integer codPrerequisito, String tipo) {
         this.codPrerequisito = codPrerequisito;
-        this.agrupacionPrerequisitos = agrupacionPrerequisitos;
+        this.tipo = tipo;
     }
 
     public Integer getCodPrerequisito() {
@@ -62,28 +67,28 @@ public class EduPrerequisito implements Serializable {
         this.codPrerequisito = codPrerequisito;
     }
 
-    public int getAgrupacionPrerequisitos() {
-        return agrupacionPrerequisitos;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setAgrupacionPrerequisitos(int agrupacionPrerequisitos) {
-        this.agrupacionPrerequisitos = agrupacionPrerequisitos;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public EduMateria getCodMateriaPadre() {
-        return codMateriaPadre;
+    public EduMateria getEduMateria() {
+        return eduMateria;
     }
 
-    public void setCodMateriaPadre(EduMateria codMateriaPadre) {
-        this.codMateriaPadre = codMateriaPadre;
+    public void setEduMateria(EduMateria eduMateria) {
+        this.eduMateria = eduMateria;
     }
 
-    public EduMateria getEduCodMateria() {
-        return eduCodMateria;
+    public EduMateria getEduMateria1() {
+        return eduMateria1;
     }
 
-    public void setEduCodMateria(EduMateria eduCodMateria) {
-        this.eduCodMateria = eduCodMateria;
+    public void setEduMateria1(EduMateria eduMateria1) {
+        this.eduMateria1 = eduMateria1;
     }
 
     @Override

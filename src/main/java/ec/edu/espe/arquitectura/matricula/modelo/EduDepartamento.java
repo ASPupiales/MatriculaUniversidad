@@ -26,30 +26,29 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_departamento")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "EduDepartamento.findAll", query = "SELECT e FROM EduDepartamento e")})
 public class EduDepartamento implements Serializable {
 
-    private static final long serialVersionUID = 15467L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "cod_departamento")
     private Integer codDepartamento;
-    
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    
     @Basic(optional = false)
     @Column(name = "descripcion")
     private String descripcion;
-    
     @Basic(optional = false)
     @Column(name = "siglas")
     private String siglas;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
     private List<EduCarrera> eduCarreraList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduDepartamento")
     private List<EduMateria> eduMateriaList;
 
     public EduDepartamento() {
@@ -57,6 +56,13 @@ public class EduDepartamento implements Serializable {
 
     public EduDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
+    }
+
+    public EduDepartamento(Integer codDepartamento, String nombre, String descripcion, String siglas) {
+        this.codDepartamento = codDepartamento;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.siglas = siglas;
     }
 
     public Integer getCodDepartamento() {
@@ -131,7 +137,7 @@ public class EduDepartamento implements Serializable {
 
     @Override
     public String toString() {
-        return "codDepartamento=" + codDepartamento;
+        return "ec.edu.espe.arquitectura.matricula.modelo.EduDepartamento[ codDepartamento=" + codDepartamento + " ]";
     }
     
 }

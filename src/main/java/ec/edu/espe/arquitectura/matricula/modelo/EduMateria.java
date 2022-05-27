@@ -10,10 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -29,59 +27,64 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_materia")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "EduMateria.findAll", query = "SELECT e FROM EduMateria e")})
 public class EduMateria implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_materia")
-    private Integer codMateria;
-    
+    @EmbeddedId
+    protected EduMateriaPK eduMateriaPK;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "creditos")
     private BigDecimal creditos;
-    
     @Basic(optional = false)
     @Column(name = "horas")
     private BigDecimal horas;
-    
     @Basic(optional = false)
     @Column(name = "ponderacion")
     private BigDecimal ponderacion;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codMateria")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria")
     private List<EduNrc> eduNrcList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codMateria")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria")
     private List<EduMallaCarrera> eduMallaCarreraList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codMateriaPadre")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria")
     private List<EduPrerequisito> eduPrerequisitoList;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduCodMateria")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria1")
     private List<EduPrerequisito> eduPrerequisitoList1;
-    
-    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")
+    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private EduDepartamento codDepartamento;
+    private EduDepartamento eduDepartamento;
 
     public EduMateria() {
     }
 
-    public EduMateria(Integer codMateria) {
-        this.codMateria = codMateria;
+    public EduMateria(EduMateriaPK eduMateriaPK) {
+        this.eduMateriaPK = eduMateriaPK;
     }
 
-    public Integer getCodMateria() {
-        return codMateria;
+    public EduMateria(EduMateriaPK eduMateriaPK, String nombre, BigDecimal creditos, BigDecimal horas, BigDecimal ponderacion) {
+        this.eduMateriaPK = eduMateriaPK;
+        this.nombre = nombre;
+        this.creditos = creditos;
+        this.horas = horas;
+        this.ponderacion = ponderacion;
     }
 
-    public void setCodMateria(Integer codMateria) {
-        this.codMateria = codMateria;
+    public EduMateria(int codMateria, int codDepartamento) {
+        this.eduMateriaPK = new EduMateriaPK(codMateria, codDepartamento);
+    }
+
+    public EduMateriaPK getEduMateriaPK() {
+        return eduMateriaPK;
+    }
+
+    public void setEduMateriaPK(EduMateriaPK eduMateriaPK) {
+        this.eduMateriaPK = eduMateriaPK;
     }
 
     public String getNombre() {
@@ -152,18 +155,18 @@ public class EduMateria implements Serializable {
         this.eduPrerequisitoList1 = eduPrerequisitoList1;
     }
 
-    public EduDepartamento getCodDepartamento() {
-        return codDepartamento;
+    public EduDepartamento getEduDepartamento() {
+        return eduDepartamento;
     }
 
-    public void setCodDepartamento(EduDepartamento codDepartamento) {
-        this.codDepartamento = codDepartamento;
+    public void setEduDepartamento(EduDepartamento eduDepartamento) {
+        this.eduDepartamento = eduDepartamento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codMateria != null ? codMateria.hashCode() : 0);
+        hash += (eduMateriaPK != null ? eduMateriaPK.hashCode() : 0);
         return hash;
     }
 
@@ -174,7 +177,7 @@ public class EduMateria implements Serializable {
             return false;
         }
         EduMateria other = (EduMateria) object;
-        if ((this.codMateria == null && other.codMateria != null) || (this.codMateria != null && !this.codMateria.equals(other.codMateria))) {
+        if ((this.eduMateriaPK == null && other.eduMateriaPK != null) || (this.eduMateriaPK != null && !this.eduMateriaPK.equals(other.eduMateriaPK))) {
             return false;
         }
         return true;
@@ -182,7 +185,7 @@ public class EduMateria implements Serializable {
 
     @Override
     public String toString() {
-        return "codMateria=" + codMateria;
+        return "ec.edu.espe.arquitectura.matricula.modelo.EduMateria[ eduMateriaPK=" + eduMateriaPK + " ]";
     }
     
 }

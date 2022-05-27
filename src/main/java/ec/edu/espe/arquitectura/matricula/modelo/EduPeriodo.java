@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,51 +25,59 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_periodo")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "EduPeriodo.findAll", query = "SELECT e FROM EduPeriodo e")})
 public class EduPeriodo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     @Column(name = "cod_periodo")
-    private Integer codPeriodo;
-    
+    private Short codPeriodo;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    
     @Basic(optional = false)
     @Column(name = "nivel")
     private String nivel;
-    
     @Basic(optional = false)
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
-    
     @Basic(optional = false)
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    
     @Basic(optional = false)
     @Column(name = "parciales")
     private short parciales;
-    
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "eduPeriodo")
     private EduNrc eduNrc;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "codPeriodo")
+    private EduMatricula eduMatricula;
 
     public EduPeriodo() {
     }
 
-    public EduPeriodo(Integer codPeriodo) {
+    public EduPeriodo(Short codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
-    public Integer getCodPeriodo() {
+    public EduPeriodo(Short codPeriodo, String nombre, String nivel, Date fechaInicio, Date fechaFin, short parciales) {
+        this.codPeriodo = codPeriodo;
+        this.nombre = nombre;
+        this.nivel = nivel;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.parciales = parciales;
+    }
+
+    public Short getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(Integer codPeriodo) {
+    public void setCodPeriodo(Short codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
@@ -123,6 +129,14 @@ public class EduPeriodo implements Serializable {
         this.eduNrc = eduNrc;
     }
 
+    public EduMatricula getEduMatricula() {
+        return eduMatricula;
+    }
+
+    public void setEduMatricula(EduMatricula eduMatricula) {
+        this.eduMatricula = eduMatricula;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -145,7 +159,7 @@ public class EduPeriodo implements Serializable {
 
     @Override
     public String toString() {
-        return "codPeriodo=" + codPeriodo;
+        return "ec.edu.espe.arquitectura.matricula.modelo.EduPeriodo[ codPeriodo=" + codPeriodo + " ]";
     }
     
 }

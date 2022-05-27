@@ -6,7 +6,6 @@ package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -66,8 +63,6 @@ public class EduInstitucionEducativa implements Serializable {
     @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
     @ManyToOne(optional = false)
     private GenUbicacionGeografica codUbicacionGeoInt;
-    @OneToMany(mappedBy = "codInstitucionEducativa")
-    private List<PerHistTipoPersona> perHistTipoPersonaList;
 
     public EduInstitucionEducativa() {
     }
@@ -157,15 +152,6 @@ public class EduInstitucionEducativa implements Serializable {
 
     public void setCodUbicacionGeoInt(GenUbicacionGeografica codUbicacionGeoInt) {
         this.codUbicacionGeoInt = codUbicacionGeoInt;
-    }
-
-    @XmlTransient
-    public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
-        return perHistTipoPersonaList;
-    }
-
-    public void setPerHistTipoPersonaList(List<PerHistTipoPersona> perHistTipoPersonaList) {
-        this.perHistTipoPersonaList = perHistTipoPersonaList;
     }
 
     @Override

@@ -6,7 +6,6 @@ package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -15,12 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -61,13 +58,6 @@ public class PerHistTipoPersona implements Serializable {
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
-    @OneToMany(mappedBy = "perHistTipoPersona")
-    private List<EduInscripcionCarrera> eduInscripcionCarreraList;
-    @OneToMany(mappedBy = "perHistTipoPersona")
-    private List<EduAsignacionDocente> eduAsignacionDocenteList;
-    @JoinColumn(name = "cod_institucion_educativa", referencedColumnName = "cod_institucion_educativa")
-    @ManyToOne
-    private EduInstitucionEducativa codInstitucionEducativa;
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
@@ -166,32 +156,6 @@ public class PerHistTipoPersona implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    @XmlTransient
-    public List<EduInscripcionCarrera> getEduInscripcionCarreraList() {
-        return eduInscripcionCarreraList;
-    }
-
-    public void setEduInscripcionCarreraList(List<EduInscripcionCarrera> eduInscripcionCarreraList) {
-        this.eduInscripcionCarreraList = eduInscripcionCarreraList;
-    }
-
-    @XmlTransient
-    public List<EduAsignacionDocente> getEduAsignacionDocenteList() {
-        return eduAsignacionDocenteList;
-    }
-
-    public void setEduAsignacionDocenteList(List<EduAsignacionDocente> eduAsignacionDocenteList) {
-        this.eduAsignacionDocenteList = eduAsignacionDocenteList;
-    }
-
-    public EduInstitucionEducativa getCodInstitucionEducativa() {
-        return codInstitucionEducativa;
-    }
-
-    public void setCodInstitucionEducativa(EduInstitucionEducativa codInstitucionEducativa) {
-        this.codInstitucionEducativa = codInstitucionEducativa;
     }
 
     public PerPersona getPerPersona() {

@@ -112,8 +112,12 @@ public class PerPersona implements Serializable {
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codPersona")
+    private List<EduNrc> eduNrcList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
     private List<PerDireccionPersona> perDireccionPersonaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    private List<EduMatricula> eduMatriculaList;
     @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais")
     @ManyToOne
     private GenPais codPaisNacimiento;
@@ -374,12 +378,30 @@ public class PerPersona implements Serializable {
     }
 
     @XmlTransient
+    public List<EduNrc> getEduNrcList() {
+        return eduNrcList;
+    }
+
+    public void setEduNrcList(List<EduNrc> eduNrcList) {
+        this.eduNrcList = eduNrcList;
+    }
+
+    @XmlTransient
     public List<PerDireccionPersona> getPerDireccionPersonaList() {
         return perDireccionPersonaList;
     }
 
     public void setPerDireccionPersonaList(List<PerDireccionPersona> perDireccionPersonaList) {
         this.perDireccionPersonaList = perDireccionPersonaList;
+    }
+
+    @XmlTransient
+    public List<EduMatricula> getEduMatriculaList() {
+        return eduMatriculaList;
+    }
+
+    public void setEduMatriculaList(List<EduMatricula> eduMatriculaList) {
+        this.eduMatriculaList = eduMatriculaList;
     }
 
     public GenPais getCodPaisNacimiento() {

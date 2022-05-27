@@ -14,8 +14,14 @@ import javax.persistence.Embeddable;
  * @author labox
  */
 @Embeddable
-public class EduNrcPK implements Serializable {
+public class EduMatriculaNrcPK implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "cod_matricula")
+    private String codMatricula;
+    @Basic(optional = false)
+    @Column(name = "cod_persona")
+    private int codPersona;
     @Basic(optional = false)
     @Column(name = "cod_nrc")
     private short codNrc;
@@ -29,14 +35,32 @@ public class EduNrcPK implements Serializable {
     @Column(name = "cod_materia")
     private int codMateria;
 
-    public EduNrcPK() {
+    public EduMatriculaNrcPK() {
     }
 
-    public EduNrcPK(short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+    public EduMatriculaNrcPK(String codMatricula, int codPersona, short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+        this.codMatricula = codMatricula;
+        this.codPersona = codPersona;
         this.codNrc = codNrc;
         this.codPeriodo = codPeriodo;
         this.codDepartamento = codDepartamento;
         this.codMateria = codMateria;
+    }
+
+    public String getCodMatricula() {
+        return codMatricula;
+    }
+
+    public void setCodMatricula(String codMatricula) {
+        this.codMatricula = codMatricula;
+    }
+
+    public int getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
     }
 
     public short getCodNrc() {
@@ -74,6 +98,8 @@ public class EduNrcPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
+        hash += (codMatricula != null ? codMatricula.hashCode() : 0);
+        hash += (int) codPersona;
         hash += (int) codNrc;
         hash += (int) codPeriodo;
         hash += (int) codDepartamento;
@@ -84,10 +110,16 @@ public class EduNrcPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EduNrcPK)) {
+        if (!(object instanceof EduMatriculaNrcPK)) {
             return false;
         }
-        EduNrcPK other = (EduNrcPK) object;
+        EduMatriculaNrcPK other = (EduMatriculaNrcPK) object;
+        if ((this.codMatricula == null && other.codMatricula != null) || (this.codMatricula != null && !this.codMatricula.equals(other.codMatricula))) {
+            return false;
+        }
+        if (this.codPersona != other.codPersona) {
+            return false;
+        }
         if (this.codNrc != other.codNrc) {
             return false;
         }
@@ -105,7 +137,7 @@ public class EduNrcPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduNrcPK[ codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + " ]";
+        return "ec.edu.espe.arquitectura.matricula.modelo.EduMatriculaNrcPK[ codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + " ]";
     }
     
 }
