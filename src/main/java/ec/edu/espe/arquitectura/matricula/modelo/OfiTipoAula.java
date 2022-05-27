@@ -2,12 +2,10 @@ package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,8 +34,6 @@ public class OfiTipoAula implements Serializable {
     @Basic(optional = false)
     @Column(name = "version", nullable = false)
     private int version;
-    @OneToMany(mappedBy = "codTipoAula")
-    private List<OfiAula> ofiAulaList;
 
     public OfiTipoAula() {
     }
@@ -92,14 +88,6 @@ public class OfiTipoAula implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<OfiAula> getOfiAulaList() {
-        return ofiAulaList;
-    }
-
-    public void setOfiAulaList(List<OfiAula> ofiAulaList) {
-        this.ofiAulaList = ofiAulaList;
     }
 
     @Override

@@ -62,8 +62,6 @@ public class OfiEdificio implements Serializable {
     private OfiSede codSede;
     @OneToMany(mappedBy = "codEdificio")
     private List<OfiEdificioBloque> ofiEdificioBloqueList;
-    @OneToMany(mappedBy = "codEdificio")
-    private List<OfiAula> ofiAulaList;
 
     public OfiEdificio() {
     }
@@ -190,14 +188,6 @@ public class OfiEdificio implements Serializable {
 
     public void setOfiEdificioBloqueList(List<OfiEdificioBloque> ofiEdificioBloqueList) {
         this.ofiEdificioBloqueList = ofiEdificioBloqueList;
-    }
-
-    public List<OfiAula> getOfiAulaList() {
-        return ofiAulaList;
-    }
-
-    public void setOfiAulaList(List<OfiAula> ofiAulaList) {
-        this.ofiAulaList = ofiAulaList;
     }
 
     @Override

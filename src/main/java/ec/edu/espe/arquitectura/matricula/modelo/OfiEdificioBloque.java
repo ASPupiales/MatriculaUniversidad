@@ -2,14 +2,12 @@ package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,8 +41,6 @@ public class OfiEdificioBloque implements Serializable {
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
     private OfiEdificio codEdificio;
-    @OneToMany(mappedBy = "codEdificioBloque")
-    private List<OfiAula> ofiAulaList;
 
     public OfiEdificioBloque() {
     }
@@ -115,14 +111,6 @@ public class OfiEdificioBloque implements Serializable {
 
     public void setCodEdificio(OfiEdificio codEdificio) {
         this.codEdificio = codEdificio;
-    }
-
-    public List<OfiAula> getOfiAulaList() {
-        return ofiAulaList;
-    }
-
-    public void setOfiAulaList(List<OfiAula> ofiAulaList) {
-        this.ofiAulaList = ofiAulaList;
     }
 
     @Override
