@@ -16,14 +16,13 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EduCalificacionPK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "cod_matricula")
+    @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
-    @Basic(optional = false)
-    @Column(name = "cod_persona")
+    
+    @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    @Basic(optional = false)
-    @Column(name = "cod_nrc")
+    
+    @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
 
     public EduCalificacionPK() {
@@ -89,7 +88,7 @@ public class EduCalificacionPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduCalificacionPK[ codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc + " ]";
+        return "codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc;
     }
     
 }

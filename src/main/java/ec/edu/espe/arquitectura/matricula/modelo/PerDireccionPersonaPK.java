@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
 public class PerDireccionPersonaPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_persona")
+    @Column(name = "cod_persona", nullable = false)
     private int codPersona;
     @Basic(optional = false)
-    @Column(name = "sec_direccion")
+    @Column(name = "sec_direccion", nullable = false)
     private short secDireccion;
 
     public PerDireccionPersonaPK() {

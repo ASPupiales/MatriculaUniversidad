@@ -17,22 +17,22 @@ import javax.persistence.Embeddable;
 public class EduNrcHorarioPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_nrc")
+    @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
     @Basic(optional = false)
-    @Column(name = "cod_periodo")
+    @Column(name = "cod_periodo", nullable = false)
     private short codPeriodo;
     @Basic(optional = false)
-    @Column(name = "cod_departamento")
+    @Column(name = "cod_departamento", nullable = false)
     private int codDepartamento;
     @Basic(optional = false)
-    @Column(name = "cod_materia")
+    @Column(name = "cod_materia", nullable = false)
     private int codMateria;
     @Basic(optional = false)
-    @Column(name = "cod_aula")
+    @Column(name = "cod_aula", nullable = false)
     private int codAula;
     @Basic(optional = false)
-    @Column(name = "dia_semana")
+    @Column(name = "dia_semana", nullable = false, length = 25)
     private String diaSemana;
 
     public EduNrcHorarioPK() {

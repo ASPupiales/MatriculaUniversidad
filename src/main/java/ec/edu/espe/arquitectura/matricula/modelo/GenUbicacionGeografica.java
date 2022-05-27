@@ -1,9 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,52 +17,62 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ *
+ * @author labox
+ */
 @Entity
 @Table(name = "gen_ubicacion_geografica")
+@NamedQueries({
+    @NamedQuery(name = "GenUbicacionGeografica.findAll", query = "SELECT g FROM GenUbicacionGeografica g")})
 public class GenUbicacionGeografica implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_ubicacion_geo_int")
+    @Basic(optional = false)
+    @Column(name = "cod_ubicacion_geo_int", nullable = false)
     private Integer codUbicacionGeoInt;
     @Basic(optional = false)
-    @Column(name = "cod_ubicacion_geografica")
+    @Column(name = "cod_ubicacion_geografica", nullable = false, length = 20)
     private String codUbicacionGeografica;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    @Column(name = "codigo_area_telefono")
+    @Column(name = "codigo_area_telefono", length = 4)
     private String codigoAreaTelefono;
-    @Column(name = "codigo_alterno")
+    @Column(name = "codigo_alterno", length = 15)
     private String codigoAlterno;
-    @Column(name = "codigo_postal")
+    @Column(name = "codigo_postal", length = 15)
     private String codigoPostal;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
+    @OneToMany(mappedBy = "codUbicacionGeoInt")
+    private List<GenInstitucion> genInstitucionList;
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais")
     @ManyToOne
     private GenPais codPais;
     @JoinColumns({
         @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais"),
-        @JoinColumn(name = "nivel", referencedColumnName = "nivel")})
+        @JoinColumn(name = "nivel", referencedColumnName = "nivel", nullable = false)})
     @ManyToOne(optional = false)
     private GenPaisEstructura genPaisEstructura;
     @OneToMany(mappedBy = "codUbicacionGeoPadre")
@@ -65,12 +80,26 @@ public class GenUbicacionGeografica implements Serializable {
     @JoinColumn(name = "cod_ubicacion_geo_padre", referencedColumnName = "cod_ubicacion_geo_int")
     @ManyToOne
     private GenUbicacionGeografica codUbicacionGeoPadre;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarNacimiento")
+    private List<PerPersona> perPersonaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codUbicacionGeoInt")
+    private List<EduInstitucionEducativa> eduInstitucionEducativaList;
 
     public GenUbicacionGeografica() {
     }
 
     public GenUbicacionGeografica(Integer codUbicacionGeoInt) {
         this.codUbicacionGeoInt = codUbicacionGeoInt;
+    }
+
+    public GenUbicacionGeografica(Integer codUbicacionGeoInt, String codUbicacionGeografica, String nombre, String audUsuario, Date audFecha, String audIp, int version) {
+        this.codUbicacionGeoInt = codUbicacionGeoInt;
+        this.codUbicacionGeografica = codUbicacionGeografica;
+        this.nombre = nombre;
+        this.audUsuario = audUsuario;
+        this.audFecha = audFecha;
+        this.audIp = audIp;
+        this.version = version;
     }
 
     public Integer getCodUbicacionGeoInt() {
@@ -153,6 +182,14 @@ public class GenUbicacionGeografica implements Serializable {
         this.version = version;
     }
 
+    public List<GenInstitucion> getGenInstitucionList() {
+        return genInstitucionList;
+    }
+
+    public void setGenInstitucionList(List<GenInstitucion> genInstitucionList) {
+        this.genInstitucionList = genInstitucionList;
+    }
+
     public GenPais getCodPais() {
         return codPais;
     }
@@ -169,7 +206,6 @@ public class GenUbicacionGeografica implements Serializable {
         this.genPaisEstructura = genPaisEstructura;
     }
 
-    @XmlTransient
     public List<GenUbicacionGeografica> getGenUbicacionGeograficaList() {
         return genUbicacionGeograficaList;
     }
@@ -186,6 +222,22 @@ public class GenUbicacionGeografica implements Serializable {
         this.codUbicacionGeoPadre = codUbicacionGeoPadre;
     }
 
+    public List<PerPersona> getPerPersonaList() {
+        return perPersonaList;
+    }
+
+    public void setPerPersonaList(List<PerPersona> perPersonaList) {
+        this.perPersonaList = perPersonaList;
+    }
+
+    public List<EduInstitucionEducativa> getEduInstitucionEducativaList() {
+        return eduInstitucionEducativaList;
+    }
+
+    public void setEduInstitucionEducativaList(List<EduInstitucionEducativa> eduInstitucionEducativaList) {
+        this.eduInstitucionEducativaList = eduInstitucionEducativaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -195,6 +247,7 @@ public class GenUbicacionGeografica implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenUbicacionGeografica)) {
             return false;
         }
@@ -207,7 +260,7 @@ public class GenUbicacionGeografica implements Serializable {
 
     @Override
     public String toString() {
-        return "GenUbicacionGeografica[ codUbicacionGeoInt=" + codUbicacionGeoInt + " ]";
+        return "ec.edu.espe.arquitectura.matricula.modelo.GenUbicacionGeografica[ codUbicacionGeoInt=" + codUbicacionGeoInt + " ]";
     }
     
 }

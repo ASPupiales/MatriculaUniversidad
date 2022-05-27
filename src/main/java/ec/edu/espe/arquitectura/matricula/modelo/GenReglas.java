@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -6,48 +10,57 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author labox
+ */
 @Entity
 @Table(name = "gen_reglas")
+@NamedQueries({
+    @NamedQuery(name = "GenReglas.findAll", query = "SELECT g FROM GenReglas g")})
 public class GenReglas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "cod_regla")
+    @Basic(optional = false)
+    @Column(name = "cod_regla", nullable = false, length = 30)
     private String codRegla;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 100)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
     @Column(name = "valor_numerico")
     private Integer valorNumerico;
-    @Column(name = "valor_texto")
+    @Column(name = "valor_texto", length = 50)
     private String valorTexto;
     @Basic(optional = false)
-    @Column(name = "unidad")
+    @Column(name = "unidad", nullable = false, length = 100)
     private String unidad;
     @Basic(optional = false)
-    @Column(name = "clasificacion")
+    @Column(name = "clasificacion", nullable = false, length = 3)
     private String clasificacion;
-    @Column(name = "descripcion_detallada")
+    @Column(name = "descripcion_detallada", length = 500)
     private String descripcionDetallada;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
 
     public GenReglas() {
@@ -55,6 +68,18 @@ public class GenReglas implements Serializable {
 
     public GenReglas(String codRegla) {
         this.codRegla = codRegla;
+    }
+
+    public GenReglas(String codRegla, String descripcion, String tipo, String unidad, String clasificacion, String audUsuario, Date audFecha, String audIp, int version) {
+        this.codRegla = codRegla;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.unidad = unidad;
+        this.clasificacion = clasificacion;
+        this.audUsuario = audUsuario;
+        this.audFecha = audFecha;
+        this.audIp = audIp;
+        this.version = version;
     }
 
     public String getCodRegla() {
@@ -162,6 +187,7 @@ public class GenReglas implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenReglas)) {
             return false;
         }
@@ -174,7 +200,7 @@ public class GenReglas implements Serializable {
 
     @Override
     public String toString() {
-        return "GenReglas[ codRegla=" + codRegla + " ]";
+        return "ec.edu.espe.arquitectura.matricula.modelo.GenReglas[ codRegla=" + codRegla + " ]";
     }
     
 }

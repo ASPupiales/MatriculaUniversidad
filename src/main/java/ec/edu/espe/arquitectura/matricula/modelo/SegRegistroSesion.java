@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "seg_registro_sesion")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SegRegistroSesion.findAll", query = "SELECT s FROM SegRegistroSesion s")})
 public class SegRegistroSesion implements Serializable {
@@ -34,22 +32,22 @@ public class SegRegistroSesion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "secuencia")
+    @Column(name = "secuencia", nullable = false)
     private Integer secuencia;
     @Basic(optional = false)
-    @Column(name = "cod_usuario")
+    @Column(name = "cod_usuario", nullable = false, length = 32)
     private String codUsuario;
     @Basic(optional = false)
-    @Column(name = "fecha_conexion")
+    @Column(name = "fecha_conexion", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaConexion;
     @Basic(optional = false)
-    @Column(name = "ip_conexion")
+    @Column(name = "ip_conexion", nullable = false, length = 30)
     private String ipConexion;
     @Basic(optional = false)
-    @Column(name = "resultado")
+    @Column(name = "resultado", nullable = false, length = 3)
     private String resultado;
-    @Column(name = "error")
+    @Column(name = "error", length = 5)
     private String error;
 
     public SegRegistroSesion() {

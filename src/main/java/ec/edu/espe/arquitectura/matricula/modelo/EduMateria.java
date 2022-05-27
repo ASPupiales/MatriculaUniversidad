@@ -18,8 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,7 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_materia")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduMateria.findAll", query = "SELECT e FROM EduMateria e")})
 public class EduMateria implements Serializable {
@@ -36,17 +33,17 @@ public class EduMateria implements Serializable {
     @EmbeddedId
     protected EduMateriaPK eduMateriaPK;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "creditos")
+    @Column(name = "creditos", nullable = false, precision = 4, scale = 2)
     private BigDecimal creditos;
     @Basic(optional = false)
-    @Column(name = "horas")
+    @Column(name = "horas", nullable = false, precision = 4, scale = 2)
     private BigDecimal horas;
     @Basic(optional = false)
-    @Column(name = "ponderacion")
+    @Column(name = "ponderacion", nullable = false, precision = 5, scale = 2)
     private BigDecimal ponderacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria")
     private List<EduNrc> eduNrcList;
@@ -56,7 +53,7 @@ public class EduMateria implements Serializable {
     private List<EduPrerequisito> eduPrerequisitoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMateria1")
     private List<EduPrerequisito> eduPrerequisitoList1;
-    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private EduDepartamento eduDepartamento;
 
@@ -119,7 +116,6 @@ public class EduMateria implements Serializable {
         this.ponderacion = ponderacion;
     }
 
-    @XmlTransient
     public List<EduNrc> getEduNrcList() {
         return eduNrcList;
     }
@@ -128,7 +124,6 @@ public class EduMateria implements Serializable {
         this.eduNrcList = eduNrcList;
     }
 
-    @XmlTransient
     public List<EduMallaCarrera> getEduMallaCarreraList() {
         return eduMallaCarreraList;
     }
@@ -137,7 +132,6 @@ public class EduMateria implements Serializable {
         this.eduMallaCarreraList = eduMallaCarreraList;
     }
 
-    @XmlTransient
     public List<EduPrerequisito> getEduPrerequisitoList() {
         return eduPrerequisitoList;
     }
@@ -146,7 +140,6 @@ public class EduMateria implements Serializable {
         this.eduPrerequisitoList = eduPrerequisitoList;
     }
 
-    @XmlTransient
     public List<EduPrerequisito> getEduPrerequisitoList1() {
         return eduPrerequisitoList1;
     }

@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "per_documento_persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerDocumentoPersona.findAll", query = "SELECT p FROM PerDocumentoPersona p")})
 public class PerDocumentoPersona implements Serializable {
@@ -34,13 +32,13 @@ public class PerDocumentoPersona implements Serializable {
     @EmbeddedId
     protected PerDocumentoPersonaPK perDocumentoPersonaPK;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "fecha_registro")
+    @Column(name = "fecha_registro", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    @Column(name = "archivado")
+    @Column(name = "archivado", length = 1)
     private String archivado;
     @Column(name = "fecha_emision")
     @Temporal(TemporalType.DATE)
@@ -48,27 +46,27 @@ public class PerDocumentoPersona implements Serializable {
     @Column(name = "fecha_caducidad")
     @Temporal(TemporalType.DATE)
     private Date fechaCaducidad;
-    @Column(name = "digitalizado")
+    @Column(name = "digitalizado", length = 1)
     private String digitalizado;
-    @Column(name = "url")
+    @Column(name = "url", length = 255)
     private String url;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
-    @JoinColumn(name = "cod_tipo_documento", referencedColumnName = "cod_tipo_documento", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_tipo_documento", referencedColumnName = "cod_tipo_documento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerTipoDocumento perTipoDocumento;
 
