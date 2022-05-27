@@ -25,7 +25,7 @@ public class OfiSede implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    @Column(name = "direccion", length = 10)
+    @Column(name = "direccion", length = 256)
     private String direccion;
     @Basic(optional = false)
     @Column(name = "es_principal", nullable = false, length = 1)
