@@ -1,37 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_pais")
-@NamedQueries({
-    @NamedQuery(name = "GenPais.findAll", query = "SELECT g FROM GenPais g")})
 public class GenPais implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_pais", nullable = false, length = 2)
     private String codPais;
     @Basic(optional = false)
@@ -57,30 +41,12 @@ public class GenPais implements Serializable {
     @Basic(optional = false)
     @Column(name = "version", nullable = false)
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genPais")
-    private List<GenPaisEstructura> genPaisEstructuraList;
-    @OneToMany(mappedBy = "codPais")
-    private List<GenUbicacionGeografica> genUbicacionGeograficaList;
-    @OneToMany(mappedBy = "codPaisNacimiento")
-    private List<PerPersona> perPersonaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nacionalidad")
-    private List<PerPersona> perPersonaList1;
 
     public GenPais() {
     }
 
     public GenPais(String codPais) {
         this.codPais = codPais;
-    }
-
-    public GenPais(String codPais, String nombre, String porOmision, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codPais = codPais;
-        this.nombre = nombre;
-        this.porOmision = porOmision;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodPais() {
@@ -154,39 +120,7 @@ public class GenPais implements Serializable {
     public void setVersion(int version) {
         this.version = version;
     }
-
-    public List<GenPaisEstructura> getGenPaisEstructuraList() {
-        return genPaisEstructuraList;
-    }
-
-    public void setGenPaisEstructuraList(List<GenPaisEstructura> genPaisEstructuraList) {
-        this.genPaisEstructuraList = genPaisEstructuraList;
-    }
-
-    public List<GenUbicacionGeografica> getGenUbicacionGeograficaList() {
-        return genUbicacionGeograficaList;
-    }
-
-    public void setGenUbicacionGeograficaList(List<GenUbicacionGeografica> genUbicacionGeograficaList) {
-        this.genUbicacionGeograficaList = genUbicacionGeograficaList;
-    }
-
-    public List<PerPersona> getPerPersonaList() {
-        return perPersonaList;
-    }
-
-    public void setPerPersonaList(List<PerPersona> perPersonaList) {
-        this.perPersonaList = perPersonaList;
-    }
-
-    public List<PerPersona> getPerPersonaList1() {
-        return perPersonaList1;
-    }
-
-    public void setPerPersonaList1(List<PerPersona> perPersonaList1) {
-        this.perPersonaList1 = perPersonaList1;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -196,7 +130,6 @@ public class GenPais implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenPais)) {
             return false;
         }
@@ -209,7 +142,7 @@ public class GenPais implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.GenPais[ codPais=" + codPais + " ]";
+        return "GenPais[ codPais=" + codPais + " ]";
     }
     
 }

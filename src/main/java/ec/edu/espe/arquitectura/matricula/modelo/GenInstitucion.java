@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -11,23 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_institucion")
-@NamedQueries({
-    @NamedQuery(name = "GenInstitucion.findAll", query = "SELECT g FROM GenInstitucion g")})
 public class GenInstitucion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
     @Basic(optional = false)
@@ -59,16 +46,6 @@ public class GenInstitucion implements Serializable {
 
     public GenInstitucion(String ruc) {
         this.ruc = ruc;
-    }
-
-    public GenInstitucion(String ruc, String razonSocial, String nombreComercial, String direccion, String dominio, String urlSistema, int version) {
-        this.ruc = ruc;
-        this.razonSocial = razonSocial;
-        this.nombreComercial = nombreComercial;
-        this.direccion = direccion;
-        this.dominio = dominio;
-        this.urlSistema = urlSistema;
-        this.version = version;
     }
 
     public String getRuc() {
@@ -152,7 +129,6 @@ public class GenInstitucion implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenInstitucion)) {
             return false;
         }
@@ -165,7 +141,7 @@ public class GenInstitucion implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.GenInstitucion[ ruc=" + ruc + " ]";
+        return "GenInstitucion[ ruc=" + ruc + " ]";
     }
     
 }

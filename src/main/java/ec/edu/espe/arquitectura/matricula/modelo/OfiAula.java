@@ -1,14 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,27 +10,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_aula")
-@NamedQueries({
-    @NamedQuery(name = "OfiAula.findAll", query = "SELECT o FROM OfiAula o")})
 public class OfiAula implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "cod_aula", nullable = false)
     private Integer codAula;
     @Basic(optional = false)
@@ -61,8 +45,6 @@ public class OfiAula implements Serializable {
     @Basic(optional = false)
     @Column(name = "version", nullable = false)
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ofiAula")
-    private List<EduNrcHorario> eduNrcHorarioList;
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
     private OfiEdificio codEdificio;
@@ -78,17 +60,6 @@ public class OfiAula implements Serializable {
 
     public OfiAula(Integer codAula) {
         this.codAula = codAula;
-    }
-
-    public OfiAula(Integer codAula, String codAlterno, short capacidad, short piso, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codAula = codAula;
-        this.codAlterno = codAlterno;
-        this.capacidad = capacidad;
-        this.piso = piso;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public Integer getCodAula() {
@@ -155,14 +126,6 @@ public class OfiAula implements Serializable {
         this.version = version;
     }
 
-    public List<EduNrcHorario> getEduNrcHorarioList() {
-        return eduNrcHorarioList;
-    }
-
-    public void setEduNrcHorarioList(List<EduNrcHorario> eduNrcHorarioList) {
-        this.eduNrcHorarioList = eduNrcHorarioList;
-    }
-
     public OfiEdificio getCodEdificio() {
         return codEdificio;
     }
@@ -196,7 +159,6 @@ public class OfiAula implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof OfiAula)) {
             return false;
         }
@@ -209,7 +171,7 @@ public class OfiAula implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.OfiAula[ codAula=" + codAula + " ]";
+        return "OfiAula[ codAula=" + codAula + " ]";
     }
     
 }
