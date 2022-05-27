@@ -32,62 +32,38 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "seg_funcionalidad")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "SegFuncionalidad.findAll", query = "SELECT s FROM SegFuncionalidad s")})
 public class SegFuncionalidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "cod_funcionalidad")
     private Integer codFuncionalidad;
-    @Basic(optional = false)
     @Column(name = "url_principal")
     private String urlPrincipal;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo")
-    @ManyToOne(optional = false)
     private SegModulo codModulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segFuncionalidad")
-    private List<SegPerfilFuncionalidad> segPerfilFuncionalidadList;
 
     public SegFuncionalidad() {
     }
 
     public SegFuncionalidad(Integer codFuncionalidad) {
         this.codFuncionalidad = codFuncionalidad;
-    }
-
-    public SegFuncionalidad(Integer codFuncionalidad, String urlPrincipal, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codFuncionalidad = codFuncionalidad;
-        this.urlPrincipal = urlPrincipal;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public Integer getCodFuncionalidad() {

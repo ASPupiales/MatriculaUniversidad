@@ -28,56 +28,33 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "per_tipo_persona")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PerTipoPersona.findAll", query = "SELECT p FROM PerTipoPersona p")})
 public class PerTipoPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_tipo_persona")
     private String codTipoPersona;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
-    @OneToMany(mappedBy = "codTipoPersona")
-    private List<PerPersona> perPersonaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoPersona")
-    private List<PerHistTipoPersona> perHistTipoPersonaList;
 
     public PerTipoPersona() {
     }
 
     public PerTipoPersona(String codTipoPersona) {
         this.codTipoPersona = codTipoPersona;
-    }
-
-    public PerTipoPersona(String codTipoPersona, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codTipoPersona = codTipoPersona;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodTipoPersona() {

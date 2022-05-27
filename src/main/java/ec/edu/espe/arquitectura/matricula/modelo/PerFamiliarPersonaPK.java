@@ -16,10 +16,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PerFamiliarPersonaPK implements Serializable {
 
-    @Basic(optional = false)
     @Column(name = "cod_persona")
     private int codPersona;
-    @Basic(optional = false)
     @Column(name = "sec_familiar_persona")
     private short secFamiliarPersona;
 

@@ -16,10 +16,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SegUsuarioPerfilPK implements Serializable {
 
-    @Basic(optional = false)
     @Column(name = "cod_usuario")
     private String codUsuario;
-    @Basic(optional = false)
     @Column(name = "cod_perfil")
     private String codPerfil;
 

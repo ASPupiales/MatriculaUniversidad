@@ -26,24 +26,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "seg_perfil_funcionalidad")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "SegPerfilFuncionalidad.findAll", query = "SELECT s FROM SegPerfilFuncionalidad s")})
 public class SegPerfilFuncionalidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SegPerfilFuncionalidadPK segPerfilFuncionalidadPK;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @JoinColumn(name = "cod_funcionalidad", referencedColumnName = "cod_funcionalidad", insertable = false, updatable = false)
@@ -58,14 +52,6 @@ public class SegPerfilFuncionalidad implements Serializable {
 
     public SegPerfilFuncionalidad(SegPerfilFuncionalidadPK segPerfilFuncionalidadPK) {
         this.segPerfilFuncionalidadPK = segPerfilFuncionalidadPK;
-    }
-
-    public SegPerfilFuncionalidad(SegPerfilFuncionalidadPK segPerfilFuncionalidadPK, String audUsuario, Date audFecha, String audIp, int version) {
-        this.segPerfilFuncionalidadPK = segPerfilFuncionalidadPK;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public SegPerfilFuncionalidad(String codPerfil, int codFuncionalidad) {

@@ -25,39 +25,24 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "seg_modulo")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "SegModulo.findAll", query = "SELECT s FROM SegModulo s")})
 public class SegModulo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_modulo")
     private String codModulo;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codModulo")
-    private List<SegFuncionalidad> segFuncionalidadList;
 
     public SegModulo() {
     }
 
     public SegModulo(String codModulo) {
         this.codModulo = codModulo;
-    }
-
-    public SegModulo(String codModulo, String nombre, String estado, int version) {
-        this.codModulo = codModulo;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.version = version;
     }
 
     public String getCodModulo() {

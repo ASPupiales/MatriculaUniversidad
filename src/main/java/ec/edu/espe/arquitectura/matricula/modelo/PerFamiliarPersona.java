@@ -26,17 +26,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "per_familiar_persona")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PerFamiliarPersona.findAll", query = "SELECT p FROM PerFamiliarPersona p")})
+
 public class PerFamiliarPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PerFamiliarPersonaPK perFamiliarPersonaPK;
-    @Basic(optional = false)
     @Column(name = "tipo_familiar")
     private String tipoFamiliar;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "tipo_identificacion")
@@ -48,21 +45,16 @@ public class PerFamiliarPersona implements Serializable {
     private Date fechaNacimiento;
     @Column(name = "telefono")
     private String telefono;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
     private PerPersona perPersona;
 
     public PerFamiliarPersona() {
@@ -70,16 +62,6 @@ public class PerFamiliarPersona implements Serializable {
 
     public PerFamiliarPersona(PerFamiliarPersonaPK perFamiliarPersonaPK) {
         this.perFamiliarPersonaPK = perFamiliarPersonaPK;
-    }
-
-    public PerFamiliarPersona(PerFamiliarPersonaPK perFamiliarPersonaPK, String tipoFamiliar, String nombre, String audUsuario, Date audFecha, String audIp, int version) {
-        this.perFamiliarPersonaPK = perFamiliarPersonaPK;
-        this.tipoFamiliar = tipoFamiliar;
-        this.nombre = nombre;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public PerFamiliarPersona(int codPersona, short secFamiliarPersona) {

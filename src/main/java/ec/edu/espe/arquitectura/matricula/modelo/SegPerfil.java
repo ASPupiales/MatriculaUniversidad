@@ -34,48 +34,27 @@ public class SegPerfil implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_perfil")
     private String codPerfil;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
-    private List<SegUsuarioPerfil> segUsuarioPerfilList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
-    private List<SegPerfilFuncionalidad> segPerfilFuncionalidadList;
 
     public SegPerfil() {
     }
 
     public SegPerfil(String codPerfil) {
         this.codPerfil = codPerfil;
-    }
-
-    public SegPerfil(String codPerfil, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codPerfil = codPerfil;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodPerfil() {

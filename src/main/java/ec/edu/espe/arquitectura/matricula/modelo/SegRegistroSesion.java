@@ -26,27 +26,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "seg_registro_sesion")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "SegRegistroSesion.findAll", query = "SELECT s FROM SegRegistroSesion s")})
 public class SegRegistroSesion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "secuencia")
     private Integer secuencia;
-    @Basic(optional = false)
     @Column(name = "cod_usuario")
     private String codUsuario;
-    @Basic(optional = false)
     @Column(name = "fecha_conexion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaConexion;
-    @Basic(optional = false)
     @Column(name = "ip_conexion")
     private String ipConexion;
-    @Basic(optional = false)
     @Column(name = "resultado")
     private String resultado;
     @Column(name = "error")
@@ -57,14 +50,6 @@ public class SegRegistroSesion implements Serializable {
 
     public SegRegistroSesion(Integer secuencia) {
         this.secuencia = secuencia;
-    }
-
-    public SegRegistroSesion(Integer secuencia, String codUsuario, Date fechaConexion, String ipConexion, String resultado) {
-        this.secuencia = secuencia;
-        this.codUsuario = codUsuario;
-        this.fechaConexion = fechaConexion;
-        this.ipConexion = ipConexion;
-        this.resultado = resultado;
     }
 
     public Integer getSecuencia() {

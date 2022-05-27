@@ -26,17 +26,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "per_documento_persona")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PerDocumentoPersona.findAll", query = "SELECT p FROM PerDocumentoPersona p")})
 public class PerDocumentoPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PerDocumentoPersonaPK perDocumentoPersonaPK;
-    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
@@ -52,21 +48,16 @@ public class PerDocumentoPersona implements Serializable {
     private String digitalizado;
     @Column(name = "url")
     private String url;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
     private PerPersona perPersona;
     @JoinColumn(name = "cod_tipo_documento", referencedColumnName = "cod_tipo_documento", insertable = false, updatable = false)
     @ManyToOne(optional = false)

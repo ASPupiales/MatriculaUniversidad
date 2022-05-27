@@ -16,10 +16,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PerDireccionPersonaPK implements Serializable {
 
-    @Basic(optional = false)
     @Column(name = "cod_persona")
     private int codPersona;
-    @Basic(optional = false)
     @Column(name = "sec_direccion")
     private short secDireccion;
 

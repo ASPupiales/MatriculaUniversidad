@@ -28,48 +28,29 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "per_tipo_documento")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PerTipoDocumento.findAll", query = "SELECT p FROM PerTipoDocumento p")})
 public class PerTipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
     @Column(name = "cod_tipo_documento")
     private String codTipoDocumento;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoDocumento")
-    private List<PerDocumentoPersona> perDocumentoPersonaList;
 
     public PerTipoDocumento() {
     }
 
     public PerTipoDocumento(String codTipoDocumento) {
         this.codTipoDocumento = codTipoDocumento;
-    }
-
-    public PerTipoDocumento(String codTipoDocumento, String nombre, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codTipoDocumento = codTipoDocumento;
-        this.nombre = nombre;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodTipoDocumento() {

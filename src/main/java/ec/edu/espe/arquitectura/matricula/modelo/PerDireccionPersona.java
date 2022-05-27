@@ -26,23 +26,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "per_direccion_persona")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "PerDireccionPersona.findAll", query = "SELECT p FROM PerDireccionPersona p")})
+
 public class PerDireccionPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PerDireccionPersonaPK perDireccionPersonaPK;
-    @Basic(optional = false)
     @Column(name = "cod_tipo_direccion")
     private String codTipoDireccion;
-    @Basic(optional = false)
     @Column(name = "cod_org_geo_direccion")
     private int codOrgGeoDireccion;
-    @Basic(optional = false)
     @Column(name = "calle_principal")
     private String callePrincipal;
-    @Basic(optional = false)
     @Column(name = "numeracion")
     private String numeracion;
     @Column(name = "calle_secundaria")
@@ -55,20 +50,15 @@ public class PerDireccionPersona implements Serializable {
     private String referencia;
     @Column(name = "telefono")
     private String telefono;
-    @Basic(optional = false)
     @Column(name = "principal")
     private String principal;
-    @Basic(optional = false)
     @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
     @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
     @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
@@ -80,19 +70,6 @@ public class PerDireccionPersona implements Serializable {
 
     public PerDireccionPersona(PerDireccionPersonaPK perDireccionPersonaPK) {
         this.perDireccionPersonaPK = perDireccionPersonaPK;
-    }
-
-    public PerDireccionPersona(PerDireccionPersonaPK perDireccionPersonaPK, String codTipoDireccion, int codOrgGeoDireccion, String callePrincipal, String numeracion, String principal, String audUsuario, Date audFecha, String audIp, int version) {
-        this.perDireccionPersonaPK = perDireccionPersonaPK;
-        this.codTipoDireccion = codTipoDireccion;
-        this.codOrgGeoDireccion = codOrgGeoDireccion;
-        this.callePrincipal = callePrincipal;
-        this.numeracion = numeracion;
-        this.principal = principal;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public PerDireccionPersona(int codPersona, short secDireccion) {
