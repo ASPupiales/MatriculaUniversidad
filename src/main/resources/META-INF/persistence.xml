@@ -39,7 +39,6 @@
     <class>ec.edu.espe.arquitectura.matricula.modelo.GenUbicacionGeografica</class>
     <class>ec.edu.espe.arquitectura.matricula.modelo.SegPerfil</class>
     <class>ec.edu.espe.arquitectura.matricula.modelo.SegPerfilFuncionalidad</class>
-    <class>ec.edu.espe.arquitectura.matricula.modelo.EduInstitucionEducativa</class>
     <class>ec.edu.espe.arquitectura.matricula.modelo.PerTipoPersona</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/matricula"/>

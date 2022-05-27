@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -16,25 +11,24 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EduMatriculaNrcPK implements Serializable {
 
-    @Basic(optional = false)
     @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
-    @Basic(optional = false)
+    
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    @Basic(optional = false)
+    
     @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
-    @Basic(optional = false)
+    
     @Column(name = "cod_periodo", nullable = false)
     private short codPeriodo;
-    @Basic(optional = false)
+    
     @Column(name = "cod_departamento", nullable = false)
     private int codDepartamento;
-    @Basic(optional = false)
+    
     @Column(name = "cod_materia", nullable = false)
     private int codMateria;
-
+    
     public EduMatriculaNrcPK() {
     }
 
@@ -109,7 +103,6 @@ public class EduMatriculaNrcPK implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof EduMatriculaNrcPK)) {
             return false;
         }
@@ -137,7 +130,7 @@ public class EduMatriculaNrcPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduMatriculaNrcPK[ codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + " ]";
+        return "codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria;
     }
     
 }

@@ -1,22 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,35 +20,34 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "edu_matricula", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"cod_periodo"})})
-@NamedQueries({
-    @NamedQuery(name = "EduMatricula.findAll", query = "SELECT e FROM EduMatricula e")})
 public class EduMatricula implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected EduMatriculaPK eduMatriculaPK;
-    @Basic(optional = false)
+    
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
-    @Basic(optional = false)
+    
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Basic(optional = false)
+    
     @Column(name = "costo", nullable = false)
     private double costo;
+    
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private EduCarrera codCarrera;
+    
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false)
     @OneToOne(optional = false)
     private EduPeriodo codPeriodo;
+    
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMatricula")
-    private List<EduMatriculaNrc> eduMatriculaNrcList;
-
+    
     public EduMatricula() {
     }
 
@@ -133,14 +122,6 @@ public class EduMatricula implements Serializable {
         this.perPersona = perPersona;
     }
 
-    public List<EduMatriculaNrc> getEduMatriculaNrcList() {
-        return eduMatriculaNrcList;
-    }
-
-    public void setEduMatriculaNrcList(List<EduMatriculaNrc> eduMatriculaNrcList) {
-        this.eduMatriculaNrcList = eduMatriculaNrcList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -150,7 +131,6 @@ public class EduMatricula implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof EduMatricula)) {
             return false;
         }
@@ -163,7 +143,7 @@ public class EduMatricula implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduMatricula[ eduMatriculaPK=" + eduMatriculaPK + " ]";
+        return "eduMatriculaPK=" + eduMatriculaPK;
     }
     
 }

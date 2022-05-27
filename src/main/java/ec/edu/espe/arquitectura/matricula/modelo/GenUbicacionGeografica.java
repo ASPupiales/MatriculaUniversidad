@@ -82,8 +82,8 @@ public class GenUbicacionGeografica implements Serializable {
     private GenUbicacionGeografica codUbicacionGeoPadre;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarNacimiento")
     private List<PerPersona> perPersonaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codUbicacionGeoInt")
-    private List<EduInstitucionEducativa> eduInstitucionEducativaList;
+    
+    
 
     public GenUbicacionGeografica() {
     }
@@ -228,14 +228,6 @@ public class GenUbicacionGeografica implements Serializable {
 
     public void setPerPersonaList(List<PerPersona> perPersonaList) {
         this.perPersonaList = perPersonaList;
-    }
-
-    public List<EduInstitucionEducativa> getEduInstitucionEducativaList() {
-        return eduInstitucionEducativaList;
-    }
-
-    public void setEduInstitucionEducativaList(List<EduInstitucionEducativa> eduInstitucionEducativaList) {
-        this.eduInstitucionEducativaList = eduInstitucionEducativaList;
     }
 
     @Override

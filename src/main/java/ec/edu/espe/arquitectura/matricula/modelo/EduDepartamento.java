@@ -1,21 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,42 +14,28 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "edu_departamento")
-@NamedQueries({
-    @NamedQuery(name = "EduDepartamento.findAll", query = "SELECT e FROM EduDepartamento e")})
 public class EduDepartamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "cod_departamento", nullable = false)
     private Integer codDepartamento;
-    @Basic(optional = false)
+    
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
-    @Basic(optional = false)
+    
     @Column(name = "descripcion", nullable = false, length = 255)
     private String descripcion;
-    @Basic(optional = false)
+    
     @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
-    private List<EduCarrera> eduCarreraList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduDepartamento")
-    private List<EduMateria> eduMateriaList;
-
+    
     public EduDepartamento() {
     }
 
     public EduDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
-    }
-
-    public EduDepartamento(Integer codDepartamento, String nombre, String descripcion, String siglas) {
-        this.codDepartamento = codDepartamento;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.siglas = siglas;
     }
 
     public Integer getCodDepartamento() {
@@ -94,22 +70,6 @@ public class EduDepartamento implements Serializable {
         this.siglas = siglas;
     }
 
-    public List<EduCarrera> getEduCarreraList() {
-        return eduCarreraList;
-    }
-
-    public void setEduCarreraList(List<EduCarrera> eduCarreraList) {
-        this.eduCarreraList = eduCarreraList;
-    }
-
-    public List<EduMateria> getEduMateriaList() {
-        return eduMateriaList;
-    }
-
-    public void setEduMateriaList(List<EduMateria> eduMateriaList) {
-        this.eduMateriaList = eduMateriaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -119,7 +79,6 @@ public class EduDepartamento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof EduDepartamento)) {
             return false;
         }
