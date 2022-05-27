@@ -77,15 +77,6 @@ public class SegModulo implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<SegFuncionalidad> getSegFuncionalidadList() {
-        return segFuncionalidadList;
-    }
-
-    public void setSegFuncionalidadList(List<SegFuncionalidad> segFuncionalidadList) {
-        this.segFuncionalidadList = segFuncionalidadList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

@@ -322,33 +322,6 @@ public class PerPersona implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<EduNrc> getEduNrcList() {
-        return eduNrcList;
-    }
-
-    public void setEduNrcList(List<EduNrc> eduNrcList) {
-        this.eduNrcList = eduNrcList;
-    }
-
-    @XmlTransient
-    public List<PerDireccionPersona> getPerDireccionPersonaList() {
-        return perDireccionPersonaList;
-    }
-
-    public void setPerDireccionPersonaList(List<PerDireccionPersona> perDireccionPersonaList) {
-        this.perDireccionPersonaList = perDireccionPersonaList;
-    }
-
-    @XmlTransient
-    public List<EduMatricula> getEduMatriculaList() {
-        return eduMatriculaList;
-    }
-
-    public void setEduMatriculaList(List<EduMatricula> eduMatriculaList) {
-        this.eduMatriculaList = eduMatriculaList;
-    }
-
     public GenPais getCodPaisNacimiento() {
         return codPaisNacimiento;
     }
@@ -389,32 +362,6 @@ public class PerPersona implements Serializable {
         this.codTipoPersona = codTipoPersona;
     }
 
-    @XmlTransient
-    public List<PerDocumentoPersona> getPerDocumentoPersonaList() {
-        return perDocumentoPersonaList;
-    }
-
-    public void setPerDocumentoPersonaList(List<PerDocumentoPersona> perDocumentoPersonaList) {
-        this.perDocumentoPersonaList = perDocumentoPersonaList;
-    }
-
-    @XmlTransient
-    public List<PerFamiliarPersona> getPerFamiliarPersonaList() {
-        return perFamiliarPersonaList;
-    }
-
-    public void setPerFamiliarPersonaList(List<PerFamiliarPersona> perFamiliarPersonaList) {
-        this.perFamiliarPersonaList = perFamiliarPersonaList;
-    }
-
-    @XmlTransient
-    public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
-        return perHistTipoPersonaList;
-    }
-
-    public void setPerHistTipoPersonaList(List<PerHistTipoPersona> perHistTipoPersonaList) {
-        this.perHistTipoPersonaList = perHistTipoPersonaList;
-    }
 
     @Override
     public int hashCode() {

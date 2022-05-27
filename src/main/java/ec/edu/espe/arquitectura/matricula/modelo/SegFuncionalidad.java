@@ -145,16 +145,6 @@ public class SegFuncionalidad implements Serializable {
     public void setCodModulo(SegModulo codModulo) {
         this.codModulo = codModulo;
     }
-
-    @XmlTransient
-    public List<SegPerfilFuncionalidad> getSegPerfilFuncionalidadList() {
-        return segPerfilFuncionalidadList;
-    }
-
-    public void setSegPerfilFuncionalidadList(List<SegPerfilFuncionalidad> segPerfilFuncionalidadList) {
-        this.segPerfilFuncionalidadList = segPerfilFuncionalidadList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

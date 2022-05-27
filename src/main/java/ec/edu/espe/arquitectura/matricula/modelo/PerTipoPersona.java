@@ -121,24 +121,6 @@ public class PerTipoPersona implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<PerPersona> getPerPersonaList() {
-        return perPersonaList;
-    }
-
-    public void setPerPersonaList(List<PerPersona> perPersonaList) {
-        this.perPersonaList = perPersonaList;
-    }
-
-    @XmlTransient
-    public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
-        return perHistTipoPersonaList;
-    }
-
-    public void setPerHistTipoPersonaList(List<PerHistTipoPersona> perHistTipoPersonaList) {
-        this.perHistTipoPersonaList = perHistTipoPersonaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

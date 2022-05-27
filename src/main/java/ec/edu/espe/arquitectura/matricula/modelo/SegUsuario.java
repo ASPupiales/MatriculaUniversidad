@@ -194,15 +194,6 @@ public class SegUsuario implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<SegUsuarioPerfil> getSegUsuarioPerfilList() {
-        return segUsuarioPerfilList;
-    }
-
-    public void setSegUsuarioPerfilList(List<SegUsuarioPerfil> segUsuarioPerfilList) {
-        this.segUsuarioPerfilList = segUsuarioPerfilList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

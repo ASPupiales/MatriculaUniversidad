@@ -100,14 +100,6 @@ public class PerTipoDiscapacidad implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<PerPersona> getPerPersonaList() {
-        return perPersonaList;
-    }
-
-    public void setPerPersonaList(List<PerPersona> perPersonaList) {
-        this.perPersonaList = perPersonaList;
-    }
 
     @Override
     public int hashCode() {

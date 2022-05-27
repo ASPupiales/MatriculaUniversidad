@@ -101,15 +101,6 @@ public class PerTipoDocumento implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
-    public List<PerDocumentoPersona> getPerDocumentoPersonaList() {
-        return perDocumentoPersonaList;
-    }
-
-    public void setPerDocumentoPersonaList(List<PerDocumentoPersona> perDocumentoPersonaList) {
-        this.perDocumentoPersonaList = perDocumentoPersonaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
