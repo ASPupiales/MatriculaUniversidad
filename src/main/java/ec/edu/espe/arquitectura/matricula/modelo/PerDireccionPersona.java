@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "per_direccion_persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerDireccionPersona.findAll", query = "SELECT p FROM PerDireccionPersona p")})
 public class PerDireccionPersona implements Serializable {
@@ -34,44 +32,44 @@ public class PerDireccionPersona implements Serializable {
     @EmbeddedId
     protected PerDireccionPersonaPK perDireccionPersonaPK;
     @Basic(optional = false)
-    @Column(name = "cod_tipo_direccion")
+    @Column(name = "cod_tipo_direccion", nullable = false, length = 3)
     private String codTipoDireccion;
     @Basic(optional = false)
-    @Column(name = "cod_org_geo_direccion")
+    @Column(name = "cod_org_geo_direccion", nullable = false)
     private int codOrgGeoDireccion;
     @Basic(optional = false)
-    @Column(name = "calle_principal")
+    @Column(name = "calle_principal", nullable = false, length = 100)
     private String callePrincipal;
     @Basic(optional = false)
-    @Column(name = "numeracion")
+    @Column(name = "numeracion", nullable = false, length = 15)
     private String numeracion;
-    @Column(name = "calle_secundaria")
+    @Column(name = "calle_secundaria", length = 100)
     private String calleSecundaria;
-    @Column(name = "direccion_adicional")
+    @Column(name = "direccion_adicional", length = 50)
     private String direccionAdicional;
-    @Column(name = "barrio")
+    @Column(name = "barrio", length = 100)
     private String barrio;
-    @Column(name = "referencia")
+    @Column(name = "referencia", length = 255)
     private String referencia;
-    @Column(name = "telefono")
+    @Column(name = "telefono", length = 15)
     private String telefono;
     @Basic(optional = false)
-    @Column(name = "principal")
+    @Column(name = "principal", nullable = false, length = 1)
     private String principal;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private PerPersona perPersona;
 

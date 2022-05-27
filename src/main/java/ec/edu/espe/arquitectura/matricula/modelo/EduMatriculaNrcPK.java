@@ -17,22 +17,22 @@ import javax.persistence.Embeddable;
 public class EduMatriculaNrcPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_matricula")
+    @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
     @Basic(optional = false)
-    @Column(name = "cod_persona")
+    @Column(name = "cod_persona", nullable = false)
     private int codPersona;
     @Basic(optional = false)
-    @Column(name = "cod_nrc")
+    @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
     @Basic(optional = false)
-    @Column(name = "cod_periodo")
+    @Column(name = "cod_periodo", nullable = false)
     private short codPeriodo;
     @Basic(optional = false)
-    @Column(name = "cod_departamento")
+    @Column(name = "cod_departamento", nullable = false)
     private int codDepartamento;
     @Basic(optional = false)
-    @Column(name = "cod_materia")
+    @Column(name = "cod_materia", nullable = false)
     private int codMateria;
 
     public EduMatriculaNrcPK() {

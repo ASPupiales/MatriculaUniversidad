@@ -15,8 +15,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,7 +22,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "seg_modulo")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SegModulo.findAll", query = "SELECT s FROM SegModulo s")})
 public class SegModulo implements Serializable {
@@ -32,16 +29,16 @@ public class SegModulo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_modulo")
+    @Column(name = "cod_modulo", nullable = false, length = 16)
     private String codModulo;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codModulo")
     private List<SegFuncionalidad> segFuncionalidadList;
@@ -92,7 +89,6 @@ public class SegModulo implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<SegFuncionalidad> getSegFuncionalidadList() {
         return segFuncionalidadList;
     }

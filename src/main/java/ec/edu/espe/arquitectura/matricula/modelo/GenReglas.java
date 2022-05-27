@@ -16,38 +16,38 @@ public class GenReglas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "cod_regla")
+    @Column(name = "cod_regla", nullable = false, length = 30)
     private String codRegla;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 100)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
     @Column(name = "valor_numerico")
     private Integer valorNumerico;
-    @Column(name = "valor_texto")
+    @Column(name = "valor_texto", length = 50)
     private String valorTexto;
     @Basic(optional = false)
-    @Column(name = "unidad")
+    @Column(name = "unidad", nullable = false, length = 100)
     private String unidad;
     @Basic(optional = false)
-    @Column(name = "clasificacion")
+    @Column(name = "clasificacion", nullable = false, length = 3)
     private String clasificacion;
-    @Column(name = "descripcion_detallada")
+    @Column(name = "descripcion_detallada", length = 500)
     private String descripcionDetallada;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
 
     public GenReglas() {

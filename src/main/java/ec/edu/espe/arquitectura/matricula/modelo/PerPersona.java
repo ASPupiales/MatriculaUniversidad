@@ -22,8 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "per_persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerPersona.findAll", query = "SELECT p FROM PerPersona p")})
 public class PerPersona implements Serializable {
@@ -40,77 +37,77 @@ public class PerPersona implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_persona")
+    @Column(name = "cod_persona", nullable = false)
     private Integer codPersona;
     @Basic(optional = false)
-    @Column(name = "codigo_alterno")
+    @Column(name = "codigo_alterno", nullable = false, length = 15)
     private String codigoAlterno;
     @Basic(optional = false)
-    @Column(name = "tipo_identificacion")
+    @Column(name = "tipo_identificacion", nullable = false, length = 3)
     private String tipoIdentificacion;
     @Basic(optional = false)
-    @Column(name = "identificacion")
+    @Column(name = "identificacion", nullable = false, length = 20)
     private String identificacion;
     @Basic(optional = false)
-    @Column(name = "nombre1")
+    @Column(name = "nombre1", nullable = false, length = 32)
     private String nombre1;
-    @Column(name = "nombre2")
+    @Column(name = "nombre2", length = 32)
     private String nombre2;
     @Basic(optional = false)
-    @Column(name = "apellido1")
+    @Column(name = "apellido1", nullable = false, length = 32)
     private String apellido1;
-    @Column(name = "apellido2")
+    @Column(name = "apellido2", length = 32)
     private String apellido2;
     @Basic(optional = false)
-    @Column(name = "nombre_completo")
+    @Column(name = "nombre_completo", nullable = false, length = 128)
     private String nombreCompleto;
-    @Column(name = "nombre_comun")
+    @Column(name = "nombre_comun", length = 64)
     private String nombreComun;
     @Basic(optional = false)
-    @Column(name = "genero")
+    @Column(name = "genero", nullable = false, length = 3)
     private String genero;
     @Basic(optional = false)
-    @Column(name = "fecha_nacimiento")
+    @Column(name = "fecha_nacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     @Basic(optional = false)
-    @Column(name = "estado_civil")
+    @Column(name = "estado_civil", nullable = false, length = 3)
     private String estadoCivil;
     @Basic(optional = false)
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, length = 128)
     private String email;
-    @Column(name = "email_alterno")
+    @Column(name = "email_alterno", length = 128)
     private String emailAlterno;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    @Column(name = "telefono_movil")
+    @Column(name = "telefono_movil", length = 20)
     private String telefonoMovil;
     @Basic(optional = false)
-    @Column(name = "extranjero")
+    @Column(name = "extranjero", nullable = false, length = 1)
     private String extranjero;
     @Basic(optional = false)
-    @Column(name = "requiere_representante")
+    @Column(name = "requiere_representante", nullable = false, length = 1)
     private String requiereRepresentante;
     @Basic(optional = false)
-    @Column(name = "discapacidad")
+    @Column(name = "discapacidad", nullable = false, length = 1)
     private String discapacidad;
     @Column(name = "porcentaje_discapacidad")
     private Short porcentajeDiscapacidad;
-    @Column(name = "carnet_conadis")
+    @Column(name = "carnet_conadis", length = 10)
     private String carnetConadis;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codPersona")
     private List<EduNrc> eduNrcList;
@@ -121,10 +118,10 @@ public class PerPersona implements Serializable {
     @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais")
     @ManyToOne
     private GenPais codPaisNacimiento;
-    @JoinColumn(name = "nacionalidad", referencedColumnName = "cod_pais")
+    @JoinColumn(name = "nacionalidad", referencedColumnName = "cod_pais", nullable = false)
     @ManyToOne(optional = false)
     private GenPais nacionalidad;
-    @JoinColumn(name = "lugar_nacimiento", referencedColumnName = "cod_ubicacion_geo_int")
+    @JoinColumn(name = "lugar_nacimiento", referencedColumnName = "cod_ubicacion_geo_int", nullable = false)
     @ManyToOne(optional = false)
     private GenUbicacionGeografica lugarNacimiento;
     @JoinColumn(name = "cod_tipo_discapacidad", referencedColumnName = "cod_tipo_discapacidad")
@@ -377,7 +374,6 @@ public class PerPersona implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<EduNrc> getEduNrcList() {
         return eduNrcList;
     }
@@ -386,7 +382,6 @@ public class PerPersona implements Serializable {
         this.eduNrcList = eduNrcList;
     }
 
-    @XmlTransient
     public List<PerDireccionPersona> getPerDireccionPersonaList() {
         return perDireccionPersonaList;
     }
@@ -395,7 +390,6 @@ public class PerPersona implements Serializable {
         this.perDireccionPersonaList = perDireccionPersonaList;
     }
 
-    @XmlTransient
     public List<EduMatricula> getEduMatriculaList() {
         return eduMatriculaList;
     }
@@ -444,7 +438,6 @@ public class PerPersona implements Serializable {
         this.codTipoPersona = codTipoPersona;
     }
 
-    @XmlTransient
     public List<PerDocumentoPersona> getPerDocumentoPersonaList() {
         return perDocumentoPersonaList;
     }
@@ -453,7 +446,6 @@ public class PerPersona implements Serializable {
         this.perDocumentoPersonaList = perDocumentoPersonaList;
     }
 
-    @XmlTransient
     public List<PerFamiliarPersona> getPerFamiliarPersonaList() {
         return perFamiliarPersonaList;
     }
@@ -462,7 +454,6 @@ public class PerPersona implements Serializable {
         this.perFamiliarPersonaList = perFamiliarPersonaList;
     }
 
-    @XmlTransient
     public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
         return perHistTipoPersonaList;
     }

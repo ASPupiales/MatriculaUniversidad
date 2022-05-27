@@ -15,27 +15,27 @@ public class GenInstitucion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "ruc")
+    @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
     @Basic(optional = false)
-    @Column(name = "razon_social")
+    @Column(name = "razon_social", nullable = false, length = 128)
     private String razonSocial;
     @Basic(optional = false)
-    @Column(name = "nombre_comercial")
+    @Column(name = "nombre_comercial", nullable = false, length = 128)
     private String nombreComercial;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
     @Basic(optional = false)
-    @Column(name = "dominio")
+    @Column(name = "dominio", nullable = false, length = 64)
     private String dominio;
-    @Column(name = "url_info")
+    @Column(name = "url_info", length = 128)
     private String urlInfo;
     @Basic(optional = false)
-    @Column(name = "url_sistema")
+    @Column(name = "url_sistema", nullable = false, length = 128)
     private String urlSistema;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
     @ManyToOne

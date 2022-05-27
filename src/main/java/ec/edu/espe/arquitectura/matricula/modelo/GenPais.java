@@ -2,16 +2,13 @@ package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "gen_pais")
@@ -19,33 +16,31 @@ public class GenPais implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "cod_pais")
+    @Column(name = "cod_pais", nullable = false, length = 2)
     private String codPais;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "por_omision")
+    @Column(name = "por_omision", nullable = false, length = 1)
     private String porOmision;
-    @Column(name = "codigo_telefonico")
+    @Column(name = "codigo_telefonico", length = 3)
     private String codigoTelefonico;
-    @Column(name = "nacionalidad")
+    @Column(name = "nacionalidad", length = 50)
     private String nacionalidad;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @OneToMany(mappedBy = "codPais")
-    private List<GenUbicacionGeografica> genUbicacionGeograficaList;
 
     public GenPais() {
     }
@@ -125,16 +120,7 @@ public class GenPais implements Serializable {
     public void setVersion(int version) {
         this.version = version;
     }
-
-    @XmlTransient
-    public List<GenUbicacionGeografica> getGenUbicacionGeograficaList() {
-        return genUbicacionGeograficaList;
-    }
-
-    public void setGenUbicacionGeograficaList(List<GenUbicacionGeografica> genUbicacionGeograficaList) {
-        this.genUbicacionGeograficaList = genUbicacionGeograficaList;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

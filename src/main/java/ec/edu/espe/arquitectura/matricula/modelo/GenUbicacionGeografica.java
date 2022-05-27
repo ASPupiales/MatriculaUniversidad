@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "gen_ubicacion_geografica")
@@ -25,39 +24,41 @@ public class GenUbicacionGeografica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cod_ubicacion_geo_int")
+    @Column(name = "cod_ubicacion_geo_int", nullable = false)
     private Integer codUbicacionGeoInt;
     @Basic(optional = false)
-    @Column(name = "cod_ubicacion_geografica")
+    @Column(name = "cod_ubicacion_geografica", nullable = false, length = 20)
     private String codUbicacionGeografica;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    @Column(name = "codigo_area_telefono")
+    @Column(name = "codigo_area_telefono", length = 4)
     private String codigoAreaTelefono;
-    @Column(name = "codigo_alterno")
+    @Column(name = "codigo_alterno", length = 15)
     private String codigoAlterno;
-    @Column(name = "codigo_postal")
+    @Column(name = "codigo_postal", length = 15)
     private String codigoPostal;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
+    @OneToMany(mappedBy = "codUbicacionGeoInt")
+    private List<GenInstitucion> genInstitucionList;
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais")
     @ManyToOne
     private GenPais codPais;
     @JoinColumns({
         @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais"),
-        @JoinColumn(name = "nivel", referencedColumnName = "nivel")})
+        @JoinColumn(name = "nivel", referencedColumnName = "nivel", nullable = false)})
     @ManyToOne(optional = false)
     private GenPaisEstructura genPaisEstructura;
     @OneToMany(mappedBy = "codUbicacionGeoPadre")
@@ -153,6 +154,14 @@ public class GenUbicacionGeografica implements Serializable {
         this.version = version;
     }
 
+    public List<GenInstitucion> getGenInstitucionList() {
+        return genInstitucionList;
+    }
+
+    public void setGenInstitucionList(List<GenInstitucion> genInstitucionList) {
+        this.genInstitucionList = genInstitucionList;
+    }
+
     public GenPais getCodPais() {
         return codPais;
     }
@@ -169,7 +178,6 @@ public class GenUbicacionGeografica implements Serializable {
         this.genPaisEstructura = genPaisEstructura;
     }
 
-    @XmlTransient
     public List<GenUbicacionGeografica> getGenUbicacionGeograficaList() {
         return genUbicacionGeograficaList;
     }

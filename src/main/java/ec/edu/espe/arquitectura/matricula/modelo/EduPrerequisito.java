@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,7 +22,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_prerequisito")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduPrerequisito.findAll", query = "SELECT e FROM EduPrerequisito e")})
 public class EduPrerequisito implements Serializable {
@@ -31,19 +29,19 @@ public class EduPrerequisito implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_prerequisito")
+    @Column(name = "cod_prerequisito", nullable = false)
     private Integer codPrerequisito;
     @Basic(optional = false)
-    @Column(name = "tipo")
+    @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
     @JoinColumns({
-        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia"),
-        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")})
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
     private EduMateria eduMateria;
     @JoinColumns({
-        @JoinColumn(name = "cod_materia_prerequisito", referencedColumnName = "cod_materia"),
-        @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento")})
+        @JoinColumn(name = "cod_materia_prerequisito", referencedColumnName = "cod_materia", nullable = false),
+        @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
     private EduMateria eduMateria1;
 

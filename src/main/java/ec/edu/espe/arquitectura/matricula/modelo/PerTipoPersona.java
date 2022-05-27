@@ -18,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,7 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "per_tipo_persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerTipoPersona.findAll", query = "SELECT p FROM PerTipoPersona p")})
 public class PerTipoPersona implements Serializable {
@@ -35,28 +32,28 @@ public class PerTipoPersona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "cod_tipo_persona")
+    @Column(name = "cod_tipo_persona", nullable = false, length = 3)
     private String codTipoPersona;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 500)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @OneToMany(mappedBy = "codTipoPersona")
     private List<PerPersona> perPersonaList;
@@ -144,7 +141,6 @@ public class PerTipoPersona implements Serializable {
         this.version = version;
     }
 
-    @XmlTransient
     public List<PerPersona> getPerPersonaList() {
         return perPersonaList;
     }
@@ -153,7 +149,6 @@ public class PerTipoPersona implements Serializable {
         this.perPersonaList = perPersonaList;
     }
 
-    @XmlTransient
     public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
         return perHistTipoPersonaList;
     }

@@ -9,10 +9,10 @@ import javax.persistence.Embeddable;
 public class GenPaisEstructuraPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_pais")
+    @Column(name = "cod_pais", nullable = false, length = 2)
     private String codPais;
     @Basic(optional = false)
-    @Column(name = "nivel")
+    @Column(name = "nivel", nullable = false)
     private short nivel;
 
     public GenPaisEstructuraPK() {

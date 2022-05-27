@@ -12,10 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,44 +20,53 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "edu_calificacion")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "EduCalificacion.findAll", query = "SELECT e FROM EduCalificacion e")})
 public class EduCalificacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected EduCalificacionPK eduCalificacionPK;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "nota1")
+    
+    @Column(name = "nota1", precision = 5, scale = 2)
     private BigDecimal nota1;
-    @Column(name = "nota2")
+    
+    @Column(name = "nota2", precision = 5, scale = 2)
     private BigDecimal nota2;
-    @Column(name = "nota3")
+    
+    @Column(name = "nota3", precision = 5, scale = 2)
     private BigDecimal nota3;
-    @Column(name = "nota4")
+    
+    @Column(name = "nota4", precision = 5, scale = 2)
     private BigDecimal nota4;
-    @Column(name = "nota5")
+    
+    @Column(name = "nota5", precision = 5, scale = 2)
     private BigDecimal nota5;
-    @Column(name = "nota6")
+    
+    @Column(name = "nota6", precision = 5, scale = 2)
     private BigDecimal nota6;
-    @Column(name = "nota7")
+    
+    @Column(name = "nota7", precision = 5, scale = 2)
     private BigDecimal nota7;
-    @Column(name = "nota8")
+    
+    @Column(name = "nota8", precision = 5, scale = 2)
     private BigDecimal nota8;
-    @Column(name = "nota9")
+    
+    @Column(name = "nota9", precision = 5, scale = 2)
     private BigDecimal nota9;
-    @Column(name = "nota10")
+    
+    @Column(name = "nota10", precision = 5, scale = 2)
     private BigDecimal nota10;
-    @Column(name = "promedio")
+    
+    @Column(name = "promedio", precision = 5, scale = 2)
     private BigDecimal promedio;
-    @Column(name = "observacion")
+    
+    @Column(name = "observacion", length = 25)
     private String observacion;
+    
     @JoinColumns({
-        @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo"),
+        @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento"),
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia")})
     @ManyToOne(optional = false)
@@ -211,7 +217,7 @@ public class EduCalificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduCalificacion[ eduCalificacionPK=" + eduCalificacionPK + " ]";
+        return "eduCalificacionPK=" + eduCalificacionPK;
     }
     
 }

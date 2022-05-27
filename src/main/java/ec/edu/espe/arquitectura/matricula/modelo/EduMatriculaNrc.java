@@ -19,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,7 +26,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_matricula_nrc")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduMatriculaNrc.findAll", query = "SELECT e FROM EduMatriculaNrc e")})
 public class EduMatriculaNrc implements Serializable {
@@ -37,25 +34,25 @@ public class EduMatriculaNrc implements Serializable {
     @EmbeddedId
     protected EduMatriculaNrcPK eduMatriculaNrcPK;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "numero")
+    @Column(name = "numero", nullable = false)
     private short numero;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "costo")
+    @Column(name = "costo", nullable = false, precision = 7, scale = 2)
     private BigDecimal costo;
     @JoinColumns({
-        @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)})
+        @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private EduMatricula eduMatricula;
     @JoinColumns({
-        @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", insertable = false, updatable = false)})
+        @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private EduNrc eduNrc;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduMatriculaNrc")
@@ -127,7 +124,6 @@ public class EduMatriculaNrc implements Serializable {
         this.eduNrc = eduNrc;
     }
 
-    @XmlTransient
     public List<EduCalificacion> getEduCalificacionList() {
         return eduCalificacionList;
     }

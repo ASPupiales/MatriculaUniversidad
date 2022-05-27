@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
 public class EduMatriculaPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_matricula")
+    @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
     @Basic(optional = false)
-    @Column(name = "cod_persona")
+    @Column(name = "cod_persona", nullable = false)
     private int codPersona;
 
     public EduMatriculaPK() {

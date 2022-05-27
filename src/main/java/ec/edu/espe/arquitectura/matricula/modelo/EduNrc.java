@@ -19,16 +19,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author labox
  */
 @Entity
-@Table(name = "edu_nrc")
-@XmlRootElement
+@Table(name = "edu_nrc", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"cod_periodo"})})
 @NamedQueries({
     @NamedQuery(name = "EduNrc.findAll", query = "SELECT e FROM EduNrc e")})
 public class EduNrc implements Serializable {
@@ -37,22 +36,22 @@ public class EduNrc implements Serializable {
     @EmbeddedId
     protected EduNrcPK eduNrcPK;
     @Basic(optional = false)
-    @Column(name = "cupo_disponible")
+    @Column(name = "cupo_disponible", nullable = false)
     private short cupoDisponible;
     @Basic(optional = false)
-    @Column(name = "cupo_registrado")
+    @Column(name = "cupo_registrado", nullable = false)
     private short cupoRegistrado;
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 255)
     private String nombre;
     @JoinColumns({
-        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", insertable = false, updatable = false),
-        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", insertable = false, updatable = false)})
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private EduMateria eduMateria;
-    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false)
     @OneToOne(optional = false)
     private EduPeriodo eduPeriodo;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona")
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false)
     @ManyToOne(optional = false)
     private PerPersona codPersona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduNrc")
@@ -133,7 +132,6 @@ public class EduNrc implements Serializable {
         this.codPersona = codPersona;
     }
 
-    @XmlTransient
     public List<EduNrcHorario> getEduNrcHorarioList() {
         return eduNrcHorarioList;
     }
@@ -142,7 +140,6 @@ public class EduNrc implements Serializable {
         this.eduNrcHorarioList = eduNrcHorarioList;
     }
 
-    @XmlTransient
     public List<EduMatriculaNrc> getEduMatriculaNrcList() {
         return eduMatriculaNrcList;
     }

@@ -17,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,7 +24,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "edu_departamento")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EduDepartamento.findAll", query = "SELECT e FROM EduDepartamento e")})
 public class EduDepartamento implements Serializable {
@@ -35,16 +32,16 @@ public class EduDepartamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_departamento")
+    @Column(name = "cod_departamento", nullable = false)
     private Integer codDepartamento;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 255)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "siglas")
+    @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
     private List<EduCarrera> eduCarreraList;
@@ -97,7 +94,6 @@ public class EduDepartamento implements Serializable {
         this.siglas = siglas;
     }
 
-    @XmlTransient
     public List<EduCarrera> getEduCarreraList() {
         return eduCarreraList;
     }
@@ -106,7 +102,6 @@ public class EduDepartamento implements Serializable {
         this.eduCarreraList = eduCarreraList;
     }
 
-    @XmlTransient
     public List<EduMateria> getEduMateriaList() {
         return eduMateriaList;
     }

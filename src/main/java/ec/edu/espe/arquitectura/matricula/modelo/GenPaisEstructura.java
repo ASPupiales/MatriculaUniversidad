@@ -19,22 +19,23 @@ public class GenPaisEstructura implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected GenPaisEstructuraPK genPaisEstructuraPK;
-    @Column(name = "nombre")
+    @Basic(optional = false)
+    @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private GenPais genPais;
 

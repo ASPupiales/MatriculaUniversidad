@@ -22,8 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +29,6 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "seg_funcionalidad")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SegFuncionalidad.findAll", query = "SELECT s FROM SegFuncionalidad s")})
 public class SegFuncionalidad implements Serializable {
@@ -40,33 +37,33 @@ public class SegFuncionalidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cod_funcionalidad")
+    @Column(name = "cod_funcionalidad", nullable = false)
     private Integer codFuncionalidad;
     @Basic(optional = false)
-    @Column(name = "url_principal")
+    @Column(name = "url_principal", nullable = false, length = 200)
     private String urlPrincipal;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 200)
     private String nombre;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 500)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "estado")
+    @Column(name = "estado", nullable = false, length = 3)
     private String estado;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo")
+    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false)
     @ManyToOne(optional = false)
     private SegModulo codModulo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "segFuncionalidad")
@@ -170,7 +167,6 @@ public class SegFuncionalidad implements Serializable {
         this.codModulo = codModulo;
     }
 
-    @XmlTransient
     public List<SegPerfilFuncionalidad> getSegPerfilFuncionalidadList() {
         return segPerfilFuncionalidadList;
     }

@@ -17,7 +17,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -25,7 +24,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "seg_perfil_funcionalidad")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SegPerfilFuncionalidad.findAll", query = "SELECT s FROM SegPerfilFuncionalidad s")})
 public class SegPerfilFuncionalidad implements Serializable {
@@ -34,22 +32,22 @@ public class SegPerfilFuncionalidad implements Serializable {
     @EmbeddedId
     protected SegPerfilFuncionalidadPK segPerfilFuncionalidadPK;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
-    @JoinColumn(name = "cod_funcionalidad", referencedColumnName = "cod_funcionalidad", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_funcionalidad", referencedColumnName = "cod_funcionalidad", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SegFuncionalidad segFuncionalidad;
-    @JoinColumn(name = "cod_perfil", referencedColumnName = "cod_perfil", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_perfil", referencedColumnName = "cod_perfil", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SegPerfil segPerfil;
 

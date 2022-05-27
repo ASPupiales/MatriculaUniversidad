@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
@@ -13,93 +9,65 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_edificio")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "OfiEdificio.findAll", query = "SELECT o FROM OfiEdificio o")})
 public class OfiEdificio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_edificio")
+    @Column(name = "cod_edificio", nullable = false, length = 8)
     private String codEdificio;
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    @Column(name = "cod_alterno")
+    @Column(name = "cod_alterno", length = 16)
     private String codAlterno;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 500)
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "direccion")
+    @Column(name = "direccion", nullable = false, length = 256)
     private String direccion;
-    @Column(name = "comentario")
+    @Column(name = "comentario", length = 1000)
     private String comentario;
     @Basic(optional = false)
-    @Column(name = "maneja_bloques")
+    @Column(name = "maneja_bloques", nullable = false, length = 1)
     private String manejaBloques;
     @Basic(optional = false)
-    @Column(name = "posee_aulas")
+    @Column(name = "posee_aulas", nullable = false, length = 1)
     private String poseeAulas;
     @Basic(optional = false)
-    @Column(name = "pisos")
+    @Column(name = "pisos", nullable = false)
     private short pisos;
     @Basic(optional = false)
-    @Column(name = "aud_usuario")
+    @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
     @Basic(optional = false)
-    @Column(name = "aud_fecha")
+    @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
     @Basic(optional = false)
-    @Column(name = "aud_ip")
+    @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
     @Basic(optional = false)
-    @Column(name = "version")
+    @Column(name = "version", nullable = false)
     private int version;
     @JoinColumn(name = "cod_sede", referencedColumnName = "cod_sede")
     @ManyToOne
     private OfiSede codSede;
     @OneToMany(mappedBy = "codEdificio")
     private List<OfiEdificioBloque> ofiEdificioBloqueList;
-    @OneToMany(mappedBy = "codEdificio")
-    private List<OfiAula> ofiAulaList;
 
     public OfiEdificio() {
     }
 
     public OfiEdificio(String codEdificio) {
         this.codEdificio = codEdificio;
-    }
-
-    public OfiEdificio(String codEdificio, String nombre, String descripcion, String direccion, String manejaBloques, String poseeAulas, short pisos, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codEdificio = codEdificio;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.direccion = direccion;
-        this.manejaBloques = manejaBloques;
-        this.poseeAulas = poseeAulas;
-        this.pisos = pisos;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodEdificio() {
@@ -214,22 +182,12 @@ public class OfiEdificio implements Serializable {
         this.codSede = codSede;
     }
 
-    @XmlTransient
     public List<OfiEdificioBloque> getOfiEdificioBloqueList() {
         return ofiEdificioBloqueList;
     }
 
     public void setOfiEdificioBloqueList(List<OfiEdificioBloque> ofiEdificioBloqueList) {
         this.ofiEdificioBloqueList = ofiEdificioBloqueList;
-    }
-
-    @XmlTransient
-    public List<OfiAula> getOfiAulaList() {
-        return ofiAulaList;
-    }
-
-    public void setOfiAulaList(List<OfiAula> ofiAulaList) {
-        this.ofiAulaList = ofiAulaList;
     }
 
     @Override
@@ -241,7 +199,6 @@ public class OfiEdificio implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof OfiEdificio)) {
             return false;
         }
@@ -254,7 +211,7 @@ public class OfiEdificio implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.OfiEdificio[ codEdificio=" + codEdificio + " ]";
+        return "OfiEdificio[ codEdificio=" + codEdificio + " ]";
     }
     
 }

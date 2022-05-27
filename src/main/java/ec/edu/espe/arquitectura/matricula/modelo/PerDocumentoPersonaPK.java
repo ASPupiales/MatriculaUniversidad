@@ -17,10 +17,10 @@ import javax.persistence.Embeddable;
 public class PerDocumentoPersonaPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "cod_persona")
+    @Column(name = "cod_persona", nullable = false)
     private int codPersona;
     @Basic(optional = false)
-    @Column(name = "cod_tipo_documento")
+    @Column(name = "cod_tipo_documento", nullable = false, length = 16)
     private String codTipoDocumento;
 
     public PerDocumentoPersonaPK() {

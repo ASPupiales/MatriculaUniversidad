@@ -13,13 +13,13 @@ public class GenError implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "cod_error")
+    @Column(name = "cod_error", nullable = false, length = 5)
     private String codError;
     @Basic(optional = false)
-    @Column(name = "titulo")
+    @Column(name = "titulo", nullable = false, length = 255)
     private String titulo;
     @Basic(optional = false)
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false, length = 1000)
     private String descripcion;
 
     public GenError() {
@@ -62,7 +62,6 @@ public class GenError implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenError)) {
             return false;
         }
