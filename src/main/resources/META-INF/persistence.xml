@@ -2,6 +2,45 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="ec.edu.espe.arquitectura_matricula_jar_1PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenPais</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegModulo</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerPersona</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduMallaCarrera</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduPeriodo</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduNrc</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduMateria</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerDireccionPersona</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduCalificacion</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenReglas</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduPrerequisito</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiAula</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduNrcHorario</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegRegistroSesion</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerDocumentoPersona</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegUsuarioPerfil</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiEdificioBloque</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerTipoDiscapacidad</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiTipoAula</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegUsuario</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduMatricula</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerFamiliarPersona</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduDepartamento</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduMatriculaNrc</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenPaisEstructura</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiEdificio</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenInstitucion</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerTipoDocumento</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegFuncionalidad</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduCarrera</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerHistTipoPersona</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiInstitucion</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.OfiSede</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenError</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.GenUbicacionGeografica</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegPerfil</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.SegPerfilFuncionalidad</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.EduInstitucionEducativa</class>
+    <class>ec.edu.espe.arquitectura.matricula.modelo.PerTipoPersona</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/matricula"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

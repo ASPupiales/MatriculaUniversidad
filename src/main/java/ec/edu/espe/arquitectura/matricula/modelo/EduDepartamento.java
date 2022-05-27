@@ -48,7 +48,7 @@ public class EduDepartamento implements Serializable {
     private String siglas;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
     private List<EduCarrera> eduCarreraList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codDepartamento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "eduDepartamento")
     private List<EduMateria> eduMateriaList;
 
     public EduDepartamento() {

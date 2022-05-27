@@ -10,8 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,10 +32,9 @@ public class EduPeriodo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "cod_periodo")
-    private Integer codPeriodo;
+    private Short codPeriodo;
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
@@ -57,15 +54,17 @@ public class EduPeriodo implements Serializable {
     private short parciales;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "eduPeriodo")
     private EduNrc eduNrc;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "codPeriodo")
+    private EduMatricula eduMatricula;
 
     public EduPeriodo() {
     }
 
-    public EduPeriodo(Integer codPeriodo) {
+    public EduPeriodo(Short codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
-    public EduPeriodo(Integer codPeriodo, String nombre, String nivel, Date fechaInicio, Date fechaFin, short parciales) {
+    public EduPeriodo(Short codPeriodo, String nombre, String nivel, Date fechaInicio, Date fechaFin, short parciales) {
         this.codPeriodo = codPeriodo;
         this.nombre = nombre;
         this.nivel = nivel;
@@ -74,11 +73,11 @@ public class EduPeriodo implements Serializable {
         this.parciales = parciales;
     }
 
-    public Integer getCodPeriodo() {
+    public Short getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(Integer codPeriodo) {
+    public void setCodPeriodo(Short codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
@@ -128,6 +127,14 @@ public class EduPeriodo implements Serializable {
 
     public void setEduNrc(EduNrc eduNrc) {
         this.eduNrc = eduNrc;
+    }
+
+    public EduMatricula getEduMatricula() {
+        return eduMatricula;
+    }
+
+    public void setEduMatricula(EduMatricula eduMatricula) {
+        this.eduMatricula = eduMatricula;
     }
 
     @Override

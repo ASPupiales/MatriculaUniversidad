@@ -14,7 +14,7 @@ import javax.persistence.Embeddable;
  * @author labox
  */
 @Embeddable
-public class EduNrcPK implements Serializable {
+public class EduNrcHorarioPK implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "cod_nrc")
@@ -28,15 +28,23 @@ public class EduNrcPK implements Serializable {
     @Basic(optional = false)
     @Column(name = "cod_materia")
     private int codMateria;
+    @Basic(optional = false)
+    @Column(name = "cod_aula")
+    private int codAula;
+    @Basic(optional = false)
+    @Column(name = "dia_semana")
+    private String diaSemana;
 
-    public EduNrcPK() {
+    public EduNrcHorarioPK() {
     }
 
-    public EduNrcPK(short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+    public EduNrcHorarioPK(short codNrc, short codPeriodo, int codDepartamento, int codMateria, int codAula, String diaSemana) {
         this.codNrc = codNrc;
         this.codPeriodo = codPeriodo;
         this.codDepartamento = codDepartamento;
         this.codMateria = codMateria;
+        this.codAula = codAula;
+        this.diaSemana = diaSemana;
     }
 
     public short getCodNrc() {
@@ -71,6 +79,22 @@ public class EduNrcPK implements Serializable {
         this.codMateria = codMateria;
     }
 
+    public int getCodAula() {
+        return codAula;
+    }
+
+    public void setCodAula(int codAula) {
+        this.codAula = codAula;
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -78,16 +102,18 @@ public class EduNrcPK implements Serializable {
         hash += (int) codPeriodo;
         hash += (int) codDepartamento;
         hash += (int) codMateria;
+        hash += (int) codAula;
+        hash += (diaSemana != null ? diaSemana.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EduNrcPK)) {
+        if (!(object instanceof EduNrcHorarioPK)) {
             return false;
         }
-        EduNrcPK other = (EduNrcPK) object;
+        EduNrcHorarioPK other = (EduNrcHorarioPK) object;
         if (this.codNrc != other.codNrc) {
             return false;
         }
@@ -100,12 +126,18 @@ public class EduNrcPK implements Serializable {
         if (this.codMateria != other.codMateria) {
             return false;
         }
+        if (this.codAula != other.codAula) {
+            return false;
+        }
+        if ((this.diaSemana == null && other.diaSemana != null) || (this.diaSemana != null && !this.diaSemana.equals(other.diaSemana))) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.EduNrcPK[ codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + " ]";
+        return "ec.edu.espe.arquitectura.matricula.modelo.EduNrcHorarioPK[ codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + ", codAula=" + codAula + ", diaSemana=" + diaSemana + " ]";
     }
     
 }

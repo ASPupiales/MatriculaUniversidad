@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -63,6 +64,8 @@ public class OfiAula implements Serializable {
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ofiAula")
+    private List<EduNrcHorario> eduNrcHorarioList;
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
     private OfiEdificio codEdificio;
@@ -72,8 +75,6 @@ public class OfiAula implements Serializable {
     @JoinColumn(name = "cod_tipo_aula", referencedColumnName = "cod_tipo_aula")
     @ManyToOne
     private OfiTipoAula codTipoAula;
-    @OneToMany(mappedBy = "codAula")
-    private List<EduNrcAula> eduNrcAulaList;
 
     public OfiAula() {
     }
@@ -157,6 +158,15 @@ public class OfiAula implements Serializable {
         this.version = version;
     }
 
+    @XmlTransient
+    public List<EduNrcHorario> getEduNrcHorarioList() {
+        return eduNrcHorarioList;
+    }
+
+    public void setEduNrcHorarioList(List<EduNrcHorario> eduNrcHorarioList) {
+        this.eduNrcHorarioList = eduNrcHorarioList;
+    }
+
     public OfiEdificio getCodEdificio() {
         return codEdificio;
     }
@@ -179,15 +189,6 @@ public class OfiAula implements Serializable {
 
     public void setCodTipoAula(OfiTipoAula codTipoAula) {
         this.codTipoAula = codTipoAula;
-    }
-
-    @XmlTransient
-    public List<EduNrcAula> getEduNrcAulaList() {
-        return eduNrcAulaList;
-    }
-
-    public void setEduNrcAulaList(List<EduNrcAula> eduNrcAulaList) {
-        this.eduNrcAulaList = eduNrcAulaList;
     }
 
     @Override

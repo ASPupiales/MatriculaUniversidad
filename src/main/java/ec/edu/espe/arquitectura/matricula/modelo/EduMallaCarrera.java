@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -37,9 +38,11 @@ public class EduMallaCarrera implements Serializable {
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera")
     @ManyToOne(optional = false)
     private EduCarrera codCarrera;
-    @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia")
+    @JoinColumns({
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia"),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")})
     @ManyToOne(optional = false)
-    private EduMateria codMateria;
+    private EduMateria eduMateria;
 
     public EduMallaCarrera() {
     }
@@ -72,12 +75,12 @@ public class EduMallaCarrera implements Serializable {
         this.codCarrera = codCarrera;
     }
 
-    public EduMateria getCodMateria() {
-        return codMateria;
+    public EduMateria getEduMateria() {
+        return eduMateria;
     }
 
-    public void setCodMateria(EduMateria codMateria) {
-        this.codMateria = codMateria;
+    public void setEduMateria(EduMateria eduMateria) {
+        this.eduMateria = eduMateria;
     }
 
     @Override

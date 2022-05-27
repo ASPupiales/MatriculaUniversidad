@@ -73,7 +73,7 @@ public class EduCarrera implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
     private List<EduMallaCarrera> eduMallaCarreraList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCarrera")
-    private List<EduInscripcionCarrera> eduInscripcionCarreraList;
+    private List<EduMatricula> eduMatriculaList;
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento")
     @ManyToOne(optional = false)
     private EduDepartamento codDepartamento;
@@ -196,12 +196,12 @@ public class EduCarrera implements Serializable {
     }
 
     @XmlTransient
-    public List<EduInscripcionCarrera> getEduInscripcionCarreraList() {
-        return eduInscripcionCarreraList;
+    public List<EduMatricula> getEduMatriculaList() {
+        return eduMatriculaList;
     }
 
-    public void setEduInscripcionCarreraList(List<EduInscripcionCarrera> eduInscripcionCarreraList) {
-        this.eduInscripcionCarreraList = eduInscripcionCarreraList;
+    public void setEduMatriculaList(List<EduMatricula> eduMatriculaList) {
+        this.eduMatriculaList = eduMatriculaList;
     }
 
     public EduDepartamento getCodDepartamento() {

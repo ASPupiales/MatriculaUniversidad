@@ -1,43 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.espe.arquitectura.matricula.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_pais_estructura")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "GenPaisEstructura.findAll", query = "SELECT g FROM GenPaisEstructura g")})
 public class GenPaisEstructura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected GenPaisEstructuraPK genPaisEstructuraPK;
-    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
     @Basic(optional = false)
@@ -56,23 +37,12 @@ public class GenPaisEstructura implements Serializable {
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private GenPais genPais;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genPaisEstructura")
-    private List<GenUbicacionGeografica> genUbicacionGeograficaList;
 
     public GenPaisEstructura() {
     }
 
     public GenPaisEstructura(GenPaisEstructuraPK genPaisEstructuraPK) {
         this.genPaisEstructuraPK = genPaisEstructuraPK;
-    }
-
-    public GenPaisEstructura(GenPaisEstructuraPK genPaisEstructuraPK, String nombre, String audUsuario, Date audFecha, String audIp, int version) {
-        this.genPaisEstructuraPK = genPaisEstructuraPK;
-        this.nombre = nombre;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public GenPaisEstructura(String codPais, short nivel) {
@@ -135,15 +105,6 @@ public class GenPaisEstructura implements Serializable {
         this.genPais = genPais;
     }
 
-    @XmlTransient
-    public List<GenUbicacionGeografica> getGenUbicacionGeograficaList() {
-        return genUbicacionGeograficaList;
-    }
-
-    public void setGenUbicacionGeograficaList(List<GenUbicacionGeografica> genUbicacionGeograficaList) {
-        this.genUbicacionGeograficaList = genUbicacionGeograficaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -153,7 +114,6 @@ public class GenPaisEstructura implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof GenPaisEstructura)) {
             return false;
         }
@@ -166,7 +126,7 @@ public class GenPaisEstructura implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.arquitectura.matricula.modelo.GenPaisEstructura[ genPaisEstructuraPK=" + genPaisEstructuraPK + " ]";
+        return "GenPaisEstructura[ genPaisEstructuraPK=" + genPaisEstructuraPK + " ]";
     }
     
 }
