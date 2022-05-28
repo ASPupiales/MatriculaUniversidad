@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,30 +25,30 @@ public class Perfil implements Serializable {
     @Id
     @Column(name = "cod_perfil", nullable = false, length = 8)
     private String codPerfil;
-    
+
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil")
     private List<UsuarioPerfil> usuarioPerfiles;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil", fetch = FetchType.EAGER)
     private List<PerfilFuncionalidad> perfilFuncionalidades;
 
     public Perfil() {
@@ -152,5 +153,5 @@ public class Perfil implements Serializable {
     public String toString() {
         return "codPerfil=" + codPerfil;
     }
-    
+
 }
