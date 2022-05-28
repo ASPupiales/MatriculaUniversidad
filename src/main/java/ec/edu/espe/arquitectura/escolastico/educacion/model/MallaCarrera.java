@@ -1,15 +1,12 @@
 package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -24,14 +21,14 @@ public class MallaCarrera implements Serializable {
     @Id
     @Column(name = "cod_materiacarrera", nullable = false)
     private Integer codMateriacarrera;
-    
+
     @Column(name = "nivel")
     private Integer nivel;
-    
+
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private Carrera carrera;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
@@ -100,5 +97,5 @@ public class MallaCarrera implements Serializable {
     public String toString() {
         return "codMateriacarrera=" + codMateriacarrera;
     }
-    
+
 }

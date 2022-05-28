@@ -25,30 +25,30 @@ public class EdificioBloque implements Serializable {
     @Id
     @Column(name = "cod_edificio_bloque", nullable = false, length = 8)
     private String codEdificioBloque;
-    
+
     @Column(name = "nombre_bloque", nullable = false, length = 128)
     private String nombreBloque;
-    
+
     @Column(name = "descripcion", length = 500)
     private String descripcion;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
     private Edificio edificio;
-    
+
     @OneToMany(mappedBy = "edificioBloque")
     private List<Aula> aulas;
 
@@ -154,5 +154,5 @@ public class EdificioBloque implements Serializable {
     public String toString() {
         return "codEdificioBloque=" + codEdificioBloque;
     }
-    
+
 }

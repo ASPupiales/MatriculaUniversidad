@@ -29,29 +29,29 @@ public class Matricula implements Serializable {
     private static final long serialVersionUID = 105L;
     @EmbeddedId
     private MatriculaPK pk;
-    
+
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
-    
+
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    
+
     @Column(name = "costo", nullable = false)
     private double costo;
-    
+
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private Carrera carrera;
-    
+
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false)
     @OneToOne(optional = false)
     private Periodo periodo;
-    
+
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Persona persona;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matricula")
     private List<MatriculaNrc> matriculaNrcs;
 
@@ -160,5 +160,5 @@ public class Matricula implements Serializable {
     public String toString() {
         return "matriculaPK=" + pk;
     }
-    
+
 }

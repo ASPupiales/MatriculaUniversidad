@@ -1,7 +1,6 @@
 package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,7 +13,7 @@ public class UsuarioPerfilPK implements Serializable {
 
     @Column(name = "cod_usuario", nullable = false, length = 30)
     private String codUsuario;
-    
+
     @Column(name = "cod_perfil", nullable = false, length = 8)
     private String codPerfil;
 
@@ -69,5 +68,5 @@ public class UsuarioPerfilPK implements Serializable {
     public String toString() {
         return "codUsuario=" + codUsuario + ", codPerfil=" + codPerfil;
     }
-    
+
 }

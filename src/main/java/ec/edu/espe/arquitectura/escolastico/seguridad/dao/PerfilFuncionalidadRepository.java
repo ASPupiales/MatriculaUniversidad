@@ -8,6 +8,6 @@ import org.springframework.data.repository.Repository;
  *
  * @author labox
  */
-public interface PerfilFuncionalidadRepository extends Repository<PerfilFuncionalidad, PerfilFuncionalidadPK>{
-    
+public interface PerfilFuncionalidadRepository extends Repository<PerfilFuncionalidad, PerfilFuncionalidadPK> {
+
 }

@@ -8,8 +8,8 @@ import org.springframework.data.repository.Repository;
  *
  * @author labox
  */
-public interface FuncionalidadRepository extends Repository<Funcionalidad, Integer>{
-    
+public interface FuncionalidadRepository extends Repository<Funcionalidad, Integer> {
+
     List<Funcionalidad> findByCodModuloAndEstado(String codModulo, String estado);
-    
+
 }

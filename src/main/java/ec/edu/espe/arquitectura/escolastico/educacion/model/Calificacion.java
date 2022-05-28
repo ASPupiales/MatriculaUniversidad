@@ -21,42 +21,42 @@ public class Calificacion implements Serializable {
     private static final long serialVersionUID = 100L;
     @EmbeddedId
     private CalificacionPK pk;
-    
+
     @Column(name = "nota1", precision = 5, scale = 2)
     private BigDecimal nota1;
-    
+
     @Column(name = "nota2", precision = 5, scale = 2)
     private BigDecimal nota2;
-    
+
     @Column(name = "nota3", precision = 5, scale = 2)
     private BigDecimal nota3;
-    
+
     @Column(name = "nota4", precision = 5, scale = 2)
     private BigDecimal nota4;
-    
+
     @Column(name = "nota5", precision = 5, scale = 2)
     private BigDecimal nota5;
-    
+
     @Column(name = "nota6", precision = 5, scale = 2)
     private BigDecimal nota6;
-    
+
     @Column(name = "nota7", precision = 5, scale = 2)
     private BigDecimal nota7;
-    
+
     @Column(name = "nota8", precision = 5, scale = 2)
     private BigDecimal nota8;
-    
+
     @Column(name = "nota9", precision = 5, scale = 2)
     private BigDecimal nota9;
     @Column(name = "nota10", precision = 5, scale = 2)
     private BigDecimal nota10;
-    
+
     @Column(name = "promedio", precision = 5, scale = 2)
     private BigDecimal promedio;
-    
+
     @Column(name = "observacion", length = 25)
     private String observacion;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false),
@@ -213,5 +213,5 @@ public class Calificacion implements Serializable {
     public String toString() {
         return "calificacionPK=" + pk;
     }
-    
+
 }

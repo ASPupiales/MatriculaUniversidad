@@ -24,23 +24,23 @@ public class TipoDocumento implements Serializable {
     @Id
     @Column(name = "cod_tipo_documento", nullable = false, length = 16)
     private String codTipoDocumento;
-    
+
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
     private List<DocumentoPersona> documentosPersonas;
 
@@ -130,5 +130,5 @@ public class TipoDocumento implements Serializable {
     public String toString() {
         return "codTipoDocumento=" + codTipoDocumento;
     }
-    
+
 }

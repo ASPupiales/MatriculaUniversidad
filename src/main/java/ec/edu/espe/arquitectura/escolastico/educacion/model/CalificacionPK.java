@@ -13,10 +13,10 @@ public class CalificacionPK implements Serializable {
 
     @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
-    
+
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    
+
     @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
 
@@ -84,5 +84,5 @@ public class CalificacionPK implements Serializable {
     public String toString() {
         return "codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc;
     }
-    
+
 }

@@ -18,10 +18,10 @@ public class Error implements Serializable {
     @Id
     @Column(name = "cod_error", nullable = false, length = 5)
     private String codError;
-    
+
     @Column(name = "titulo", nullable = false, length = 255)
     private String titulo;
-    
+
     @Column(name = "descripcion", nullable = false, length = 1000)
     private String descripcion;
 
@@ -79,5 +79,5 @@ public class Error implements Serializable {
     public String toString() {
         return "codError=" + codError;
     }
-    
+
 }

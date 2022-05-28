@@ -13,19 +13,19 @@ public class NrcHorarioPK implements Serializable {
 
     @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
-    
+
     @Column(name = "cod_periodo", nullable = false)
     private short codPeriodo;
-    
+
     @Column(name = "cod_departamento", nullable = false)
     private int codDepartamento;
-    
+
     @Column(name = "cod_materia", nullable = false)
     private int codMateria;
-    
+
     @Column(name = "cod_aula", nullable = false)
     private int codAula;
-    
+
     @Column(name = "dia_semana", nullable = false, length = 25)
     private String diaSemana;
 
@@ -132,5 +132,5 @@ public class NrcHorarioPK implements Serializable {
     public String toString() {
         return "codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria + ", codAula=" + codAula + ", diaSemana=" + diaSemana;
     }
-    
+
 }

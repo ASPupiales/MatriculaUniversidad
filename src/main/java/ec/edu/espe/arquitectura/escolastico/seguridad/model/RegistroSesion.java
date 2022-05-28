@@ -24,20 +24,20 @@ public class RegistroSesion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "secuencia", nullable = false)
     private Integer secuencia;
-    
+
     @Column(name = "cod_usuario", nullable = false, length = 32)
     private String codUsuario;
-    
+
     @Column(name = "fecha_conexion", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaConexion;
-    
+
     @Column(name = "ip_conexion", nullable = false, length = 30)
     private String ipConexion;
-    
+
     @Column(name = "resultado", nullable = false, length = 3)
     private String resultado;
-    
+
     @Column(name = "error", length = 5)
     private String error;
 
@@ -119,5 +119,5 @@ public class RegistroSesion implements Serializable {
     public String toString() {
         return "secuencia=" + secuencia;
     }
-    
+
 }

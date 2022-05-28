@@ -13,7 +13,7 @@ public class FamiliarPersonaPK implements Serializable {
 
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    
+
     @Column(name = "sec_familiar_persona", nullable = false)
     private short secFamiliarPersona;
 
@@ -68,5 +68,5 @@ public class FamiliarPersonaPK implements Serializable {
     public String toString() {
         return "codPersona=" + codPersona + ", secFamiliarPersona=" + secFamiliarPersona;
     }
-    
+
 }

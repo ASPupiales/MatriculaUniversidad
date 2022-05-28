@@ -23,23 +23,23 @@ public class TipoAula implements Serializable {
     @Id
     @Column(name = "cod_tipo_aula", nullable = false, length = 10)
     private String codTipoAula;
-    
+
     @Column(name = "descripcion", nullable = false, length = 128)
     private String descripcion;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(mappedBy = "tipoAula")
     private List<Aula> aulas;
 
@@ -129,5 +129,5 @@ public class TipoAula implements Serializable {
     public String toString() {
         return "codTipoAula=" + codTipoAula;
     }
-    
+
 }

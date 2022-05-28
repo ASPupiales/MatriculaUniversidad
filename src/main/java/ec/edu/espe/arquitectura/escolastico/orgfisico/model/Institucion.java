@@ -23,32 +23,32 @@ public class Institucion implements Serializable {
     @Id
     @Column(name = "cod_institucion", nullable = false)
     private Short codInstitucion;
-    
+
     @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
-    
+
     @Column(name = "razon_social", nullable = false, length = 250)
     private String razonSocial;
-    
+
     @Column(name = "nombre_comercial", nullable = false, length = 250)
     private String nombreComercial;
-    
+
     @Column(name = "dominio", length = 128)
     private String dominio;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(mappedBy = "institucion")
     private List<Sede> sedes;
 
@@ -162,5 +162,5 @@ public class Institucion implements Serializable {
     public String toString() {
         return "codInstitucion=" + codInstitucion;
     }
-    
+
 }

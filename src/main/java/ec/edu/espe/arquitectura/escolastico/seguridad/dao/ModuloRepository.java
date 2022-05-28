@@ -8,8 +8,8 @@ import org.springframework.data.repository.Repository;
  *
  * @author labox
  */
-public interface ModuloRepository extends Repository<Modulo, String>{
-    
+public interface ModuloRepository extends Repository<Modulo, String> {
+
     List<Modulo> findByEstado(String estado);
-    
+
 }
