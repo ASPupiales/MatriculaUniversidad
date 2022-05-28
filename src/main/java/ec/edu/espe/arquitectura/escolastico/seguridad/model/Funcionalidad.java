@@ -29,39 +29,39 @@ public class Funcionalidad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_funcionalidad", nullable = false)
     private Integer codFuncionalidad;
-    
+
     @Column(name = "cod_modulo", nullable = false)
     private String codModulo;
-    
+
     @Column(name = "url_principal", nullable = false, length = 200)
     private String urlPrincipal;
-    
+
     @Column(name = "nombre", nullable = false, length = 200)
     private String nombre;
-    
+
     @Column(name = "descripcion", length = 500)
     private String descripcion;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Modulo modulo;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionalidad")
     private List<PerfilFuncionalidad> perfilFuncionalidades;
 
@@ -191,5 +191,5 @@ public class Funcionalidad implements Serializable {
     public String toString() {
         return "codFuncionalidad=" + codFuncionalidad;
     }
-    
+
 }

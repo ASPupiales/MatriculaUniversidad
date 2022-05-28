@@ -13,7 +13,7 @@ public class DocumentoPersonaPK implements Serializable {
 
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    
+
     @Column(name = "cod_tipo_documento", nullable = false, length = 16)
     private String codTipoDocumento;
 
@@ -68,5 +68,5 @@ public class DocumentoPersonaPK implements Serializable {
     public String toString() {
         return "codPersona=" + codPersona + ", codTipoDocumento=" + codTipoDocumento;
     }
-    
+
 }

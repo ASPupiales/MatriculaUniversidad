@@ -23,23 +23,23 @@ public class TipoDiscapacidad implements Serializable {
     @Id
     @Column(name = "cod_tipo_discapacidad", nullable = false, length = 8)
     private String codTipoDiscapacidad;
-    
+
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(mappedBy = "tipoDiscapacidad")
     private List<Persona> personas;
 
@@ -129,5 +129,5 @@ public class TipoDiscapacidad implements Serializable {
     public String toString() {
         return "codTipoDiscapacidad=" + codTipoDiscapacidad;
     }
-    
+
 }

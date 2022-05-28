@@ -30,40 +30,40 @@ public class Aula implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_aula", nullable = false)
     private Integer codAula;
-    
+
     @Column(name = "cod_alterno", nullable = false, length = 10)
     private String codAlterno;
-    
+
     @Column(name = "capacidad", nullable = false)
     private short capacidad;
-    
+
     @Column(name = "piso", nullable = false)
     private short piso;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "aula")
     private List<NrcHorario> nrcHorarios;
-    
+
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
     @ManyToOne
     private Edificio edificio;
-    
+
     @JoinColumn(name = "cod_edificio_bloque", referencedColumnName = "cod_edificio_bloque")
     @ManyToOne
     private EdificioBloque edificioBloque;
-    
+
     @JoinColumn(name = "cod_tipo_aula", referencedColumnName = "cod_tipo_aula")
     @ManyToOne
     private TipoAula tipoAula;
@@ -194,5 +194,5 @@ public class Aula implements Serializable {
     public String toString() {
         return "codAula=" + codAula;
     }
-    
+
 }

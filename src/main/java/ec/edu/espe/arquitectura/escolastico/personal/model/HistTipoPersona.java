@@ -22,38 +22,38 @@ public class HistTipoPersona implements Serializable {
     private static final long serialVersionUID = 126L;
     @EmbeddedId
     private HistTipoPersonaPK pk;
-    
+
     @Column(name = "fecha_inicio", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
-    
+
     @Column(name = "cod_usuario_ini", nullable = false, length = 30)
     private String codUsuarioIni;
-    
+
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    
+
     @Column(name = "cod_usuario_fin", length = 30)
     private String codUsuarioFin;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Persona persona;
-    
+
     @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TipoPersona tipoPersona;
@@ -180,5 +180,5 @@ public class HistTipoPersona implements Serializable {
     public String toString() {
         return "perHistTipoPersonaPK=" + pk;
     }
-    
+
 }

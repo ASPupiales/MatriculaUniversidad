@@ -25,27 +25,27 @@ public class PaisEstructura implements Serializable {
     private static final long serialVersionUID = 114L;
     @EmbeddedId
     private PaisEstructuraPK pk;
-    
+
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Pais pais;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paisEstructura")
     private List<UbicacionGeografica> ubicacionesGeograficas;
 
@@ -143,5 +143,5 @@ public class PaisEstructura implements Serializable {
     public String toString() {
         return "paisEstructuraPK=" + pk;
     }
-    
+
 }

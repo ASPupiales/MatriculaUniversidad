@@ -24,15 +24,15 @@ public class NrcHorario implements Serializable {
     private static final long serialVersionUID = 108L;
     @EmbeddedId
     private NrcHorarioPK pk;
-    
+
     @Column(name = "hora_inicio", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date horaInicio;
-    
+
     @Column(name = "hora_fin", nullable = false)
     @Temporal(TemporalType.TIME)
     private Date horaFin;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false),
@@ -40,7 +40,7 @@ public class NrcHorario implements Serializable {
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Nrc nrc;
-    
+
     @JoinColumn(name = "cod_aula", referencedColumnName = "cod_aula", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Aula aula;
@@ -119,5 +119,5 @@ public class NrcHorario implements Serializable {
     public String toString() {
         return "nrcHorarioPK=" + pk;
     }
-    
+
 }

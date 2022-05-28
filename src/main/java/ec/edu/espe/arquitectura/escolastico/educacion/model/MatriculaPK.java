@@ -13,7 +13,7 @@ public class MatriculaPK implements Serializable {
 
     @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
-    
+
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
 
@@ -68,5 +68,5 @@ public class MatriculaPK implements Serializable {
     public String toString() {
         return "codMatricula=" + codMatricula + ", codPersona=" + codPersona;
     }
-    
+
 }

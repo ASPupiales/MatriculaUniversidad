@@ -8,8 +8,8 @@ import org.springframework.data.repository.Repository;
  *
  * @author labox
  */
-public interface PerfilRepository extends Repository<Perfil, String>{
-    
+public interface PerfilRepository extends Repository<Perfil, String> {
+
     List<Perfil> findByEstado(String estado);
-    
+
 }

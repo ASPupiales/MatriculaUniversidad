@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author labox
  */
-public interface UsuarioRepository extends JpaRepository<Usuario, String>{
-    
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+
     Usuario findByMail(String mail);
-    
+
     List<Usuario> findByNombreLikeOrderByNombre(String nombrePattern);
-    
+
     List<Usuario> findByEstado(String estado);
-    
+
     List<Usuario> findByNombreLikeAndEstado(String nombrePattern, String estado);
-    
+
 }

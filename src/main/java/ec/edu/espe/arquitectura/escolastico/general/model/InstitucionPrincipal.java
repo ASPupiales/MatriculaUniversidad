@@ -20,28 +20,28 @@ public class InstitucionPrincipal implements Serializable {
     @Id
     @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
-    
+
     @Column(name = "razon_social", nullable = false, length = 128)
     private String razonSocial;
-    
+
     @Column(name = "nombre_comercial", nullable = false, length = 128)
     private String nombreComercial;
-    
+
     @Column(name = "direccion", nullable = false, length = 255)
     private String direccion;
-    
+
     @Column(name = "dominio", nullable = false, length = 64)
     private String dominio;
-    
+
     @Column(name = "url_info", length = 128)
     private String urlInfo;
-    
+
     @Column(name = "url_sistema", nullable = false, length = 128)
     private String urlSistema;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
@@ -148,5 +148,5 @@ public class InstitucionPrincipal implements Serializable {
     public String toString() {
         return "ruc=" + ruc;
     }
-    
+
 }

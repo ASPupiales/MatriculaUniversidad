@@ -26,53 +26,53 @@ public class Usuario implements Serializable {
     @Id
     @Column(name = "cod_usuario", nullable = false, length = 30)
     private String codUsuario;
-    
+
     @Column(name = "mail", nullable = false, length = 128)
     private String mail;
-    
+
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
-    
+
     @Column(name = "telefono", length = 10)
     private String telefono;
-    
+
     @Column(name = "clave", nullable = false, length = 64)
     private String clave;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "fecha_creacion", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
-    
+
     @Column(name = "origen", nullable = false, length = 3)
     private String origen;
-    
+
     @Column(name = "fecha_cambio_clave")
     @Temporal(TemporalType.DATE)
     private Date fechaCambioClave;
-    
+
     @Column(name = "nro_intentos_fallidos", nullable = false)
     private short nroIntentosFallidos;
-    
+
     @Column(name = "fecha_ultima_sesion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaUltimaSesion;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioPerfil> usuarioPerfiles;
 
@@ -234,5 +234,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "codUsuario=" + codUsuario;
     }
-    
+
 }

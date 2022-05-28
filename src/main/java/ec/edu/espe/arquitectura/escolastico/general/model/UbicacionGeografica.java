@@ -1,4 +1,3 @@
-
 package ec.edu.espe.arquitectura.escolastico.general.model;
 
 import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
@@ -32,55 +31,55 @@ public class UbicacionGeografica implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_ubicacion_geo_int", nullable = false)
     private Integer codUbicacionGeoInt;
-    
+
     @Column(name = "cod_ubicacion_geografica", nullable = false, length = 20)
     private String codUbicacionGeografica;
-    
+
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    
+
     @Column(name = "codigo_area_telefono", length = 4)
     private String codigoAreaTelefono;
-    
+
     @Column(name = "codigo_alterno", length = 15)
     private String codigoAlterno;
-    
+
     @Column(name = "codigo_postal", length = 15)
     private String codigoPostal;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(mappedBy = "ubicacionGeografica")
     private List<InstitucionPrincipal> instituciones;
-    
+
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
     private Pais pais;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false),
         @JoinColumn(name = "nivel", referencedColumnName = "nivel", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private PaisEstructura paisEstructura;
-    
+
     @OneToMany(mappedBy = "ubicacionGeografica")
     private List<UbicacionGeografica> ubicacionGeograficas;
-    
+
     @JoinColumn(name = "cod_ubicacion_geo_padre", referencedColumnName = "cod_ubicacion_geo_int", insertable = false, updatable = false)
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ubicacionGeografica")
     private List<Persona> personas;
 
@@ -242,5 +241,5 @@ public class UbicacionGeografica implements Serializable {
     public String toString() {
         return "codUbicacionGeoInt=" + codUbicacionGeoInt;
     }
-    
+
 }

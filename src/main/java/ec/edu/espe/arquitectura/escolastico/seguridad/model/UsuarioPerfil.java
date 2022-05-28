@@ -22,24 +22,24 @@ public class UsuarioPerfil implements Serializable {
     private static final long serialVersionUID = 137L;
     @EmbeddedId
     private UsuarioPerfilPK pk;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_perfil", referencedColumnName = "cod_perfil", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Perfil perfil;
-    
+
     @JoinColumn(name = "cod_usuario", referencedColumnName = "cod_usuario", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
@@ -134,5 +134,5 @@ public class UsuarioPerfil implements Serializable {
     public String toString() {
         return "segUsuarioPerfilPK=" + pk;
     }
-    
+
 }

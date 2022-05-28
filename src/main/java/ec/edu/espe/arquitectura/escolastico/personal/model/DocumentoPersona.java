@@ -22,48 +22,48 @@ public class DocumentoPersona implements Serializable {
     private static final long serialVersionUID = 124L;
     @EmbeddedId
     private DocumentoPersonaPK pk;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "fecha_registro", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    
+
     @Column(name = "archivado", length = 1)
     private String archivado;
-    
+
     @Column(name = "fecha_emision")
     @Temporal(TemporalType.DATE)
     private Date fechaEmision;
-    
+
     @Column(name = "fecha_caducidad")
     @Temporal(TemporalType.DATE)
     private Date fechaCaducidad;
-    
+
     @Column(name = "digitalizado", length = 1)
     private String digitalizado;
-    
+
     @Column(name = "url", length = 255)
     private String url;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Persona persona;
-    
+
     @JoinColumn(name = "cod_tipo_documento", referencedColumnName = "cod_tipo_documento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private TipoDocumento tipoDocumento;
@@ -214,5 +214,5 @@ public class DocumentoPersona implements Serializable {
     public String toString() {
         return "perDocumentoPersonaPK=" + pk;
     }
-    
+
 }

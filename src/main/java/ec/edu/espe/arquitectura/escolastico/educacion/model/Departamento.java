@@ -24,19 +24,19 @@ public class Departamento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_departamento", nullable = false)
     private Integer codDepartamento;
-    
+
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
-    
+
     @Column(name = "descripcion", nullable = false, length = 255)
     private String descripcion;
-    
+
     @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
     private List<Carrera> carreras;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
     private List<Materia> materias;
 
@@ -118,5 +118,5 @@ public class Departamento implements Serializable {
     public String toString() {
         return "codDepartamento=" + codDepartamento;
     }
-    
+
 }

@@ -13,7 +13,7 @@ public class PerfilFuncionalidadPK implements Serializable {
 
     @Column(name = "cod_perfil", nullable = false, length = 8)
     private String codPerfil;
-    
+
     @Column(name = "cod_funcionalidad", nullable = false)
     private int codFuncionalidad;
 
@@ -68,5 +68,5 @@ public class PerfilFuncionalidadPK implements Serializable {
     public String toString() {
         return "codPerfil=" + codPerfil + ", codFuncionalidad=" + codFuncionalidad;
     }
-    
+
 }

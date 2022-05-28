@@ -21,38 +21,38 @@ public class Reglas implements Serializable {
     @Id
     @Column(name = "cod_regla", nullable = false, length = 30)
     private String codRegla;
-    
+
     @Column(name = "descripcion", nullable = false, length = 100)
     private String descripcion;
-    
+
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
-    
+
     @Column(name = "valor_numerico")
     private Integer valorNumerico;
-    
+
     @Column(name = "valor_texto", length = 50)
     private String valorTexto;
-    
+
     @Column(name = "unidad", nullable = false, length = 100)
     private String unidad;
-    
+
     @Column(name = "clasificacion", nullable = false, length = 3)
     private String clasificacion;
-    
+
     @Column(name = "descripcion_detallada", length = 500)
     private String descripcionDetallada;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
 
@@ -182,5 +182,5 @@ public class Reglas implements Serializable {
     public String toString() {
         return "codRegla=" + codRegla;
     }
-    
+
 }

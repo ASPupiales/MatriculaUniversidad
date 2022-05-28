@@ -8,6 +8,6 @@ import org.springframework.data.repository.Repository;
  *
  * @author labox
  */
-public interface UsuarioPerfilRepository extends Repository<UsuarioPerfil, UsuarioPerfilPK>{
-    
+public interface UsuarioPerfilRepository extends Repository<UsuarioPerfil, UsuarioPerfilPK> {
+
 }

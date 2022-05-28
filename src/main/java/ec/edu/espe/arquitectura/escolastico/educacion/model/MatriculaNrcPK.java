@@ -13,19 +13,19 @@ public class MatriculaNrcPK implements Serializable {
 
     @Column(name = "cod_matricula", nullable = false, length = 10)
     private String codMatricula;
-    
+
     @Column(name = "cod_persona", nullable = false)
     private int codPersona;
-    
+
     @Column(name = "cod_nrc", nullable = false)
     private short codNrc;
-    
+
     @Column(name = "cod_periodo", nullable = false)
     private short codPeriodo;
-    
+
     @Column(name = "cod_departamento", nullable = false)
     private int codDepartamento;
-    
+
     @Column(name = "cod_materia", nullable = false)
     private int codMateria;
 
@@ -132,5 +132,5 @@ public class MatriculaNrcPK implements Serializable {
     public String toString() {
         return "codMatricula=" + codMatricula + ", codPersona=" + codPersona + ", codNrc=" + codNrc + ", codPeriodo=" + codPeriodo + ", codDepartamento=" + codDepartamento + ", codMateria=" + codMateria;
     }
-    
+
 }

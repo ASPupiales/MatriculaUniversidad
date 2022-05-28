@@ -24,22 +24,22 @@ public class MatriculaNrc implements Serializable {
     private static final long serialVersionUID = 106L;
     @EmbeddedId
     private MatriculaNrcPK pk;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "numero", nullable = false)
     private short numero;
-    
+
     @Column(name = "costo", nullable = false, precision = 7, scale = 2)
     private BigDecimal costo;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Matricula matricula;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false),
@@ -47,7 +47,7 @@ public class MatriculaNrc implements Serializable {
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Nrc nrc;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matriculaNrc")
     private List<Calificacion> calificaciones;
 
@@ -141,5 +141,5 @@ public class MatriculaNrc implements Serializable {
     public String toString() {
         return "matriculaNrcPK=" + pk;
     }
-    
+
 }

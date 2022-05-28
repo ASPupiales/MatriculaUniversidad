@@ -24,32 +24,32 @@ public class TipoPersona implements Serializable {
     @Id
     @Column(name = "cod_tipo_persona", nullable = false, length = 3)
     private String codTipoPersona;
-    
+
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    
+
     @Column(name = "descripcion", length = 500)
     private String descripcion;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(mappedBy = "tipoPersona")
     private List<Persona> personas;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersona")
     private List<HistTipoPersona> histTiposPersona;
 
@@ -163,5 +163,5 @@ public class TipoPersona implements Serializable {
     public String toString() {
         return "codTipoPersona=" + codTipoPersona;
     }
-    
+
 }

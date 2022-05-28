@@ -27,33 +27,33 @@ public class Nrc implements Serializable {
     private static final long serialVersionUID = 107L;
     @EmbeddedId
     private NrcPK pk;
-    
+
     @Column(name = "cupo_disponible", nullable = false)
     private short cupoDisponible;
-    
+
     @Column(name = "cupo_registrado", nullable = false)
     private short cupoRegistrado;
-    
+
     @Column(name = "nombre", length = 255)
     private String nombre;
-    
+
     @JoinColumns({
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private Materia materia;
-    
+
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Periodo periodo;
-    
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false)
+
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Persona persona;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
     private List<NrcHorario> nrcHorarios;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
     private List<MatriculaNrc> matriculaNrcs;
 
@@ -163,5 +163,5 @@ public class Nrc implements Serializable {
     public String toString() {
         return "nrcPK=" + pk;
     }
-    
+
 }

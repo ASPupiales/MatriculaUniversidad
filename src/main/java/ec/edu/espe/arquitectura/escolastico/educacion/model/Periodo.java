@@ -23,27 +23,27 @@ public class Periodo implements Serializable {
     @Id
     @Column(name = "cod_periodo", nullable = false)
     private Short codPeriodo;
-    
+
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
-    
+
     @Column(name = "nivel", nullable = false, length = 32)
     private String nivel;
-    
+
     @Column(name = "fecha_inicio", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
-    
+
     @Column(name = "fecha_fin", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    
+
     @Column(name = "parciales", nullable = false)
     private short parciales;
-    
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "periodo")
     private Nrc nrc;
-    
+
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "periodo")
     private Matricula matricula;
 
@@ -141,5 +141,5 @@ public class Periodo implements Serializable {
     public String toString() {
         return "codPeriodo=" + codPeriodo;
     }
-    
+
 }

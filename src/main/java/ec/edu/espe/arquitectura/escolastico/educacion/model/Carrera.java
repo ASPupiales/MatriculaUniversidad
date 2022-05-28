@@ -27,43 +27,43 @@ public class Carrera implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_carrera", nullable = false)
     private Integer codCarrera;
-    
+
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
-    
+
     @Column(name = "total_semestres", nullable = false)
     private int totalSemestres;
-    
+
     @Column(name = "grado", nullable = false, length = 25)
     private String grado;
-    
+
     @Column(name = "perfil_profesional", nullable = false, length = 500)
     private String perfilProfesional;
-    
+
     @Column(name = "nivel", nullable = false, length = 32)
     private String nivel;
-    
+
     @Column(name = "total_creditos", nullable = false, precision = 5, scale = 2)
     private BigDecimal totalCreditos;
-    
+
     @Column(name = "total_horas", nullable = false, precision = 5, scale = 2)
     private BigDecimal totalHoras;
-    
+
     @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
-    
+
     @Column(name = "precio_credito", nullable = false, precision = 5, scale = 2)
     private BigDecimal precioCredito;
-    
+
     @Column(name = "modalidad", length = 64)
     private String modalidad;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
     private List<MallaCarrera> mallaCarreras;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
     private List<Matricula> matriculas;
-    
+
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -210,5 +210,5 @@ public class Carrera implements Serializable {
     public String toString() {
         return "codCarrera=" + codCarrera;
     }
-    
+
 }

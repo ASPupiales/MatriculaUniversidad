@@ -25,28 +25,28 @@ public class Materia implements Serializable {
     private MateriaPK pk;
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
-    
+
     @Column(name = "creditos", nullable = false, precision = 4, scale = 2)
     private BigDecimal creditos;
-    
+
     @Column(name = "horas", nullable = false, precision = 4, scale = 2)
     private BigDecimal horas;
-    
+
     @Column(name = "ponderacion", nullable = false, precision = 5, scale = 2)
     private BigDecimal ponderacion;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
     private List<Nrc> nrcs;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
     private List<MallaCarrera> mallaCarreras;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
     private List<Prerequisito> prerequisitos;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia1")
     private List<Prerequisito> prerequisitos1;
-    
+
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -165,5 +165,5 @@ public class Materia implements Serializable {
     public String toString() {
         return "materiaPK=" + pk;
     }
-    
+
 }

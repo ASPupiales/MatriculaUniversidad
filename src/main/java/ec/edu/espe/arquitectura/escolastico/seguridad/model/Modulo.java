@@ -21,16 +21,16 @@ public class Modulo implements Serializable {
     @Id
     @Column(name = "cod_modulo", nullable = false, length = 16)
     private String codModulo;
-    
+
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modulo")
     private List<Funcionalidad> funcionalidades;
 
@@ -104,5 +104,5 @@ public class Modulo implements Serializable {
     public String toString() {
         return "codModulo=" + codModulo;
     }
-    
+
 }

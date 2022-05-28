@@ -33,119 +33,119 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_persona", nullable = false)
     private Integer codPersona;
-    
+
     @Column(name = "codigo_alterno", nullable = false, length = 15)
     private String codigoAlterno;
-    
+
     @Column(name = "tipo_identificacion", nullable = false, length = 3)
     private String tipoIdentificacion;
-    
+
     @Column(name = "identificacion", nullable = false, length = 20)
     private String identificacion;
-    
+
     @Column(name = "nombre1", nullable = false, length = 32)
     private String nombre1;
-    
+
     @Column(name = "nombre2", length = 32)
     private String nombre2;
-    
+
     @Column(name = "apellido1", nullable = false, length = 32)
     private String apellido1;
-    
+
     @Column(name = "apellido2", length = 32)
     private String apellido2;
-    
+
     @Column(name = "nombre_completo", nullable = false, length = 128)
     private String nombreCompleto;
-    
+
     @Column(name = "nombre_comun", length = 64)
     private String nombreComun;
-    
+
     @Column(name = "genero", nullable = false, length = 3)
     private String genero;
-    
+
     @Column(name = "fecha_nacimiento", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-    
+
     @Column(name = "estado_civil", nullable = false, length = 3)
     private String estadoCivil;
-    
+
     @Column(name = "email", nullable = false, length = 128)
     private String email;
-    
+
     @Column(name = "email_alterno", length = 128)
     private String emailAlterno;
-    
+
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
-    
+
     @Column(name = "telefono_movil", length = 20)
     private String telefonoMovil;
-    
+
     @Column(name = "extranjero", nullable = false, length = 1)
     private String extranjero;
-    
+
     @Column(name = "requiere_representante", nullable = false, length = 1)
     private String requiereRepresentante;
-    
+
     @Column(name = "discapacidad", nullable = false, length = 1)
     private String discapacidad;
-    
+
     @Column(name = "porcentaje_discapacidad")
     private Short porcentajeDiscapacidad;
-    
+
     @Column(name = "carnet_conadis", length = 10)
     private String carnetConadis;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Nrc> nrcs;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DireccionPersona> direccionesPersonas;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Matricula> matriculas;
-    
+
     @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais")
     @ManyToOne
     private Pais pais;
-    
+
     @JoinColumn(name = "nacionalidad", referencedColumnName = "cod_pais", nullable = false)
     @ManyToOne(optional = false)
     private Pais pais1;
-    
+
     @JoinColumn(name = "lugar_nacimiento", referencedColumnName = "cod_ubicacion_geo_int", nullable = false)
     @ManyToOne(optional = false)
     private UbicacionGeografica ubicacionGeografica;
-    
+
     @JoinColumn(name = "cod_tipo_discapacidad", referencedColumnName = "cod_tipo_discapacidad")
     @ManyToOne
     private TipoDiscapacidad tipoDiscapacidad;
-    
+
     @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona")
     @ManyToOne
     private TipoPersona tipoPersona;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DocumentoPersona> documentosPersona;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<FamiliarPersona> familiaresPersona;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<HistTipoPersona> histTiposPersona;
 
@@ -475,5 +475,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "codPersona=" + codPersona;
     }
-    
+
 }

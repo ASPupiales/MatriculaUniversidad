@@ -4,13 +4,10 @@ import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -28,41 +25,41 @@ public class Pais implements Serializable {
     @Id
     @Column(name = "cod_pais", nullable = false, length = 2)
     private String codPais;
-    
+
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
-    
+
     @Column(name = "por_omision", nullable = false, length = 1)
     private String porOmision;
-    
+
     @Column(name = "codigo_telefonico", length = 3)
     private String codigoTelefonico;
-    
+
     @Column(name = "nacionalidad", length = 50)
     private String nacionalidad;
-    
+
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
-    
+
     @Column(name = "aud_fecha", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    
+
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
-    
+
     @Column(name = "version", nullable = false)
     private int version;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
     private List<PaisEstructura> paisesEstructura;
-    
+
     @OneToMany(mappedBy = "pais")
     private List<UbicacionGeografica> ubicacionesGeograficas;
-    
+
     @OneToMany(mappedBy = "pais")
     private List<Persona> personas;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais1")
     private List<Persona> personas1;
 
@@ -200,5 +197,5 @@ public class Pais implements Serializable {
     public String toString() {
         return "codPais=" + codPais;
     }
-    
+
 }
