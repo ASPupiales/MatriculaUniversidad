@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ec.edu.espe.arquitectura</groupId>
-	<artifactId>matricula</artifactId>
+	<artifactId>escolastico</artifactId>
 	<version>1</version>
-	<name>matricula</name>
-	<description>Aplicacion para matriculas</description>
+	<name>escolastico</name>
+	<description>Sistema escolastico</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
