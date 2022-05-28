@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -22,39 +24,25 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "seg_modulo")
-@NamedQueries({
-    @NamedQuery(name = "SegModulo.findAll", query = "SELECT s FROM SegModulo s")})
+@XmlRootElement
 public class SegModulo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_modulo", nullable = false, length = 16)
+    @Column(name = "cod_modulo")
     private String codModulo;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 50)
+    @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 3)
+    @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codModulo")
-    private List<SegFuncionalidad> segFuncionalidadList;
 
     public SegModulo() {
     }
 
     public SegModulo(String codModulo) {
         this.codModulo = codModulo;
-    }
-
-    public SegModulo(String codModulo, String nombre, String estado, int version) {
-        this.codModulo = codModulo;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.version = version;
     }
 
     public String getCodModulo() {
@@ -87,14 +75,6 @@ public class SegModulo implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<SegFuncionalidad> getSegFuncionalidadList() {
-        return segFuncionalidadList;
-    }
-
-    public void setSegFuncionalidadList(List<SegFuncionalidad> segFuncionalidadList) {
-        this.segFuncionalidadList = segFuncionalidadList;
     }
 
     @Override

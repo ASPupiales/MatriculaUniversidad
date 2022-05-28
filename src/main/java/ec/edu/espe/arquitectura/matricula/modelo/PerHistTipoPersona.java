@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,43 +25,34 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "per_hist_tipo_persona")
-@NamedQueries({
-    @NamedQuery(name = "PerHistTipoPersona.findAll", query = "SELECT p FROM PerHistTipoPersona p")})
+@XmlRootElement
 public class PerHistTipoPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected PerHistTipoPersonaPK perHistTipoPersonaPK;
-    @Basic(optional = false)
-    @Column(name = "fecha_inicio", nullable = false)
+    @Column(name = "fecha_inicio")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaInicio;
-    @Basic(optional = false)
-    @Column(name = "cod_usuario_ini", nullable = false, length = 30)
+    @Column(name = "cod_usuario_ini")
     private String codUsuarioIni;
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaFin;
-    @Column(name = "cod_usuario_fin", length = 30)
+    @Column(name = "cod_usuario_fin")
     private String codUsuarioFin;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", insertable = false, updatable = false)
     private PerPersona perPersona;
-    @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona", insertable = false, updatable = false)
     private PerTipoPersona perTipoPersona;
 
     public PerHistTipoPersona() {
@@ -68,16 +60,6 @@ public class PerHistTipoPersona implements Serializable {
 
     public PerHistTipoPersona(PerHistTipoPersonaPK perHistTipoPersonaPK) {
         this.perHistTipoPersonaPK = perHistTipoPersonaPK;
-    }
-
-    public PerHistTipoPersona(PerHistTipoPersonaPK perHistTipoPersonaPK, Date fechaInicio, String codUsuarioIni, String audUsuario, Date audFecha, String audIp, int version) {
-        this.perHistTipoPersonaPK = perHistTipoPersonaPK;
-        this.fechaInicio = fechaInicio;
-        this.codUsuarioIni = codUsuarioIni;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public PerHistTipoPersona(int codPersona, String codTipoPersona) {

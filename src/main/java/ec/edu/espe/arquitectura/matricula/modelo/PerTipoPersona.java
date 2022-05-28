@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,56 +27,34 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "per_tipo_persona")
-@NamedQueries({
-    @NamedQuery(name = "PerTipoPersona.findAll", query = "SELECT p FROM PerTipoPersona p")})
+@XmlRootElement
 public class PerTipoPersona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_tipo_persona", nullable = false, length = 3)
+    @Column(name = "cod_tipo_persona")
     private String codTipoPersona;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 50)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "descripcion", length = 500)
+    @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 3)
+    @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @OneToMany(mappedBy = "codTipoPersona")
-    private List<PerPersona> perPersonaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoPersona")
-    private List<PerHistTipoPersona> perHistTipoPersonaList;
 
     public PerTipoPersona() {
     }
 
     public PerTipoPersona(String codTipoPersona) {
         this.codTipoPersona = codTipoPersona;
-    }
-
-    public PerTipoPersona(String codTipoPersona, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codTipoPersona = codTipoPersona;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodTipoPersona() {
@@ -139,22 +119,6 @@ public class PerTipoPersona implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<PerPersona> getPerPersonaList() {
-        return perPersonaList;
-    }
-
-    public void setPerPersonaList(List<PerPersona> perPersonaList) {
-        this.perPersonaList = perPersonaList;
-    }
-
-    public List<PerHistTipoPersona> getPerHistTipoPersonaList() {
-        return perHistTipoPersonaList;
-    }
-
-    public void setPerHistTipoPersonaList(List<PerHistTipoPersona> perHistTipoPersonaList) {
-        this.perHistTipoPersonaList = perHistTipoPersonaList;
     }
 
     @Override

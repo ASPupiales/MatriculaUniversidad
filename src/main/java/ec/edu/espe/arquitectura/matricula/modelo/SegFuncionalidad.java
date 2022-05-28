@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,62 +31,39 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "seg_funcionalidad")
-@NamedQueries({
-    @NamedQuery(name = "SegFuncionalidad.findAll", query = "SELECT s FROM SegFuncionalidad s")})
+@XmlRootElement
 public class SegFuncionalidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "cod_funcionalidad", nullable = false)
+    @Column(name = "cod_funcionalidad")
     private Integer codFuncionalidad;
-    @Basic(optional = false)
-    @Column(name = "url_principal", nullable = false, length = 200)
+    @Column(name = "url_principal")
     private String urlPrincipal;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 200)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "descripcion", length = 500)
+    @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 3)
+    @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo")
     private SegModulo codModulo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segFuncionalidad")
-    private List<SegPerfilFuncionalidad> segPerfilFuncionalidadList;
 
     public SegFuncionalidad() {
     }
 
     public SegFuncionalidad(Integer codFuncionalidad) {
         this.codFuncionalidad = codFuncionalidad;
-    }
-
-    public SegFuncionalidad(Integer codFuncionalidad, String urlPrincipal, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codFuncionalidad = codFuncionalidad;
-        this.urlPrincipal = urlPrincipal;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public Integer getCodFuncionalidad() {
@@ -166,15 +145,6 @@ public class SegFuncionalidad implements Serializable {
     public void setCodModulo(SegModulo codModulo) {
         this.codModulo = codModulo;
     }
-
-    public List<SegPerfilFuncionalidad> getSegPerfilFuncionalidadList() {
-        return segPerfilFuncionalidadList;
-    }
-
-    public void setSegPerfilFuncionalidadList(List<SegPerfilFuncionalidad> segPerfilFuncionalidadList) {
-        this.segPerfilFuncionalidadList = segPerfilFuncionalidadList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

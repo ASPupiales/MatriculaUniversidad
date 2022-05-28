@@ -18,90 +18,60 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author labox
  */
 @Entity
-@Table(name = "seg_usuario", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"mail"})})
-@NamedQueries({
-    @NamedQuery(name = "SegUsuario.findAll", query = "SELECT s FROM SegUsuario s")})
+@Table(name = "seg_usuario")
+@XmlRootElement
 public class SegUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_usuario", nullable = false, length = 30)
+    @Column(name = "cod_usuario")
     private String codUsuario;
-    @Basic(optional = false)
-    @Column(name = "mail", nullable = false, length = 128)
+    @Column(name = "mail")
     private String mail;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 128)
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "telefono", length = 10)
+    @Column(name = "telefono")
     private String telefono;
-    @Basic(optional = false)
-    @Column(name = "clave", nullable = false, length = 64)
+    @Column(name = "clave")
     private String clave;
-    @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 3)
+    @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "fecha_creacion", nullable = false)
+    @Column(name = "fecha_creacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
-    @Basic(optional = false)
-    @Column(name = "origen", nullable = false, length = 3)
+    @Column(name = "origen")
     private String origen;
     @Column(name = "fecha_cambio_clave")
     @Temporal(TemporalType.DATE)
     private Date fechaCambioClave;
-    @Basic(optional = false)
-    @Column(name = "nro_intentos_fallidos", nullable = false)
+    @Column(name = "nro_intentos_fallidos")
     private short nroIntentosFallidos;
     @Column(name = "fecha_ultima_sesion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaUltimaSesion;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segUsuario")
-    private List<SegUsuarioPerfil> segUsuarioPerfilList;
 
     public SegUsuario() {
     }
 
     public SegUsuario(String codUsuario) {
         this.codUsuario = codUsuario;
-    }
-
-    public SegUsuario(String codUsuario, String mail, String nombre, String clave, String estado, Date fechaCreacion, String origen, short nroIntentosFallidos, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codUsuario = codUsuario;
-        this.mail = mail;
-        this.nombre = nombre;
-        this.clave = clave;
-        this.estado = estado;
-        this.fechaCreacion = fechaCreacion;
-        this.origen = origen;
-        this.nroIntentosFallidos = nroIntentosFallidos;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodUsuario() {
@@ -222,14 +192,6 @@ public class SegUsuario implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<SegUsuarioPerfil> getSegUsuarioPerfilList() {
-        return segUsuarioPerfilList;
-    }
-
-    public void setSegUsuarioPerfilList(List<SegUsuarioPerfil> segUsuarioPerfilList) {
-        this.segUsuarioPerfilList = segUsuarioPerfilList;
     }
 
     @Override

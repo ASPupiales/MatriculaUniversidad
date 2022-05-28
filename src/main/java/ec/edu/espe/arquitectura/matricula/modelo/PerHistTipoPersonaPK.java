@@ -16,11 +16,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class PerHistTipoPersonaPK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "cod_persona", nullable = false)
+    @Column(name = "cod_persona")
     private int codPersona;
-    @Basic(optional = false)
-    @Column(name = "cod_tipo_persona", nullable = false, length = 3)
+    @Column(name = "cod_tipo_persona")
     private String codTipoPersona;
 
     public PerHistTipoPersonaPK() {

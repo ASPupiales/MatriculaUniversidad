@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,48 +27,30 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "per_tipo_documento")
-@NamedQueries({
-    @NamedQuery(name = "PerTipoDocumento.findAll", query = "SELECT p FROM PerTipoDocumento p")})
+@XmlRootElement
 public class PerTipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_tipo_documento", nullable = false, length = 16)
+    @Column(name = "cod_tipo_documento")
     private String codTipoDocumento;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 64)
+    @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoDocumento")
-    private List<PerDocumentoPersona> perDocumentoPersonaList;
 
     public PerTipoDocumento() {
     }
 
     public PerTipoDocumento(String codTipoDocumento) {
         this.codTipoDocumento = codTipoDocumento;
-    }
-
-    public PerTipoDocumento(String codTipoDocumento, String nombre, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codTipoDocumento = codTipoDocumento;
-        this.nombre = nombre;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodTipoDocumento() {
@@ -115,14 +99,6 @@ public class PerTipoDocumento implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<PerDocumentoPersona> getPerDocumentoPersonaList() {
-        return perDocumentoPersonaList;
-    }
-
-    public void setPerDocumentoPersonaList(List<PerDocumentoPersona> perDocumentoPersonaList) {
-        this.perDocumentoPersonaList = perDocumentoPersonaList;
     }
 
     @Override

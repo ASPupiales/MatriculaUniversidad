@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,30 +25,24 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "seg_registro_sesion")
-@NamedQueries({
-    @NamedQuery(name = "SegRegistroSesion.findAll", query = "SELECT s FROM SegRegistroSesion s")})
+@XmlRootElement
 public class SegRegistroSesion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "secuencia", nullable = false)
+    @Column(name = "secuencia")
     private Integer secuencia;
-    @Basic(optional = false)
-    @Column(name = "cod_usuario", nullable = false, length = 32)
+    @Column(name = "cod_usuario")
     private String codUsuario;
-    @Basic(optional = false)
-    @Column(name = "fecha_conexion", nullable = false)
+    @Column(name = "fecha_conexion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaConexion;
-    @Basic(optional = false)
-    @Column(name = "ip_conexion", nullable = false, length = 30)
+    @Column(name = "ip_conexion")
     private String ipConexion;
-    @Basic(optional = false)
-    @Column(name = "resultado", nullable = false, length = 3)
+    @Column(name = "resultado")
     private String resultado;
-    @Column(name = "error", length = 5)
+    @Column(name = "error")
     private String error;
 
     public SegRegistroSesion() {
@@ -55,14 +50,6 @@ public class SegRegistroSesion implements Serializable {
 
     public SegRegistroSesion(Integer secuencia) {
         this.secuencia = secuencia;
-    }
-
-    public SegRegistroSesion(Integer secuencia, String codUsuario, Date fechaConexion, String ipConexion, String resultado) {
-        this.secuencia = secuencia;
-        this.codUsuario = codUsuario;
-        this.fechaConexion = fechaConexion;
-        this.ipConexion = ipConexion;
-        this.resultado = resultado;
     }
 
     public Integer getSecuencia() {

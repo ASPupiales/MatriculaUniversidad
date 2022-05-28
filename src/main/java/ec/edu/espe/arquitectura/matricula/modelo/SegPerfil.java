@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,54 +27,34 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "seg_perfil")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SegPerfil.findAll", query = "SELECT s FROM SegPerfil s")})
 public class SegPerfil implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "cod_perfil", nullable = false, length = 8)
+    @Column(name = "cod_perfil")
     private String codPerfil;
-    @Basic(optional = false)
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
-    @Column(name = "estado", nullable = false, length = 3)
+    @Column(name = "estado")
     private String estado;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
-    private List<SegUsuarioPerfil> segUsuarioPerfilList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
-    private List<SegPerfilFuncionalidad> segPerfilFuncionalidadList;
 
     public SegPerfil() {
     }
 
     public SegPerfil(String codPerfil) {
         this.codPerfil = codPerfil;
-    }
-
-    public SegPerfil(String codPerfil, String nombre, String estado, String audUsuario, Date audFecha, String audIp, int version) {
-        this.codPerfil = codPerfil;
-        this.nombre = nombre;
-        this.estado = estado;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public String getCodPerfil() {
@@ -129,22 +111,6 @@ public class SegPerfil implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<SegUsuarioPerfil> getSegUsuarioPerfilList() {
-        return segUsuarioPerfilList;
-    }
-
-    public void setSegUsuarioPerfilList(List<SegUsuarioPerfil> segUsuarioPerfilList) {
-        this.segUsuarioPerfilList = segUsuarioPerfilList;
-    }
-
-    public List<SegPerfilFuncionalidad> getSegPerfilFuncionalidadList() {
-        return segPerfilFuncionalidadList;
-    }
-
-    public void setSegPerfilFuncionalidadList(List<SegPerfilFuncionalidad> segPerfilFuncionalidadList) {
-        this.segPerfilFuncionalidadList = segPerfilFuncionalidadList;
     }
 
     @Override

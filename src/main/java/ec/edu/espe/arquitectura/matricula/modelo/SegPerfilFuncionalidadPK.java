@@ -16,11 +16,9 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class SegPerfilFuncionalidadPK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "cod_perfil", nullable = false, length = 8)
+    @Column(name = "cod_perfil")
     private String codPerfil;
-    @Basic(optional = false)
-    @Column(name = "cod_funcionalidad", nullable = false)
+    @Column(name = "cod_funcionalidad")
     private int codFuncionalidad;
 
     public SegPerfilFuncionalidadPK() {

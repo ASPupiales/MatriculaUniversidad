@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,30 +25,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "seg_usuario_perfil")
-@NamedQueries({
-    @NamedQuery(name = "SegUsuarioPerfil.findAll", query = "SELECT s FROM SegUsuarioPerfil s")})
+@XmlRootElement
 public class SegUsuarioPerfil implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected SegUsuarioPerfilPK segUsuarioPerfilPK;
-    @Basic(optional = false)
-    @Column(name = "aud_usuario", nullable = false, length = 30)
+    @Column(name = "aud_usuario")
     private String audUsuario;
-    @Basic(optional = false)
-    @Column(name = "aud_fecha", nullable = false)
+    @Column(name = "aud_fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date audFecha;
-    @Basic(optional = false)
-    @Column(name = "aud_ip", nullable = false, length = 30)
+    @Column(name = "aud_ip")
     private String audIp;
-    @Basic(optional = false)
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
     private int version;
-    @JoinColumn(name = "cod_perfil", referencedColumnName = "cod_perfil", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "cod_perfil", referencedColumnName = "cod_perfil", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SegPerfil segPerfil;
-    @JoinColumn(name = "cod_usuario", referencedColumnName = "cod_usuario", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "cod_usuario", referencedColumnName = "cod_usuario", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private SegUsuario segUsuario;
 
@@ -56,14 +52,6 @@ public class SegUsuarioPerfil implements Serializable {
 
     public SegUsuarioPerfil(SegUsuarioPerfilPK segUsuarioPerfilPK) {
         this.segUsuarioPerfilPK = segUsuarioPerfilPK;
-    }
-
-    public SegUsuarioPerfil(SegUsuarioPerfilPK segUsuarioPerfilPK, String audUsuario, Date audFecha, String audIp, int version) {
-        this.segUsuarioPerfilPK = segUsuarioPerfilPK;
-        this.audUsuario = audUsuario;
-        this.audFecha = audFecha;
-        this.audIp = audIp;
-        this.version = version;
     }
 
     public SegUsuarioPerfil(String codUsuario, String codPerfil) {
