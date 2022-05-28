@@ -30,6 +30,9 @@ public class Funcionalidad implements Serializable {
     @Column(name = "cod_funcionalidad", nullable = false)
     private Integer codFuncionalidad;
     
+    @Column(name = "cod_modulo", nullable = false)
+    private String codModulo;
+    
     @Column(name = "url_principal", nullable = false, length = 200)
     private String urlPrincipal;
     
@@ -55,7 +58,7 @@ public class Funcionalidad implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false)
+    @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Modulo modulo;
     
@@ -147,6 +150,14 @@ public class Funcionalidad implements Serializable {
 
     public void setModulo(Modulo modulo) {
         this.modulo = modulo;
+    }
+
+    public String getCodModulo() {
+        return codModulo;
+    }
+
+    public void setCodModulo(String codModulo) {
+        this.codModulo = codModulo;
     }
 
     public List<PerfilFuncionalidad> getPerfilFuncionalidades() {
