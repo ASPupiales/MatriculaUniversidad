@@ -44,10 +44,10 @@ public class Perfil implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil")
     private List<UsuarioPerfil> usuarioPerfiles;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segPerfil")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil")
     private List<PerfilFuncionalidad> perfilFuncionalidades;
 
     public Perfil() {

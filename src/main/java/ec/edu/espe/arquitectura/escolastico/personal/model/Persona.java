@@ -111,13 +111,13 @@ public class Persona implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Nrc> nrcs;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DireccionPersona> direccionesPersonas;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Matricula> matriculas;
     
     @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais")
@@ -140,13 +140,13 @@ public class Persona implements Serializable {
     @ManyToOne
     private TipoPersona tipoPersona;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DocumentoPersona> documentosPersona;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<FamiliarPersona> familiaresPersona;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<HistTipoPersona> histTiposPersona;
 
     public Persona() {

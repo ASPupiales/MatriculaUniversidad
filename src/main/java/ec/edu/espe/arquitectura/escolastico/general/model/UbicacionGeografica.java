@@ -61,27 +61,27 @@ public class UbicacionGeografica implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "genUbicacionGeografica")
+    @OneToMany(mappedBy = "ubicacionGeografica")
     private List<InstitucionPrincipal> instituciones;
     
-    @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais")
+    @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
     private Pais pais;
     
     @JoinColumns({
-        @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais"),
-        @JoinColumn(name = "nivel", referencedColumnName = "nivel", nullable = false)})
+        @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false),
+        @JoinColumn(name = "nivel", referencedColumnName = "nivel", nullable = false, insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private PaisEstructura paisEstructura;
     
     @OneToMany(mappedBy = "ubicacionGeografica")
     private List<UbicacionGeografica> ubicacionGeograficas;
     
-    @JoinColumn(name = "cod_ubicacion_geo_padre", referencedColumnName = "cod_ubicacion_geo_int")
+    @JoinColumn(name = "cod_ubicacion_geo_padre", referencedColumnName = "cod_ubicacion_geo_int", insertable = false, updatable = false)
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genUbicacionGeografica")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ubicacionGeografica")
     private List<Persona> personas;
 
     public UbicacionGeografica() {

@@ -49,7 +49,7 @@ public class Institucion implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "ofiInstitucion")
+    @OneToMany(mappedBy = "institucion")
     private List<Sede> sedes;
 
     public Institucion() {

@@ -40,7 +40,7 @@ public class TipoAula implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "ofiTipoAula")
+    @OneToMany(mappedBy = "tipoAula")
     private List<Aula> aulas;
 
     public TipoAula() {

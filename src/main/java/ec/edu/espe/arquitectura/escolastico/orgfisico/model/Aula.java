@@ -53,7 +53,7 @@ public class Aula implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ofiAula")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aula")
     private List<NrcHorario> nrcHorarios;
     
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")

@@ -48,7 +48,7 @@ public class Sede implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "ofiSede")
+    @OneToMany(mappedBy = "sede")
     private List<Edificio> edificios;
     
     @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion")

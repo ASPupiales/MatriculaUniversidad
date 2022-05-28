@@ -40,7 +40,7 @@ public class TipoDiscapacidad implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "perTipoDiscapacidad")
+    @OneToMany(mappedBy = "tipoDiscapacidad")
     private List<Persona> personas;
 
     public TipoDiscapacidad() {

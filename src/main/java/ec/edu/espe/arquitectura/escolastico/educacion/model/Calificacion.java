@@ -61,9 +61,9 @@ public class Calificacion implements Serializable {
         @JoinColumn(name = "cod_matricula", referencedColumnName = "cod_matricula", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_nrc", referencedColumnName = "cod_nrc", nullable = false, insertable = false, updatable = false),
-        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false),
-        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento"),
-        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia")})
+        @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false),
+        @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", insertable = false, updatable = false),
+        @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", insertable = false, updatable = false)})
     @ManyToOne(optional = false)
     private MatriculaNrc matriculaNrc;
 

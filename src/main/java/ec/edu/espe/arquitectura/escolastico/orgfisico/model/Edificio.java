@@ -67,10 +67,10 @@ public class Edificio implements Serializable {
     @ManyToOne
     private Sede sede;
     
-    @OneToMany(mappedBy = "ofiEdificio")
+    @OneToMany(mappedBy = "edificio")
     private List<EdificioBloque> edificiosBloque;
     
-    @OneToMany(mappedBy = "ofiEdificio")
+    @OneToMany(mappedBy = "edificio")
     private List<Aula> aulas;
 
     public Edificio() {

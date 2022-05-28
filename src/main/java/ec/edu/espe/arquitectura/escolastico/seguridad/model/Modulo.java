@@ -2,13 +2,10 @@ package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,7 +31,7 @@ public class Modulo implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segModulo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "modulo")
     private List<Funcionalidad> funcionalidades;
 
     public Modulo() {

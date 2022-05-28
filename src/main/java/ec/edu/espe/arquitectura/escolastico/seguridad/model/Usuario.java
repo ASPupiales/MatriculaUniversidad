@@ -73,7 +73,7 @@ public class Usuario implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioPerfil> usuarioPerfiles;
 
     public Usuario() {

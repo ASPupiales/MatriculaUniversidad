@@ -47,10 +47,10 @@ public class TipoPersona implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(mappedBy = "perTipoPersona")
+    @OneToMany(mappedBy = "tipoPersona")
     private List<Persona> personas;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoPersona")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPersona")
     private List<HistTipoPersona> histTiposPersona;
 
     public TipoPersona() {

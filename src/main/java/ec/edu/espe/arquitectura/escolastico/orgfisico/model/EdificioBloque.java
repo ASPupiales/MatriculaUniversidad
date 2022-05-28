@@ -49,7 +49,7 @@ public class EdificioBloque implements Serializable {
     @ManyToOne
     private Edificio edificio;
     
-    @OneToMany(mappedBy = "ofiEdificioBloque")
+    @OneToMany(mappedBy = "edificioBloque")
     private List<Aula> aulas;
 
     public EdificioBloque() {

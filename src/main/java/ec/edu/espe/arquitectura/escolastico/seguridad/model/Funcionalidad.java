@@ -59,7 +59,7 @@ public class Funcionalidad implements Serializable {
     @ManyToOne(optional = false)
     private Modulo modulo;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "segFuncionalidad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcionalidad")
     private List<PerfilFuncionalidad> perfilFuncionalidades;
 
     public Funcionalidad() {

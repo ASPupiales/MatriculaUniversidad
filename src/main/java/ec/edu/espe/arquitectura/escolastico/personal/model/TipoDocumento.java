@@ -41,7 +41,7 @@ public class TipoDocumento implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perTipoDocumento")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
     private List<DocumentoPersona> documentosPersonas;
 
     public TipoDocumento() {
