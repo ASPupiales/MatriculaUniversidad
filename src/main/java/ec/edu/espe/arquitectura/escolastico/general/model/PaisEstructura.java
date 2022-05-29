@@ -22,9 +22,6 @@ public class PaisEstructura implements Serializable {
     @EmbeddedId
     private PaisEstructuraPK pk;
     
-    @Column(name = "cod_pais", nullable = false, length = 2)
-    private String codPais;
-
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
 
@@ -117,14 +114,6 @@ public class PaisEstructura implements Serializable {
 
     public void setUbicacionesGeograficas(List<UbicacionGeografica> ubicacionesGeograficas) {
         this.ubicacionesGeograficas = ubicacionesGeograficas;
-    }
-
-    public String getCodPais() {
-        return codPais;
-    }
-
-    public void setCodPais(String codPais) {
-        this.codPais = codPais;
     }
 
     @Override

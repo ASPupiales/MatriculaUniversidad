@@ -8,6 +8,6 @@ public interface InstitucionPrincipalRepository extends JpaRepository<Institucio
 
     List<InstitucionPrincipal> findByRazonSocialLikeOrderByRazonSocial(String razonSocial);
 
-    List<InstitucionPrincipal> findByNombreComercialLikeOrderByNombre(String nombreComercial);
+    List<InstitucionPrincipal> findByNombreComercialLikeOrderByNombreComercial(String nombreComercial);
 
 }
