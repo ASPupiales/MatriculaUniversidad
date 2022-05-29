@@ -4,10 +4,6 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author labox
- */
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
     Usuario findByMail(String mail);

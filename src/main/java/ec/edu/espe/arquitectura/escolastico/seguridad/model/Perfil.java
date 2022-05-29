@@ -13,10 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "seg_perfil")
 public class Perfil implements Serializable {
@@ -45,11 +41,8 @@ public class Perfil implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil")
-    private List<UsuarioPerfil> usuarioPerfiles;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil", fetch = FetchType.EAGER)
-    private List<PerfilFuncionalidad> perfilFuncionalidades;
+    private List<PerfilFuncionalidad> perfilesFuncionalidad;
 
     public Perfil() {
     }
@@ -114,20 +107,12 @@ public class Perfil implements Serializable {
         this.version = version;
     }
 
-    public List<UsuarioPerfil> getUsuarioPerfiles() {
-        return usuarioPerfiles;
+    public List<PerfilFuncionalidad> getPerfilesFuncionalidad() {
+        return perfilesFuncionalidad;
     }
 
-    public void setUsuarioPerfiles(List<UsuarioPerfil> usuarioPerfiles) {
-        this.usuarioPerfiles = usuarioPerfiles;
-    }
-
-    public List<PerfilFuncionalidad> getPerfilFuncionalidades() {
-        return perfilFuncionalidades;
-    }
-
-    public void setPerfilFuncionalidades(List<PerfilFuncionalidad> perfilFuncionalidades) {
-        this.perfilFuncionalidades = perfilFuncionalidades;
+    public void setPerfilesFuncionalidad(List<PerfilFuncionalidad> perfilesFuncionalidad) {
+        this.perfilesFuncionalidad = perfilesFuncionalidad;
     }
 
     @Override

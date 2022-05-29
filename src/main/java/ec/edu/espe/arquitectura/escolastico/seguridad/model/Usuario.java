@@ -13,10 +13,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "seg_usuario", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"mail"})})
