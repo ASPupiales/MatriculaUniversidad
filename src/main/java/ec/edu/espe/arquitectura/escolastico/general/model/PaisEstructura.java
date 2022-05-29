@@ -14,10 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_pais_estructura")
 public class PaisEstructura implements Serializable {
@@ -25,6 +21,9 @@ public class PaisEstructura implements Serializable {
     private static final long serialVersionUID = 114L;
     @EmbeddedId
     private PaisEstructuraPK pk;
+    
+    @Column(name = "cod_pais", nullable = false, length = 2)
+    private String codPais;
 
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
@@ -118,6 +117,14 @@ public class PaisEstructura implements Serializable {
 
     public void setUbicacionesGeograficas(List<UbicacionGeografica> ubicacionesGeograficas) {
         this.ubicacionesGeograficas = ubicacionesGeograficas;
+    }
+
+    public String getCodPais() {
+        return codPais;
+    }
+
+    public void setCodPais(String codPais) {
+        this.codPais = codPais;
     }
 
     @Override

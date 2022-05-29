@@ -6,10 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_error")
 public class Error implements Serializable {

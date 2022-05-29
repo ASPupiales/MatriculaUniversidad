@@ -1,6 +1,5 @@
 package ec.edu.espe.arquitectura.escolastico.general.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,10 +12,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_pais")
 public class Pais implements Serializable {
@@ -56,12 +51,6 @@ public class Pais implements Serializable {
 
     @OneToMany(mappedBy = "pais")
     private List<UbicacionGeografica> ubicacionesGeograficas;
-
-    @OneToMany(mappedBy = "pais")
-    private List<Persona> personas;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais1")
-    private List<Persona> personas1;
 
     public Pais() {
     }
@@ -156,22 +145,6 @@ public class Pais implements Serializable {
 
     public void setUbicacionesGeograficas(List<UbicacionGeografica> ubicacionesGeograficas) {
         this.ubicacionesGeograficas = ubicacionesGeograficas;
-    }
-
-    public List<Persona> getPersonas() {
-        return personas;
-    }
-
-    public void setPersonas(List<Persona> personas) {
-        this.personas = personas;
-    }
-
-    public List<Persona> getPersonas1() {
-        return personas1;
-    }
-
-    public void setPersonas1(List<Persona> personas1) {
-        this.personas1 = personas1;
     }
 
     @Override

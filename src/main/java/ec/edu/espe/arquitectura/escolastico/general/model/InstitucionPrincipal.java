@@ -8,10 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_institucion")
 public class InstitucionPrincipal implements Serializable {
@@ -20,6 +16,9 @@ public class InstitucionPrincipal implements Serializable {
     @Id
     @Column(name = "ruc", nullable = false, length = 13)
     private String ruc;
+
+    @Column(name = "cod_ubicacion_geo_int", nullable = false)
+    private Integer codUbicacionGeoInt;
 
     @Column(name = "razon_social", nullable = false, length = 128)
     private String razonSocial;
@@ -42,7 +41,7 @@ public class InstitucionPrincipal implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int")
+    @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int", insertable = false, updatable = false)
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
 
@@ -123,6 +122,14 @@ public class InstitucionPrincipal implements Serializable {
 
     public void setUbicacionGeografica(UbicacionGeografica ubicacionGeografica) {
         this.ubicacionGeografica = ubicacionGeografica;
+    }
+
+    public Integer getCodUbicacionGeoInt() {
+        return codUbicacionGeoInt;
+    }
+
+    public void setCodUbicacionGeoInt(Integer codUbicacionGeoInt) {
+        this.codUbicacionGeoInt = codUbicacionGeoInt;
     }
 
     @Override
