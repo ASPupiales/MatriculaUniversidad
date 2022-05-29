@@ -2,19 +2,13 @@ package ec.edu.espe.arquitectura.escolastico.personal.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_tipo_discapacidad")
 public class TipoDiscapacidad implements Serializable {
@@ -39,9 +33,6 @@ public class TipoDiscapacidad implements Serializable {
 
     @Column(name = "version", nullable = false)
     private int version;
-
-    @OneToMany(mappedBy = "tipoDiscapacidad")
-    private List<Persona> personas;
 
     public TipoDiscapacidad() {
     }
@@ -96,14 +87,6 @@ public class TipoDiscapacidad implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<Persona> getPersonas() {
-        return personas;
-    }
-
-    public void setPersonas(List<Persona> personas) {
-        this.personas = personas;
     }
 
     @Override

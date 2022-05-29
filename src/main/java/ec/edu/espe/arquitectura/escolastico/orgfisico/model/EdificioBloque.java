@@ -2,21 +2,15 @@ package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_edificio_bloque")
 public class EdificioBloque implements Serializable {
@@ -25,6 +19,9 @@ public class EdificioBloque implements Serializable {
     @Id
     @Column(name = "cod_edificio_bloque", nullable = false, length = 8)
     private String codEdificioBloque;
+    
+    @Column(name = "cod_edificio", nullable = false, length = 8)
+    private String codEdificio;
 
     @Column(name = "nombre_bloque", nullable = false, length = 128)
     private String nombreBloque;
@@ -45,12 +42,9 @@ public class EdificioBloque implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
+    @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio", insertable = false, updatable = false)
     @ManyToOne
     private Edificio edificio;
-
-    @OneToMany(mappedBy = "edificioBloque")
-    private List<Aula> aulas;
 
     public EdificioBloque() {
     }
@@ -65,6 +59,14 @@ public class EdificioBloque implements Serializable {
 
     public void setCodEdificioBloque(String codEdificioBloque) {
         this.codEdificioBloque = codEdificioBloque;
+    }
+
+    public String getCodEdificio() {
+        return codEdificio;
+    }
+
+    public void setCodEdificio(String codEdificio) {
+        this.codEdificio = codEdificio;
     }
 
     public String getNombreBloque() {
@@ -121,14 +123,6 @@ public class EdificioBloque implements Serializable {
 
     public void setEdificio(Edificio edificio) {
         this.edificio = edificio;
-    }
-
-    public List<Aula> getAulas() {
-        return aulas;
-    }
-
-    public void setAulas(List<Aula> aulas) {
-        this.aulas = aulas;
     }
 
     @Override

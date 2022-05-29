@@ -1,10 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
-import ec.edu.espe.arquitectura.escolastico.educacion.model.NrcHorario;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_aula")
 public class Aula implements Serializable {
@@ -30,6 +22,15 @@ public class Aula implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_aula", nullable = false)
     private Integer codAula;
+
+    @Column(name = "cod_tipo_aula")
+    private String codTipoAula;
+
+    @Column(name = "cod_edificio_bloque")
+    private String codEdificioBloque;
+
+    @Column(name = "cod_edificio")
+    private String codEdificio;
 
     @Column(name = "cod_alterno", nullable = false, length = 10)
     private String codAlterno;
@@ -53,18 +54,15 @@ public class Aula implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "aula")
-    private List<NrcHorario> nrcHorarios;
-
-    @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio")
+    @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio", insertable = false, updatable = false)
     @ManyToOne
     private Edificio edificio;
 
-    @JoinColumn(name = "cod_edificio_bloque", referencedColumnName = "cod_edificio_bloque")
+    @JoinColumn(name = "cod_edificio_bloque", referencedColumnName = "cod_edificio_bloque", insertable = false, updatable = false)
     @ManyToOne
     private EdificioBloque edificioBloque;
 
-    @JoinColumn(name = "cod_tipo_aula", referencedColumnName = "cod_tipo_aula")
+    @JoinColumn(name = "cod_tipo_aula", referencedColumnName = "cod_tipo_aula", insertable = false, updatable = false)
     @ManyToOne
     private TipoAula tipoAula;
 
@@ -81,6 +79,30 @@ public class Aula implements Serializable {
 
     public void setCodAula(Integer codAula) {
         this.codAula = codAula;
+    }
+
+    public String getCodTipoAula() {
+        return codTipoAula;
+    }
+
+    public void setCodTipoAula(String codTipoAula) {
+        this.codTipoAula = codTipoAula;
+    }
+
+    public String getCodEdificioBloque() {
+        return codEdificioBloque;
+    }
+
+    public void setCodEdificioBloque(String codEdificioBloque) {
+        this.codEdificioBloque = codEdificioBloque;
+    }
+
+    public String getCodEdificio() {
+        return codEdificio;
+    }
+
+    public void setCodEdificio(String codEdificio) {
+        this.codEdificio = codEdificio;
     }
 
     public String getCodAlterno() {
@@ -137,14 +159,6 @@ public class Aula implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<NrcHorario> getNrcHorarios() {
-        return nrcHorarios;
-    }
-
-    public void setNrcHorarios(List<NrcHorario> nrcHorarios) {
-        this.nrcHorarios = nrcHorarios;
     }
 
     public Edificio getEdificio() {

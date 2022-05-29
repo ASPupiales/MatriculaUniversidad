@@ -2,21 +2,15 @@ package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_edificio")
 public class Edificio implements Serializable {
@@ -25,6 +19,9 @@ public class Edificio implements Serializable {
     @Id
     @Column(name = "cod_edificio", nullable = false, length = 8)
     private String codEdificio;
+    
+    @Column(name = "cod_sede", nullable = false, length = 8)
+    private String codSede;
 
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
@@ -63,15 +60,9 @@ public class Edificio implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @JoinColumn(name = "cod_sede", referencedColumnName = "cod_sede")
+    @JoinColumn(name = "cod_sede", referencedColumnName = "cod_sede", insertable = false, updatable = false)
     @ManyToOne
     private Sede sede;
-
-    @OneToMany(mappedBy = "edificio")
-    private List<EdificioBloque> edificiosBloque;
-
-    @OneToMany(mappedBy = "edificio")
-    private List<Aula> aulas;
 
     public Edificio() {
     }
@@ -86,6 +77,14 @@ public class Edificio implements Serializable {
 
     public void setCodEdificio(String codEdificio) {
         this.codEdificio = codEdificio;
+    }
+
+    public String getCodSede() {
+        return codSede;
+    }
+
+    public void setCodSede(String codSede) {
+        this.codSede = codSede;
     }
 
     public String getNombre() {
@@ -191,23 +190,7 @@ public class Edificio implements Serializable {
     public void setSede(Sede sede) {
         this.sede = sede;
     }
-
-    public List<EdificioBloque> getEdificiosBloque() {
-        return edificiosBloque;
-    }
-
-    public void setEdificiosBloque(List<EdificioBloque> edificiosBloque) {
-        this.edificiosBloque = edificiosBloque;
-    }
-
-    public List<Aula> getAulas() {
-        return aulas;
-    }
-
-    public void setAulas(List<Aula> aulas) {
-        this.aulas = aulas;
-    }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

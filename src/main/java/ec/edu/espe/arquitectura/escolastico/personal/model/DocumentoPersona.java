@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_documento_persona")
 public class DocumentoPersona implements Serializable {
@@ -22,6 +18,12 @@ public class DocumentoPersona implements Serializable {
     private static final long serialVersionUID = 124L;
     @EmbeddedId
     private DocumentoPersonaPK pk;
+    
+    @Column(name = "cod_persona", nullable = false)
+    private int codPersona;
+
+    @Column(name = "cod_tipo_documento", nullable = false)
+    private String codTipoDocumento;
 
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
@@ -85,6 +87,22 @@ public class DocumentoPersona implements Serializable {
 
     public void setPk(DocumentoPersonaPK pk) {
         this.pk = pk;
+    }
+
+    public int getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
+    }
+
+    public String getCodTipoDocumento() {
+        return codTipoDocumento;
+    }
+
+    public void setCodTipoDocumento(String codTipoDocumento) {
+        this.codTipoDocumento = codTipoDocumento;
     }
 
     public String getEstado() {

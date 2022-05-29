@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_hist_tipo_persona")
 public class HistTipoPersona implements Serializable {
@@ -22,6 +18,9 @@ public class HistTipoPersona implements Serializable {
     private static final long serialVersionUID = 126L;
     @EmbeddedId
     private HistTipoPersonaPK pk;
+    
+    @Column(name = "cod_persona", nullable = false)
+    private int codPersona;
 
     @Column(name = "fecha_inicio", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -75,6 +74,14 @@ public class HistTipoPersona implements Serializable {
 
     public void setPk(HistTipoPersonaPK pk) {
         this.pk = pk;
+    }
+
+    public int getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
     }
 
     public Date getFechaInicio() {
