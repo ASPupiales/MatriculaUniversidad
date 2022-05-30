@@ -17,6 +17,9 @@ public class MallaCarrera implements Serializable {
     @Id
     @Column(name = "cod_materiacarrera", nullable = false)
     private Integer codMateriacarrera;
+    
+    @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
+    private Integer codCarrera;
 
     @Column(name = "nivel")
     private Integer nivel;
@@ -44,6 +47,14 @@ public class MallaCarrera implements Serializable {
 
     public void setCodMateriacarrera(Integer codMateriacarrera) {
         this.codMateriacarrera = codMateriacarrera;
+    }
+
+    public Integer getCodCarrera() {
+        return codCarrera;
+    }
+
+    public void setCodCarrera(Integer codCarrera) {
+        this.codCarrera = codCarrera;
     }
 
     public Integer getNivel() {

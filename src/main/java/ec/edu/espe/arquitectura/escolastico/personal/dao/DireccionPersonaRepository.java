@@ -9,7 +9,7 @@ public interface DireccionPersonaRepository extends JpaRepository<DireccionPerso
 
     List<DireccionPersona> findByCodPersona(int codPersona);
 
-    List<DireccionPersona> findByCodPersonaAndTipoDireccion(int codPersona, String tipoDireccion);
+    DireccionPersona findByCodPersonaAndTipoDireccion(int codPersona, String tipoDireccion);
 
     List<DireccionPersona> findByCodPersonaAndPrincipal(int codPersona, String principal);
 }

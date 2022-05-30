@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface FamiliarPersonaRepository extends JpaRepository<FamiliarPersona, FamiliarPersonaPK> {
 
-    List<FamiliarPersona> findByTipoFamiliar(String tipoFamiliar);
+    List<FamiliarPersona> findByTipoFamiliarAndCodPersona(String tipoFamiliar, int codPersona);
     
     List<FamiliarPersona> findByCodPersona(int codPersona);
     

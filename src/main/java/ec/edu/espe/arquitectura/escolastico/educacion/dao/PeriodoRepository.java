@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PeriodoRepository extends JpaRepository<Periodo, Short>{
     
-    List<Periodo> findByNombreAndNivel(String nombre, String nivel);
+    List<Periodo> findByNombreLikeAndNivel(String nombrePattern, String nivel);
     
-    List<Periodo> findByNombreAndFechaFinLessThanEqual(Date nombre, Date fechaFin);
+    List<Periodo> findByFechaFinGreaterThanEqual(Date fechaFin);
             
 }

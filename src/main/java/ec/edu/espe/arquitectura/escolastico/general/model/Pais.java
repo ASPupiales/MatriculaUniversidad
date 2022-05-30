@@ -1,6 +1,5 @@
 package ec.edu.espe.arquitectura.escolastico.general.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -48,16 +47,7 @@ public class Pais implements Serializable {
     private int version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
-    private List<PaisEstructura> paisesEstructura;
-
-    @OneToMany(mappedBy = "pais")
-    private List<UbicacionGeografica> ubicacionesGeograficas;
-  
-    @OneToMany(mappedBy = "paisNacimiento")
-    private List<Persona> personas;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nacionalidad")
-    private List<Persona> personas1;
+    private List<PaisEstructura> paisEstructura;
 
     public Pais() {
     }
@@ -138,20 +128,12 @@ public class Pais implements Serializable {
         this.version = version;
     }
 
-    public List<PaisEstructura> getPaisesEstructura() {
-        return paisesEstructura;
+    public List<PaisEstructura> getPaisEstructura() {
+        return paisEstructura;
     }
 
-    public void setPaisesEstructura(List<PaisEstructura> paisesEstructura) {
-        this.paisesEstructura = paisesEstructura;
-    }
-
-    public List<UbicacionGeografica> getUbicacionesGeograficas() {
-        return ubicacionesGeograficas;
-    }
-
-    public void setUbicacionesGeograficas(List<UbicacionGeografica> ubicacionesGeograficas) {
-        this.ubicacionesGeograficas = ubicacionesGeograficas;
+    public void setPaisEstructura(List<PaisEstructura> paisEstructura) {
+        this.paisEstructura = paisEstructura;
     }
 
     @Override

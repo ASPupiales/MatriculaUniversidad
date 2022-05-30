@@ -6,7 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CarreraRepository extends JpaRepository<Carrera,Integer> {
     
-    List<Carrera> findByNivel(String nivel);
+    Carrera findBySiglas(String siglas);
+    
+    List<Carrera> findByCodDepartamento(Integer codDepartamento);
+    
+    List<Carrera> findByNombreLike(String nivel);
     
     List<Carrera> findByGradoAndModalidad(String grado, String modalidad);
 }

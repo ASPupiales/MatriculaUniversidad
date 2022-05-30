@@ -2,15 +2,12 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -23,6 +20,12 @@ public class Nrc implements Serializable {
     private static final long serialVersionUID = 107L;
     @EmbeddedId
     private NrcPK pk;
+    
+    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
+    private Integer codDepartamento;
+    
+    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
+    private short codPeriodo;
 
     @Column(name = "cupo_disponible", nullable = false)
     private short cupoDisponible;
@@ -47,12 +50,6 @@ public class Nrc implements Serializable {
     @ManyToOne(optional = false)
     private Persona persona;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
-    private List<NrcHorario> nrcHorarios;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
-    private List<MatriculaNrc> matriculaNrcs;
-
     public Nrc() {
     }
 
@@ -70,6 +67,22 @@ public class Nrc implements Serializable {
 
     public void setPk(NrcPK pk) {
         this.pk = pk;
+    }    
+
+    public Integer getCodDepartamento() {
+        return codDepartamento;
+    }
+
+    public void setCodDepartamento(Integer codDepartamento) {
+        this.codDepartamento = codDepartamento;
+    }
+
+    public short getCodPeriodo() {
+        return codPeriodo;
+    }
+
+    public void setCodPeriodo(short codPeriodo) {
+        this.codPeriodo = codPeriodo;
     }
 
     public short getCupoDisponible() {
@@ -118,22 +131,6 @@ public class Nrc implements Serializable {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    public List<NrcHorario> getNrcHorarios() {
-        return nrcHorarios;
-    }
-
-    public void setNrcHorarios(List<NrcHorario> nrcHorarios) {
-        this.nrcHorarios = nrcHorarios;
-    }
-
-    public List<MatriculaNrc> getMatriculaNrcs() {
-        return matriculaNrcs;
-    }
-
-    public void setMatriculaNrcs(List<MatriculaNrc> matriculaNrcs) {
-        this.matriculaNrcs = matriculaNrcs;
     }
 
     @Override

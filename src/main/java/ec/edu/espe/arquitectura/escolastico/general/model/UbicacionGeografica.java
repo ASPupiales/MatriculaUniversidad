@@ -1,10 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.general.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -65,9 +61,6 @@ public class UbicacionGeografica implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @OneToMany(mappedBy = "ubicacionGeografica")
-    private List<InstitucionPrincipal> instituciones;
-
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
     private Pais pais;
@@ -78,15 +71,9 @@ public class UbicacionGeografica implements Serializable {
     @ManyToOne(optional = false)
     private PaisEstructura paisEstructura;
 
-    @OneToMany(mappedBy = "ubicacionGeografica")
-    private List<UbicacionGeografica> ubicacionGeograficas;
-
     @JoinColumn(name = "cod_ubicacion_geo_padre", referencedColumnName = "cod_ubicacion_geo_int", insertable = false, updatable = false)
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarNacimiento")
-    private List<Persona> personas;
   
     public UbicacionGeografica() {
     }
@@ -175,14 +162,6 @@ public class UbicacionGeografica implements Serializable {
         this.version = version;
     }
 
-    public List<InstitucionPrincipal> getInstituciones() {
-        return instituciones;
-    }
-
-    public void setInstituciones(List<InstitucionPrincipal> instituciones) {
-        this.instituciones = instituciones;
-    }
-
     public Pais getPais() {
         return pais;
     }
@@ -197,14 +176,6 @@ public class UbicacionGeografica implements Serializable {
 
     public void setPaisEstructura(PaisEstructura paisEstructura) {
         this.paisEstructura = paisEstructura;
-    }
-
-    public List<UbicacionGeografica> getUbicacionGeograficas() {
-        return ubicacionGeograficas;
-    }
-
-    public void setUbicacionGeograficas(List<UbicacionGeografica> ubicacionGeograficas) {
-        this.ubicacionGeograficas = ubicacionGeograficas;
     }
 
     public UbicacionGeografica getUbicacionGeografica() {

@@ -3,7 +3,6 @@ package ec.edu.espe.arquitectura.escolastico.personal.model;
 import ec.edu.espe.arquitectura.escolastico.general.model.UbicacionGeografica;
 import ec.edu.espe.arquitectura.escolastico.general.model.Pais;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.Nrc;
-import ec.edu.espe.arquitectura.escolastico.educacion.model.Matricula;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -115,9 +114,6 @@ public class Persona implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DireccionPersona> direccionesPersonas;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Matricula> matriculas;
 
     @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
@@ -385,14 +381,6 @@ public class Persona implements Serializable {
 
     public void setDireccionesPersonas(List<DireccionPersona> direccionesPersonas) {
         this.direccionesPersonas = direccionesPersonas;
-    }
-
-    public List<Matricula> getMatriculas() {
-        return matriculas;
-    }
-
-    public void setMatriculas(List<Matricula> matriculas) {
-        this.matriculas = matriculas;
     }
 
     public Pais getPaisNacimiento() {

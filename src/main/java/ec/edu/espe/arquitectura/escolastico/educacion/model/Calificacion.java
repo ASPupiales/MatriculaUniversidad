@@ -17,6 +17,15 @@ public class Calificacion implements Serializable {
     private static final long serialVersionUID = 100L;
     @EmbeddedId
     private CalificacionPK pk;
+    
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private int codPersona;
+
+    @Column(name = "cod_nrc", nullable = false, insertable = false, updatable = false)
+    private short codNrc;
+    
+    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
+    private short codPeriodo;
 
     @Column(name = "nota1", precision = 5, scale = 2)
     private BigDecimal nota1;
@@ -80,6 +89,30 @@ public class Calificacion implements Serializable {
 
     public void setPk(CalificacionPK pk) {
         this.pk = pk;
+    }    
+
+    public int getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
+    }
+
+    public short getCodNrc() {
+        return codNrc;
+    }
+
+    public void setCodNrc(short codNrc) {
+        this.codNrc = codNrc;
+    }
+    
+    public short getCodPeriodo() {
+        return codPeriodo;
+    }
+
+    public void setCodPeriodo(short codPeriodo) {
+        this.codPeriodo = codPeriodo;
     }
 
     public BigDecimal getNota1() {
