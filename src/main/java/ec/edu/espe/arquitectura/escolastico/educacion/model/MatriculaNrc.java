@@ -13,10 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_matricula_nrc")
 public class MatriculaNrc implements Serializable {
@@ -56,10 +52,6 @@ public class MatriculaNrc implements Serializable {
 
     public MatriculaNrc(MatriculaNrcPK matriculaNrcPK) {
         this.pk = matriculaNrcPK;
-    }
-
-    public MatriculaNrc(String codMatricula, int codPersona, short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
-        this.pk = new MatriculaNrcPK(codMatricula, codPersona, codNrc, codPeriodo, codDepartamento, codMateria);
     }
 
     public MatriculaNrcPK getPk() {

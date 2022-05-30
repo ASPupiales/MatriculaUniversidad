@@ -15,10 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_nrc", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"cod_periodo"})})

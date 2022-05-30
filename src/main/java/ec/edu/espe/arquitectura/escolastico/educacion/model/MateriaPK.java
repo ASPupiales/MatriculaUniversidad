@@ -4,10 +4,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- *
- * @author labox
- */
 @Embeddable
 public class MateriaPK implements Serializable {
 
@@ -19,7 +15,6 @@ public class MateriaPK implements Serializable {
 
     public MateriaPK() {
     }
-
     public MateriaPK(int codMateria, int codDepartamento) {
         this.codMateria = codMateria;
         this.codDepartamento = codDepartamento;

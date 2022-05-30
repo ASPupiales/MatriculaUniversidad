@@ -4,10 +4,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- *
- * @author labox
- */
 @Embeddable
 public class NrcHorarioPK implements Serializable {
 

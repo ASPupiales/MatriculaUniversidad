@@ -17,10 +17,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_matricula", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"cod_periodo"})})
