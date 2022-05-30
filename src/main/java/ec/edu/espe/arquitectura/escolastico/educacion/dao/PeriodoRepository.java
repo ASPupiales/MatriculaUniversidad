@@ -10,6 +10,6 @@ public interface PeriodoRepository extends JpaRepository<Periodo, Short>{
     
     List<Periodo> findByNombreAndNivel(String nombre, String nivel);
     
-    List<Periodo> findByNombreAndDateBetween(Date fechaInicio, Date fechaFin);
+    List<Periodo> findByNombreAndFechaFinLessThanEqual(Date nombre, Date fechaFin);
             
 }
