@@ -19,7 +19,7 @@ public class DireccionPersona implements Serializable {
     @EmbeddedId
     private DireccionPersonaPK pk;
 
-    @Column(name = "cod_persona", nullable = false)
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
     private int codPersona;
 
     @Column(name = "tipo_direccion", nullable = false, length = 3)

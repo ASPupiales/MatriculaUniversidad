@@ -19,7 +19,7 @@ public class HistTipoPersona implements Serializable {
     @EmbeddedId
     private HistTipoPersonaPK pk;
     
-    @Column(name = "cod_persona", nullable = false)
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
     private int codPersona;
 
     @Column(name = "fecha_inicio", nullable = false)

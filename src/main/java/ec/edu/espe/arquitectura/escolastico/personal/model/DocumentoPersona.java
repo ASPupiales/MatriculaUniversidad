@@ -19,10 +19,10 @@ public class DocumentoPersona implements Serializable {
     @EmbeddedId
     private DocumentoPersonaPK pk;
     
-    @Column(name = "cod_persona", nullable = false)
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
     private int codPersona;
 
-    @Column(name = "cod_tipo_documento", nullable = false)
+    @Column(name = "cod_tipo_documento", nullable = false, insertable = false, updatable = false)
     private String codTipoDocumento;
 
     @Column(name = "estado", nullable = false, length = 3)
