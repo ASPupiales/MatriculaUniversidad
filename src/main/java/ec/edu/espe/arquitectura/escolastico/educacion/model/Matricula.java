@@ -36,6 +36,12 @@ public class Matricula implements Serializable {
     @Column(name = "costo", nullable = false)
     private double costo;
 
+    @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
+    private Integer codCarrera;
+    
+    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
+    private Integer codPeriodo;
+    
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private Carrera carrera;
@@ -58,12 +64,6 @@ public class Matricula implements Serializable {
         this.pk = matriculaPK;
     }
 
-    public Matricula(MatriculaPK matriculaPK, String tipo, Date fecha, double costo) {
-        this.pk = matriculaPK;
-        this.tipo = tipo;
-        this.fecha = fecha;
-        this.costo = costo;
-    }
 
     public Matricula(String codMatricula, int codPersona) {
         this.pk = new MatriculaPK(codMatricula, codPersona);
@@ -99,6 +99,22 @@ public class Matricula implements Serializable {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    public Integer getCodCarrera() {
+        return codCarrera;
+    }
+
+    public void setCodCarrera(Integer codCarrera) {
+        this.codCarrera = codCarrera;
+    }
+
+    public Integer getCodPeriodo() {
+        return codPeriodo;
+    }
+
+    public void setCodPeriodo(Integer codPeriodo) {
+        this.codPeriodo = codPeriodo;
     }
 
     public Carrera getCarrera() {

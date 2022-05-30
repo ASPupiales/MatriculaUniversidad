@@ -20,10 +20,16 @@ public class MallaCarrera implements Serializable {
     
     @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
     private Integer codCarrera;
-
+    
+    @Column(name = "cod_materia", nullable = false, insertable = false, updatable = false)
+    private Integer codMateria;
+    
+    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
+    private Integer codDepartamento;
+    
     @Column(name = "nivel")
     private Integer nivel;
-
+    
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private Carrera carrera;
@@ -49,6 +55,24 @@ public class MallaCarrera implements Serializable {
         this.codMateriacarrera = codMateriacarrera;
     }
 
+    public Integer getCodMateria() {
+        return codMateria;
+    }
+
+    public void setCodMateria(Integer codMateria) {
+        this.codMateria = codMateria;
+    }
+
+    public Integer getCodDepartamento() {
+        return codDepartamento;
+    }
+
+    public void setCodDepartamento(Integer codDepartamento) {
+        this.codDepartamento = codDepartamento;
+    }
+    
+    
+    
     public Integer getCodCarrera() {
         return codCarrera;
     }

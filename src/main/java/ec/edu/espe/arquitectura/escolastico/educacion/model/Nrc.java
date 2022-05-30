@@ -26,6 +26,9 @@ public class Nrc implements Serializable {
     
     @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
     private short codPeriodo;
+    
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private short codPersona;
 
     @Column(name = "cupo_disponible", nullable = false)
     private short cupoDisponible;
@@ -63,6 +66,14 @@ public class Nrc implements Serializable {
 
     public NrcPK getPk() {
         return pk;
+    }
+
+    public short getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(short codPersona) {
+        this.codPersona = codPersona;
     }
 
     public void setPk(NrcPK pk) {

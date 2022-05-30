@@ -26,7 +26,14 @@ public class Calificacion implements Serializable {
     
     @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
     private short codPeriodo;
-
+    
+    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
+    private short codDepartamento;
+    
+    @Column(name = "cod_materia", nullable = false, insertable = false, updatable = false)
+    private short codMateria;
+    
+    
     @Column(name = "nota1", precision = 5, scale = 2)
     private BigDecimal nota1;
 
@@ -97,6 +104,22 @@ public class Calificacion implements Serializable {
 
     public void setCodPersona(int codPersona) {
         this.codPersona = codPersona;
+    }
+
+    public short getCodDepartamento() {
+        return codDepartamento;
+    }
+
+    public void setCodDepartamento(short codDepartamento) {
+        this.codDepartamento = codDepartamento;
+    }
+
+    public short getCodMateria() {
+        return codMateria;
+    }
+
+    public void setCodMateria(short codMateria) {
+        this.codMateria = codMateria;
     }
 
     public short getCodNrc() {
