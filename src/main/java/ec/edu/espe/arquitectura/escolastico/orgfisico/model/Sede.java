@@ -45,7 +45,7 @@ public class Sede implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion", insertable = false, updatable = false)
+    @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion", nullable = false, insertable = false, updatable = false)
     @ManyToOne
     private Institucion institucion;
 
