@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_familiar_persona")
 public class FamiliarPersona implements Serializable {
@@ -22,6 +18,9 @@ public class FamiliarPersona implements Serializable {
     private static final long serialVersionUID = 125L;
     @EmbeddedId
     private FamiliarPersonaPK pk;
+    
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private int codPersona;
 
     @Column(name = "tipo_familiar", nullable = false, length = 3)
     private String tipoFamiliar;
@@ -76,6 +75,14 @@ public class FamiliarPersona implements Serializable {
 
     public void setPk(FamiliarPersonaPK pk) {
         this.pk = pk;
+    }
+
+    public int getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
     }
 
     public String getTipoFamiliar() {
