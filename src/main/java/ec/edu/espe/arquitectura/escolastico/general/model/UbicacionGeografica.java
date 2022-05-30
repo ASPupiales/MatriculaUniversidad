@@ -85,6 +85,9 @@ public class UbicacionGeografica implements Serializable {
     @ManyToOne
     private UbicacionGeografica ubicacionGeografica;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarNacimiento")
+    private List<Persona> personas;
+  
     public UbicacionGeografica() {
     }
 

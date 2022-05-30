@@ -2,20 +2,13 @@ package ec.edu.espe.arquitectura.escolastico.personal.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_tipo_documento")
 public class TipoDocumento implements Serializable {
@@ -40,9 +33,6 @@ public class TipoDocumento implements Serializable {
 
     @Column(name = "version", nullable = false)
     private int version;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoDocumento")
-    private List<DocumentoPersona> documentosPersonas;
 
     public TipoDocumento() {
     }
@@ -97,14 +87,6 @@ public class TipoDocumento implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<DocumentoPersona> getDocumentosPersonas() {
-        return documentosPersonas;
-    }
-
-    public void setDocumentosPersonas(List<DocumentoPersona> documentosPersonas) {
-        this.documentosPersonas = documentosPersonas;
     }
 
     @Override

@@ -51,6 +51,12 @@ public class Pais implements Serializable {
 
     @OneToMany(mappedBy = "pais")
     private List<UbicacionGeografica> ubicacionesGeograficas;
+  
+    @OneToMany(mappedBy = "paisNacimiento")
+    private List<Persona> personas;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nacionalidad")
+    private List<Persona> personas1;
 
     public Pais() {
     }

@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_direccion_persona")
 public class DireccionPersona implements Serializable {
@@ -23,8 +19,11 @@ public class DireccionPersona implements Serializable {
     @EmbeddedId
     private DireccionPersonaPK pk;
 
-    @Column(name = "cod_tipo_direccion", nullable = false, length = 3)
-    private String codTipoDireccion;
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private int codPersona;
+
+    @Column(name = "tipo_direccion", nullable = false, length = 3)
+    private String tipoDireccion;
 
     @Column(name = "cod_org_geo_direccion", nullable = false)
     private int codOrgGeoDireccion;
@@ -89,12 +88,20 @@ public class DireccionPersona implements Serializable {
         this.pk = pk;
     }
 
-    public String getCodTipoDireccion() {
-        return codTipoDireccion;
+    public int getCodPersona() {
+        return codPersona;
     }
 
-    public void setCodTipoDireccion(String codTipoDireccion) {
-        this.codTipoDireccion = codTipoDireccion;
+    public void setCodPersona(int codPersona) {
+        this.codPersona = codPersona;
+    }
+
+    public String getTipoDireccion() {
+        return tipoDireccion;
+    }
+
+    public void setTipoDireccion(String tipoDireccion) {
+        this.tipoDireccion = tipoDireccion;
     }
 
     public int getCodOrgGeoDireccion() {

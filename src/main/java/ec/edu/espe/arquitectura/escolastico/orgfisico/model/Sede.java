@@ -2,21 +2,15 @@ package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "ofi_sede")
 public class Sede implements Serializable {
@@ -25,6 +19,9 @@ public class Sede implements Serializable {
     @Id
     @Column(name = "cod_sede", nullable = false, length = 8)
     private String codSede;
+    
+    @Column(name = "cod_institucion", nullable = false)
+    private Short codInstitucion;
 
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
@@ -48,10 +45,7 @@ public class Sede implements Serializable {
     @Column(name = "version", nullable = false)
     private int version;
 
-    @OneToMany(mappedBy = "sede")
-    private List<Edificio> edificios;
-
-    @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion")
+    @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion", insertable = false, updatable = false)
     @ManyToOne
     private Institucion institucion;
 
@@ -68,6 +62,14 @@ public class Sede implements Serializable {
 
     public void setCodSede(String codSede) {
         this.codSede = codSede;
+    }
+
+    public Short getCodInstitucion() {
+        return codInstitucion;
+    }
+
+    public void setCodInstitucion(Short codInstitucion) {
+        this.codInstitucion = codInstitucion;
     }
 
     public String getNombre() {
@@ -124,14 +126,6 @@ public class Sede implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<Edificio> getEdificios() {
-        return edificios;
-    }
-
-    public void setEdificios(List<Edificio> edificios) {
-        this.edificios = edificios;
     }
 
     public Institucion getInstitucion() {

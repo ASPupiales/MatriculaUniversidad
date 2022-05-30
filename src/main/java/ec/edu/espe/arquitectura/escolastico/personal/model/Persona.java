@@ -20,10 +20,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "per_persona")
 public class Persona implements Serializable {
@@ -33,6 +29,9 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_persona", nullable = false)
     private Integer codPersona;
+    
+    @Column(name = "cod_tipo_persona", nullable = false, length = 3)
+    private String codTipoPersona;
 
     @Column(name = "codigo_alterno", nullable = false, length = 15)
     private String codigoAlterno;
@@ -120,23 +119,23 @@ public class Persona implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Matricula> matriculas;
 
-    @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais")
+    @JoinColumn(name = "cod_pais_nacimiento", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
-    private Pais pais;
+    private Pais paisNacimiento;
 
-    @JoinColumn(name = "nacionalidad", referencedColumnName = "cod_pais", nullable = false)
+    @JoinColumn(name = "nacionalidad", referencedColumnName = "cod_pais", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Pais pais1;
+    private Pais nacionalidad;
 
-    @JoinColumn(name = "lugar_nacimiento", referencedColumnName = "cod_ubicacion_geo_int", nullable = false)
+    @JoinColumn(name = "lugar_nacimiento", referencedColumnName = "cod_ubicacion_geo_int", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private UbicacionGeografica ubicacionGeografica;
+    private UbicacionGeografica lugarNacimiento;
 
-    @JoinColumn(name = "cod_tipo_discapacidad", referencedColumnName = "cod_tipo_discapacidad")
+    @JoinColumn(name = "cod_tipo_discapacidad", referencedColumnName = "cod_tipo_discapacidad", insertable = false, updatable = false)
     @ManyToOne
     private TipoDiscapacidad tipoDiscapacidad;
 
-    @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona")
+    @JoinColumn(name = "cod_tipo_persona", referencedColumnName = "cod_tipo_persona", insertable = false, updatable = false)
     @ManyToOne
     private TipoPersona tipoPersona;
 
@@ -162,6 +161,14 @@ public class Persona implements Serializable {
 
     public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
+    }
+
+    public String getCodTipoPersona() {
+        return codTipoPersona;
+    }
+
+    public void setCodTipoPersona(String codTipoPersona) {
+        this.codTipoPersona = codTipoPersona;
     }
 
     public String getCodigoAlterno() {
@@ -388,28 +395,28 @@ public class Persona implements Serializable {
         this.matriculas = matriculas;
     }
 
-    public Pais getPais() {
-        return pais;
+    public Pais getPaisNacimiento() {
+        return paisNacimiento;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setPaisNacimiento(Pais paisNacimiento) {
+        this.paisNacimiento = paisNacimiento;
     }
 
-    public Pais getPais1() {
-        return pais1;
+    public Pais getNacionalidad() {
+        return nacionalidad;
     }
 
-    public void setPais1(Pais pais1) {
-        this.pais1 = pais1;
+    public void setNacionalidad(Pais nacionalidad) {
+        this.nacionalidad = nacionalidad;
     }
 
-    public UbicacionGeografica getUbicacionGeografica() {
-        return ubicacionGeografica;
+    public UbicacionGeografica getLugarNacimiento() {
+        return lugarNacimiento;
     }
 
-    public void setUbicacionGeografica(UbicacionGeografica ubicacionGeografica) {
-        this.ubicacionGeografica = ubicacionGeografica;
+    public void setLugarNacimiento(UbicacionGeografica lugarNacimiento) {
+        this.lugarNacimiento = lugarNacimiento;
     }
 
     public TipoDiscapacidad getTipoDiscapacidad() {
