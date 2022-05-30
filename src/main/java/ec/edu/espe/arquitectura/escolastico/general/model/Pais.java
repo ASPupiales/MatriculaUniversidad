@@ -1,5 +1,6 @@
 package ec.edu.espe.arquitectura.escolastico.general.model;
 
+import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
