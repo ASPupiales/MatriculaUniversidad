@@ -28,9 +28,18 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_persona", nullable = false)
     private Integer codPersona;
-    
+
+    @Column(name = "nacionalidad", nullable = false, length = 2)
+    private String codNacionalidad;
+
+    @Column(name = "cod_pais_nacimiento", nullable = false, length = 2)
+    private String codPaisNacimiento;
+
     @Column(name = "cod_tipo_persona", nullable = false, length = 3)
     private String codTipoPersona;
+
+    @Column(name = "cod_tipo_discapacidad", nullable = false, length = 8)
+    private String codTipoDiscapacidad;
 
     @Column(name = "codigo_alterno", nullable = false, length = 15)
     private String codigoAlterno;
@@ -157,6 +166,30 @@ public class Persona implements Serializable {
 
     public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
+    }
+
+    public String getCodNacionalidad() {
+        return codNacionalidad;
+    }
+
+    public void setCodNacionalidad(String codNacionalidad) {
+        this.codNacionalidad = codNacionalidad;
+    }
+
+    public String getCodPaisNacimiento() {
+        return codPaisNacimiento;
+    }
+
+    public void setCodPaisNacimiento(String codPaisNacimiento) {
+        this.codPaisNacimiento = codPaisNacimiento;
+    }
+
+    public String getCodTipoDiscapacidad() {
+        return codTipoDiscapacidad;
+    }
+
+    public void setCodTipoDiscapacidad(String codTipoDiscapacidad) {
+        this.codTipoDiscapacidad = codTipoDiscapacidad;
     }
 
     public String getCodTipoPersona() {
