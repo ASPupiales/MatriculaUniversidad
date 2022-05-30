@@ -10,10 +10,6 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_calificacion")
 public class Calificacion implements Serializable {

@@ -11,10 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_departamento")
 public class Departamento implements Serializable {

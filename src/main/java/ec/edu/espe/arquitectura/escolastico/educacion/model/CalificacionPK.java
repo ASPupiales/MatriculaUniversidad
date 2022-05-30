@@ -3,11 +3,7 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
-/**
- *
- * @author labox
- */
+         
 @Embeddable
 public class CalificacionPK implements Serializable {
 

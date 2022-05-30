@@ -9,10 +9,6 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "edu_prerequisito")
 public class Prerequisito implements Serializable {
