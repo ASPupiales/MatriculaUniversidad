@@ -2,12 +2,8 @@ package ec.edu.espe.arquitectura.escolastico.seguridad.dao;
 
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.UsuarioPerfil;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.UsuarioPerfilPK;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author labox
- */
-public interface UsuarioPerfilRepository extends Repository<UsuarioPerfil, UsuarioPerfilPK> {
+public interface UsuarioPerfilRepository extends JpaRepository<UsuarioPerfil, UsuarioPerfilPK> {
 
 }

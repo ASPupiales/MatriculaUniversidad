@@ -18,10 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_ubicacion_geografica")
 public class UbicacionGeografica implements Serializable {
@@ -34,6 +30,15 @@ public class UbicacionGeografica implements Serializable {
 
     @Column(name = "cod_ubicacion_geografica", nullable = false, length = 20)
     private String codUbicacionGeografica;
+
+    @Column(name = "cod_pais", nullable = false, length = 2)
+    private String codPais;
+
+    @Column(name = "nivel", nullable = false)
+    private short nivel;
+
+    @Column(name = "cod_ubicacion_geo_padre", nullable = false)
+    private Integer codUbicacionGeoPadre;
 
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
@@ -82,7 +87,7 @@ public class UbicacionGeografica implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lugarNacimiento")
     private List<Persona> personas;
-
+  
     public UbicacionGeografica() {
     }
 
@@ -210,12 +215,28 @@ public class UbicacionGeografica implements Serializable {
         this.ubicacionGeografica = ubicacionGeografica;
     }
 
-    public List<Persona> getPersonas() {
-        return personas;
+    public String getCodPais() {
+        return codPais;
     }
 
-    public void setPersonas(List<Persona> personas) {
-        this.personas = personas;
+    public void setCodPais(String codPais) {
+        this.codPais = codPais;
+    }
+
+    public short getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(short nivel) {
+        this.nivel = nivel;
+    }
+
+    public Integer getCodUbicacionGeoPadre() {
+        return codUbicacionGeoPadre;
+    }
+
+    public void setCodUbicacionGeoPadre(Integer codUbicacionGeoPadre) {
+        this.codUbicacionGeoPadre = codUbicacionGeoPadre;
     }
 
     @Override

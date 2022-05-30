@@ -11,10 +11,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "seg_perfil_funcionalidad")
 public class PerfilFuncionalidad implements Serializable {

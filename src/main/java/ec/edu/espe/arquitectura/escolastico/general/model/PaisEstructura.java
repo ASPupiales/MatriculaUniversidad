@@ -14,10 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author labox
- */
 @Entity
 @Table(name = "gen_pais_estructura")
 public class PaisEstructura implements Serializable {
@@ -25,7 +21,7 @@ public class PaisEstructura implements Serializable {
     private static final long serialVersionUID = 114L;
     @EmbeddedId
     private PaisEstructuraPK pk;
-
+    
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
 
