@@ -2,8 +2,6 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +20,9 @@ public class Carrera implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cod_carrera", nullable = false)
     private Integer codCarrera;
+    
+    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
+    private Integer codDepartamento;
 
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
@@ -54,12 +54,6 @@ public class Carrera implements Serializable {
     @Column(name = "modalidad", length = 64)
     private String modalidad;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
-    private List<MallaCarrera> mallaCarreras;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carrera")
-    private List<Matricula> matriculas;
-
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)
     @ManyToOne(optional = false)
     private Departamento departamento;
@@ -73,6 +67,14 @@ public class Carrera implements Serializable {
 
     public Integer getCodCarrera() {
         return codCarrera;
+    }
+    
+    public Integer getCodDepartamento() {
+        return codDepartamento;
+    }
+
+    public void setCodDepartamento(Integer codDepartamento) {
+        this.codDepartamento = codDepartamento;
     }
 
     public void setCodCarrera(Integer codCarrera) {
@@ -157,22 +159,6 @@ public class Carrera implements Serializable {
 
     public void setModalidad(String modalidad) {
         this.modalidad = modalidad;
-    }
-
-    public List<MallaCarrera> getMallaCarreras() {
-        return mallaCarreras;
-    }
-
-    public void setMallaCarreras(List<MallaCarrera> mallaCarreras) {
-        this.mallaCarreras = mallaCarreras;
-    }
-
-    public List<Matricula> getMatriculas() {
-        return matriculas;
-    }
-
-    public void setMatriculas(List<Matricula> matriculas) {
-        this.matriculas = matriculas;
     }
 
     public Departamento getDepartamento() {

@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HistTipoPersonaRepository extends JpaRepository<HistTipoPersona, HistTipoPersonaPK> {
 
+    List<HistTipoPersona> findByCodPersona(String codPersona);
+    
     List<HistTipoPersona> findByCodPersonaAndFechaFinIsNull(String codPersona);
 }

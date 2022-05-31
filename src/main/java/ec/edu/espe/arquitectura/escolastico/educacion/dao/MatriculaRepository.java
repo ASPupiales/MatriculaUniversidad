@@ -7,7 +7,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MatriculaRepository extends JpaRepository<Matricula, MatriculaPK> {
+
     List<Matricula> findByTipo(String tipo);
+
+    List<Matricula> findByFechaGreaterThan(Date fecha);
     
-    List<Matricula> findByFechaGreaterThan(Date fecha);    
+    List<Matricula> findByCodPeriodoAndCodPersona(Integer codPeriodo, short codPersona);
 }

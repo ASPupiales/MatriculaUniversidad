@@ -33,9 +33,6 @@ public class Departamento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
     private List<Carrera> carreras;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
-    private List<Materia> materias;
-
     public Departamento() {
     }
 
@@ -81,14 +78,6 @@ public class Departamento implements Serializable {
 
     public void setCarreras(List<Carrera> carreras) {
         this.carreras = carreras;
-    }
-
-    public List<Materia> getMaterias() {
-        return materias;
-    }
-
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
     }
 
     @Override
