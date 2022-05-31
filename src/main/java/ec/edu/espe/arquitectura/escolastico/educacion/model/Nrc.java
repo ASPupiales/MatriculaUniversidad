@@ -27,7 +27,7 @@ public class Nrc implements Serializable {
     @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
     private short codPeriodo;
     
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    @Column(name = "cod_persona", nullable = false)
     private short codPersona;
 
     @Column(name = "cupo_disponible", nullable = false)

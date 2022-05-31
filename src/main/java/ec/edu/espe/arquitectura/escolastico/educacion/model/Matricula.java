@@ -26,6 +26,9 @@ public class Matricula implements Serializable {
     @EmbeddedId
     private MatriculaPK pk;
 
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private short codPersona;
+
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
 
@@ -38,10 +41,10 @@ public class Matricula implements Serializable {
 
     @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
     private Integer codCarrera;
-    
+
     @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
     private Integer codPeriodo;
-    
+
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
     private Carrera carrera;
@@ -64,6 +67,13 @@ public class Matricula implements Serializable {
         this.pk = matriculaPK;
     }
 
+    public short getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(short codPersona) {
+        this.codPersona = codPersona;
+    }
 
     public Matricula(String codMatricula, int codPersona) {
         this.pk = new MatriculaPK(codMatricula, codPersona);
