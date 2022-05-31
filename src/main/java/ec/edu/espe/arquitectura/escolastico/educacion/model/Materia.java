@@ -22,6 +22,9 @@ public class Materia implements Serializable {
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
 
+    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
+    private Integer codDepartamento;
+
     @Column(name = "creditos", nullable = false, precision = 4, scale = 2)
     private BigDecimal creditos;
 
@@ -32,16 +35,7 @@ public class Materia implements Serializable {
     private BigDecimal ponderacion;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
-    private List<Nrc> nrcs;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
-    private List<MallaCarrera> mallaCarreras;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia")
     private List<Prerequisito> prerequisitos;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "materia1")
-    private List<Prerequisito> prerequisitos1;
 
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -64,6 +58,14 @@ public class Materia implements Serializable {
 
     public void setPk(MateriaPK pk) {
         this.pk = pk;
+    }
+
+    public Integer getCodDepartamento() {
+        return codDepartamento;
+    }
+
+    public void setCodDepartamento(Integer codDepartamento) {
+        this.codDepartamento = codDepartamento;
     }
 
     public String getNombre() {
@@ -98,36 +100,12 @@ public class Materia implements Serializable {
         this.ponderacion = ponderacion;
     }
 
-    public List<Nrc> getNrcs() {
-        return nrcs;
-    }
-
-    public void setNrcs(List<Nrc> nrcs) {
-        this.nrcs = nrcs;
-    }
-
-    public List<MallaCarrera> getMallaCarreras() {
-        return mallaCarreras;
-    }
-
-    public void setMallaCarreras(List<MallaCarrera> mallaCarreras) {
-        this.mallaCarreras = mallaCarreras;
-    }
-
     public List<Prerequisito> getPrerequisitos() {
         return prerequisitos;
     }
 
     public void setPrerequisitos(List<Prerequisito> prerequisitos) {
         this.prerequisitos = prerequisitos;
-    }
-
-    public List<Prerequisito> getPrerequisitos1() {
-        return prerequisitos1;
-    }
-
-    public void setPrerequisitos1(List<Prerequisito> prerequisitos1) {
-        this.prerequisitos1 = prerequisitos1;
     }
 
     public Departamento getDepartamento() {

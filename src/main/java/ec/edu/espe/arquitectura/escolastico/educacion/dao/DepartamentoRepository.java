@@ -7,5 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
     
-    List<Departamento> findBySiglas(String siglas);
+    Departamento findBySiglas(String siglas);
+    
+    List<Departamento> findBySiglasLike(String siglasPattern);
 }

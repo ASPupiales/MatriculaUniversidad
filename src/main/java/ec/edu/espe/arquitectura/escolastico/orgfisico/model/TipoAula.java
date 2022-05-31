@@ -2,11 +2,9 @@ package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,9 +33,6 @@ public class TipoAula implements Serializable {
 
     @Column(name = "version", nullable = false)
     private int version;
-
-    @OneToMany(mappedBy = "tipoAula")
-    private List<Aula> aulas;
 
     public TipoAula() {
     }
@@ -92,14 +87,6 @@ public class TipoAula implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public List<Aula> getAulas() {
-        return aulas;
-    }
-
-    public void setAulas(List<Aula> aulas) {
-        this.aulas = aulas;
     }
 
     @Override

@@ -26,6 +26,9 @@ public class Matricula implements Serializable {
     @EmbeddedId
     private MatriculaPK pk;
 
+    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
+    private short codPersona;
+
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
 
@@ -35,6 +38,12 @@ public class Matricula implements Serializable {
 
     @Column(name = "costo", nullable = false)
     private double costo;
+
+    @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
+    private Integer codCarrera;
+
+    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
+    private Integer codPeriodo;
 
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
     @ManyToOne(optional = false)
@@ -58,11 +67,12 @@ public class Matricula implements Serializable {
         this.pk = matriculaPK;
     }
 
-    public Matricula(MatriculaPK matriculaPK, String tipo, Date fecha, double costo) {
-        this.pk = matriculaPK;
-        this.tipo = tipo;
-        this.fecha = fecha;
-        this.costo = costo;
+    public short getCodPersona() {
+        return codPersona;
+    }
+
+    public void setCodPersona(short codPersona) {
+        this.codPersona = codPersona;
     }
 
     public Matricula(String codMatricula, int codPersona) {
@@ -99,6 +109,22 @@ public class Matricula implements Serializable {
 
     public void setCosto(double costo) {
         this.costo = costo;
+    }
+
+    public Integer getCodCarrera() {
+        return codCarrera;
+    }
+
+    public void setCodCarrera(Integer codCarrera) {
+        this.codCarrera = codCarrera;
+    }
+
+    public Integer getCodPeriodo() {
+        return codPeriodo;
+    }
+
+    public void setCodPeriodo(Integer codPeriodo) {
+        this.codPeriodo = codPeriodo;
     }
 
     public Carrera getCarrera() {
