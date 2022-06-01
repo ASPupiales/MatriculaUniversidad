@@ -44,7 +44,7 @@ public class Pais implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
     private List<PaisEstructura> paisEstructura;
@@ -120,11 +120,11 @@ public class Pais implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

@@ -1,6 +1,6 @@
 package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
+import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,19 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "edu_matricula", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"cod_periodo"})})
+@Table(name = "edu_matricula")
 public class Matricula implements Serializable {
 
     private static final long serialVersionUID = 105L;
     @EmbeddedId
     private MatriculaPK pk;
-
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private short codPersona;
 
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
@@ -55,7 +50,7 @@ public class Matricula implements Serializable {
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Persona persona;
+    private Persona alumno;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matricula")
     private List<MatriculaNrc> matriculaNrcs;
@@ -67,15 +62,7 @@ public class Matricula implements Serializable {
         this.pk = matriculaPK;
     }
 
-    public short getCodPersona() {
-        return codPersona;
-    }
-
-    public void setCodPersona(short codPersona) {
-        this.codPersona = codPersona;
-    }
-
-    public Matricula(String codMatricula, int codPersona) {
+    public Matricula(String codMatricula, Integer codPersona) {
         this.pk = new MatriculaPK(codMatricula, codPersona);
     }
 
@@ -143,12 +130,12 @@ public class Matricula implements Serializable {
         this.periodo = periodo;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Persona getAlumno() {
+        return alumno;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setAlumno(Persona alumno) {
+        this.alumno = alumno;
     }
 
     public List<MatriculaNrc> getMatriculaNrcs() {

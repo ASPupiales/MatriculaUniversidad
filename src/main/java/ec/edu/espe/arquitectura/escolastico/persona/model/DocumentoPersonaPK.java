@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 public class DocumentoPersonaPK implements Serializable {
 
     @Column(name = "cod_persona", nullable = false)
-    private int codPersona;
+    private Integer codPersona;
 
     @Column(name = "cod_tipo_documento", nullable = false, length = 16)
     private String codTipoDocumento;
@@ -16,16 +16,16 @@ public class DocumentoPersonaPK implements Serializable {
     public DocumentoPersonaPK() {
     }
 
-    public DocumentoPersonaPK(int codPersona, String codTipoDocumento) {
+    public DocumentoPersonaPK(Integer codPersona, String codTipoDocumento) {
         this.codPersona = codPersona;
         this.codTipoDocumento = codTipoDocumento;
     }
 
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
@@ -40,7 +40,7 @@ public class DocumentoPersonaPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codPersona;
+        hash += (Integer) codPersona;
         hash += (codTipoDocumento != null ? codTipoDocumento.hashCode() : 0);
         return hash;
     }

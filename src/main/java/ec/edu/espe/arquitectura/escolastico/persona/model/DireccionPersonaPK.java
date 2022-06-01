@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -8,40 +8,40 @@ import javax.persistence.Embeddable;
 public class DireccionPersonaPK implements Serializable {
 
     @Column(name = "cod_persona", nullable = false)
-    private int codPersona;
+    private Integer codPersona;
 
     @Column(name = "sec_direccion", nullable = false)
-    private short secDireccion;
+    private Integer secDireccion;
 
     public DireccionPersonaPK() {
     }
 
-    public DireccionPersonaPK(int codPersona, short secDireccion) {
+    public DireccionPersonaPK(Integer codPersona, Integer secDireccion) {
         this.codPersona = codPersona;
         this.secDireccion = secDireccion;
     }
 
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
-    public short getSecDireccion() {
+    public Integer getSecDireccion() {
         return secDireccion;
     }
 
-    public void setSecDireccion(short secDireccion) {
+    public void setSecDireccion(Integer secDireccion) {
         this.secDireccion = secDireccion;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codPersona;
-        hash += (int) secDireccion;
+        hash += (Integer) codPersona;
+        hash += (Integer) secDireccion;
         return hash;
     }
 

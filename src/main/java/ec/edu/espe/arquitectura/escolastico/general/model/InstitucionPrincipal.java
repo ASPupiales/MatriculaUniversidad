@@ -39,7 +39,7 @@ public class InstitucionPrincipal implements Serializable {
     private String urlSistema;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_ubicacion_geo_int", referencedColumnName = "cod_ubicacion_geo_int", insertable = false, updatable = false)
     @ManyToOne
@@ -108,11 +108,11 @@ public class InstitucionPrincipal implements Serializable {
         this.urlSistema = urlSistema;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
