@@ -9,6 +9,6 @@ public interface PeriodoRepository extends JpaRepository<Periodo, Integer> {
 
     List<Periodo> findByNombreLikeAndNivelOrderByNombre(String nombrePattern, String nivel);
 
-    List<Periodo> findByFechaFinGreaterThanEqual(Date fechaFin);
+    List<Periodo> findByFechaInicioGreaterThanEqual(Date fechaFin);
 
 }

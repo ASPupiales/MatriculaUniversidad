@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AulaRepository extends JpaRepository<Aula, Integer> {
 
-    Aula findByCodAlterno(String codAlterno);
+    List<Aula> findByCodAlternoIgnoreCase(String codAlterno);
 
-    List<Aula> findByCodTipoAula(String codTipoAula);
+    List<Aula> findByCodTipoAulaOrderByCapacidadDesc(String codTipoAula);
 
     List<Aula> findByCodEdificio(String codEdificio);
 

@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NrcRepository extends JpaRepository<Nrc, NrcPK> {
 
-    List<Nrc> findByPkCodPeriodoAndPkCodDepartamento(Integer codPeriodo, Integer codDepartamento);
-    
-    List<Nrc> findByPkCodPeriodoAndCodDocente(Integer codPeriodo, Integer codDocente);
+    List<Nrc> findByPkCodPeriodoAndPkCodDepartamentoOrderByMateriaNombreAsc(Integer codPeriodo, Integer codDepartamento);
+
+    List<Nrc> findByPkCodPeriodoAndCodDocenteOrderByMateriaNombreAsc(Integer codPeriodo, Integer codDocente);
+
 }

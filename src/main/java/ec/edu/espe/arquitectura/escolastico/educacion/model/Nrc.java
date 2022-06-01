@@ -2,19 +2,20 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "edu_nrc", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"cod_periodo"})})
+@Table(name = "edu_nrc")
 public class Nrc implements Serializable {
 
     private static final long serialVersionUID = 107L;
@@ -46,6 +47,9 @@ public class Nrc implements Serializable {
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Persona docente;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
+    private List<NrcHorario> nrcHorarios;
 
     public Nrc() {
     }
@@ -122,6 +126,14 @@ public class Nrc implements Serializable {
         this.docente = docente;
     }
 
+    public List<NrcHorario> getNrcHorarios() {
+        return nrcHorarios;
+    }
+
+    public void setNrcHorarios(List<NrcHorario> nrcHorarios) {
+        this.nrcHorarios = nrcHorarios;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

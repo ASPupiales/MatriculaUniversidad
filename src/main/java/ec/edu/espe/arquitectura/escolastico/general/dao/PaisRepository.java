@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PaisRepository extends JpaRepository<Pais, String> {
 
-    List<Pais> findByNombreLikeOrderByNombre(String nombre);
+    List<Pais> findByNombreLikeOrderByNombreAsc(String nombre);
 
 }

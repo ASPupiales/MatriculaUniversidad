@@ -2,7 +2,6 @@ package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import ec.edu.espe.arquitectura.escolastico.general.model.UbicacionGeografica;
 import ec.edu.espe.arquitectura.escolastico.general.model.Pais;
-import ec.edu.espe.arquitectura.escolastico.educacion.model.Nrc;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

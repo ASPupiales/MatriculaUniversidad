@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TipoDiscapacidadRepository extends JpaRepository<TipoDiscapacidad, String> {
 
-    TipoDiscapacidad findByNombre(String nombre);
 }

@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InstitucionPrincipalRepository extends JpaRepository<InstitucionPrincipal, String> {
 
-    List<InstitucionPrincipal> findByRazonSocialLikeOrderByRazonSocial(String razonSocial);
+    List<InstitucionPrincipal> findByRazonSocialLikeOrderByRazonSocialAsc(String razonSocial);
 
-    List<InstitucionPrincipal> findByNombreComercialLikeOrderByNombreComercial(String nombreComercial);
+    List<InstitucionPrincipal> findByNombreComercialLikeOrderByNombreComercialAsc(String nombreComercial);
+    
+    List<InstitucionPrincipal> findByCodUbicacionGeoIntOrderByNombreComercialAsc(Integer codUbicacion);
 
 }

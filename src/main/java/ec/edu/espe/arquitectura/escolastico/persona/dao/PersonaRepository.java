@@ -11,10 +11,10 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
     Persona findByTipoIdentificacionAndIdentificacion(String tipoIdentificacion, String identificacion);
 
     Persona findByCodigoAlterno(String codigoAlterno);
-    
-    List<Persona> findByNombreCompletoLikeOrderByNombreCompleto(String nombreCompletoPattern);
 
-    List<Persona> findByCodTipoPersonaAndEstado(String codTipoPersona, String estado);
+    List<Persona> findByNombreCompletoLikeOrderByNombreCompletoAsc(String nombreCompletoPattern);
 
-    List<Persona> findByCodTipoPersonaAndEstadoAndNombreCompletoLikeOrderByNombreCompleto(String codTipoPersona, String estado, String nombreCompletoPattern);
+    List<Persona> findByCodTipoPersonaAndEstadoOrderByNombreCompletoAsc(String codTipoPersona, String estado);
+
+    List<Persona> findByCodTipoPersonaAndEstadoAndNombreCompletoLikeOrderByNombreCompletoAsc(String codTipoPersona, String estado, String nombreCompletoPattern);
 }

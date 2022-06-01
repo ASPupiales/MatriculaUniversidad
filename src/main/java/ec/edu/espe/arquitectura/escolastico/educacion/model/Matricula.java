@@ -15,11 +15,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "edu_matricula", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"cod_periodo"})})
+@Table(name = "edu_matricula")
 public class Matricula implements Serializable {
 
     private static final long serialVersionUID = 105L;
