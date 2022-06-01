@@ -11,12 +11,12 @@ public class MatriculaPK implements Serializable {
     private String codMatricula;
 
     @Column(name = "cod_persona", nullable = false)
-    private int codPersona;
+    private Integer codPersona;
 
     public MatriculaPK() {
     }
 
-    public MatriculaPK(String codMatricula, int codPersona) {
+    public MatriculaPK(String codMatricula, Integer codPersona) {
         this.codMatricula = codMatricula;
         this.codPersona = codPersona;
     }
@@ -29,11 +29,11 @@ public class MatriculaPK implements Serializable {
         this.codMatricula = codMatricula;
     }
 
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
@@ -41,7 +41,7 @@ public class MatriculaPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (codMatricula != null ? codMatricula.hashCode() : 0);
-        hash += (int) codPersona;
+        hash += (Integer) codPersona;
         return hash;
     }
 

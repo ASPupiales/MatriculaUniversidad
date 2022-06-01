@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,13 +10,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "per_tipo_documento")
-public class TipoDocumento implements Serializable {
+@Table(name = "per_tipo_discapacidad")
+public class TipoDiscapacidad implements Serializable {
 
-    private static final long serialVersionUID = 129L;
+    private static final long serialVersionUID = 128L;
     @Id
-    @Column(name = "cod_tipo_documento", nullable = false, length = 16)
-    private String codTipoDocumento;
+    @Column(name = "cod_tipo_discapacidad", nullable = false, length = 8)
+    private String codTipoDiscapacidad;
 
     @Column(name = "nombre", nullable = false, length = 64)
     private String nombre;
@@ -32,21 +32,21 @@ public class TipoDocumento implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
-    public TipoDocumento() {
+    public TipoDiscapacidad() {
     }
 
-    public TipoDocumento(String codTipoDocumento) {
-        this.codTipoDocumento = codTipoDocumento;
+    public TipoDiscapacidad(String codTipoDiscapacidad) {
+        this.codTipoDiscapacidad = codTipoDiscapacidad;
     }
 
-    public String getCodTipoDocumento() {
-        return codTipoDocumento;
+    public String getCodTipoDiscapacidad() {
+        return codTipoDiscapacidad;
     }
 
-    public void setCodTipoDocumento(String codTipoDocumento) {
-        this.codTipoDocumento = codTipoDocumento;
+    public void setCodTipoDiscapacidad(String codTipoDiscapacidad) {
+        this.codTipoDiscapacidad = codTipoDiscapacidad;
     }
 
     public String getNombre() {
@@ -81,28 +81,28 @@ public class TipoDocumento implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codTipoDocumento != null ? codTipoDocumento.hashCode() : 0);
+        hash += (codTipoDiscapacidad != null ? codTipoDiscapacidad.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof TipoDocumento)) {
+        if (!(object instanceof TipoDiscapacidad)) {
             return false;
         }
-        TipoDocumento other = (TipoDocumento) object;
-        if ((this.codTipoDocumento == null && other.codTipoDocumento != null) || (this.codTipoDocumento != null && !this.codTipoDocumento.equals(other.codTipoDocumento))) {
+        TipoDiscapacidad other = (TipoDiscapacidad) object;
+        if ((this.codTipoDiscapacidad == null && other.codTipoDiscapacidad != null) || (this.codTipoDiscapacidad != null && !this.codTipoDiscapacidad.equals(other.codTipoDiscapacidad))) {
             return false;
         }
         return true;
@@ -110,7 +110,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "codTipoDocumento=" + codTipoDocumento;
+        return "codTipoDiscapacidad=" + codTipoDiscapacidad;
     }
 
 }

@@ -12,5 +12,5 @@ public interface MatriculaRepository extends JpaRepository<Matricula, MatriculaP
 
     List<Matricula> findByFechaGreaterThan(Date fecha);
     
-    List<Matricula> findByCodPeriodoAndCodPersona(Integer codPeriodo, short codPersona);
+    List<Matricula> findByCodPeriodoAndPkCodPersona(Integer codPeriodo, Integer codPersona);
 }

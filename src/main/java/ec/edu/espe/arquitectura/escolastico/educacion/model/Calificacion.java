@@ -17,23 +17,16 @@ public class Calificacion implements Serializable {
     private static final long serialVersionUID = 100L;
     @EmbeddedId
     private CalificacionPK pk;
-    
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private int codPersona;
 
-    @Column(name = "cod_nrc", nullable = false, insertable = false, updatable = false)
-    private short codNrc;
-    
     @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
-    private short codPeriodo;
-    
+    private Integer codPeriodo;
+
     @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
-    private short codDepartamento;
-    
+    private Integer codDepartamento;
+
     @Column(name = "cod_materia", nullable = false, insertable = false, updatable = false)
-    private short codMateria;
-    
-    
+    private Integer codMateria;
+
     @Column(name = "nota1", precision = 5, scale = 2)
     private BigDecimal nota1;
 
@@ -86,7 +79,7 @@ public class Calificacion implements Serializable {
         this.pk = calificacionPK;
     }
 
-    public Calificacion(String codMatricula, int codPersona, short codNrc) {
+    public Calificacion(String codMatricula, Integer codPersona, Integer codNrc) {
         this.pk = new CalificacionPK(codMatricula, codPersona, codNrc);
     }
 
@@ -96,45 +89,29 @@ public class Calificacion implements Serializable {
 
     public void setPk(CalificacionPK pk) {
         this.pk = pk;
-    }    
-
-    public int getCodPersona() {
-        return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
-        this.codPersona = codPersona;
-    }
-
-    public short getCodDepartamento() {
+    public Integer getCodDepartamento() {
         return codDepartamento;
     }
 
-    public void setCodDepartamento(short codDepartamento) {
+    public void setCodDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
     }
 
-    public short getCodMateria() {
+    public Integer getCodMateria() {
         return codMateria;
     }
 
-    public void setCodMateria(short codMateria) {
+    public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
 
-    public short getCodNrc() {
-        return codNrc;
-    }
-
-    public void setCodNrc(short codNrc) {
-        this.codNrc = codNrc;
-    }
-    
-    public short getCodPeriodo() {
+    public Integer getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(short codPeriodo) {
+    public void setCodPeriodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 

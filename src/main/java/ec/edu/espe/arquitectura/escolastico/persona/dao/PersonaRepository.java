@@ -1,6 +1,6 @@
-package ec.edu.espe.arquitectura.escolastico.personal.dao;
+package ec.edu.espe.arquitectura.escolastico.persona.dao;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
+import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

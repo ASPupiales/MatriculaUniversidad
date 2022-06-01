@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,12 +18,6 @@ public class DocumentoPersona implements Serializable {
     private static final long serialVersionUID = 124L;
     @EmbeddedId
     private DocumentoPersonaPK pk;
-    
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private int codPersona;
-
-    @Column(name = "cod_tipo_documento", nullable = false, insertable = false, updatable = false)
-    private String codTipoDocumento;
 
     @Column(name = "estado", nullable = false, length = 3)
     private String estado;
@@ -60,7 +54,7 @@ public class DocumentoPersona implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -77,7 +71,7 @@ public class DocumentoPersona implements Serializable {
         this.pk = perDocumentoPersonaPK;
     }
 
-    public DocumentoPersona(int codPersona, String codTipoDocumento) {
+    public DocumentoPersona(Integer codPersona, String codTipoDocumento) {
         this.pk = new DocumentoPersonaPK(codPersona, codTipoDocumento);
     }
 
@@ -87,22 +81,6 @@ public class DocumentoPersona implements Serializable {
 
     public void setPk(DocumentoPersonaPK pk) {
         this.pk = pk;
-    }
-
-    public int getCodPersona() {
-        return codPersona;
-    }
-
-    public void setCodPersona(int codPersona) {
-        this.codPersona = codPersona;
-    }
-
-    public String getCodTipoDocumento() {
-        return codTipoDocumento;
-    }
-
-    public void setCodTipoDocumento(String codTipoDocumento) {
-        this.codTipoDocumento = codTipoDocumento;
     }
 
     public String getEstado() {
@@ -185,11 +163,11 @@ public class DocumentoPersona implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

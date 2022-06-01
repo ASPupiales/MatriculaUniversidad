@@ -11,24 +11,24 @@ public class MatriculaNrcPK implements Serializable {
     private String codMatricula;
 
     @Column(name = "cod_persona", nullable = false)
-    private int codPersona;
+    private Integer codPersona;
 
     @Column(name = "cod_nrc", nullable = false)
-    private short codNrc;
+    private Integer codNrc;
 
     @Column(name = "cod_periodo", nullable = false)
-    private short codPeriodo;
+    private Integer codPeriodo;
 
     @Column(name = "cod_departamento", nullable = false)
-    private int codDepartamento;
+    private Integer codDepartamento;
 
     @Column(name = "cod_materia", nullable = false)
-    private int codMateria;
+    private Integer codMateria;
 
     public MatriculaNrcPK() {
     }
 
-    public MatriculaNrcPK(String codMatricula, int codPersona, short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+    public MatriculaNrcPK(String codMatricula, Integer codPersona, Integer codNrc, Integer codPeriodo, Integer codDepartamento, Integer codMateria) {
         this.codMatricula = codMatricula;
         this.codPersona = codPersona;
         this.codNrc = codNrc;
@@ -45,43 +45,43 @@ public class MatriculaNrcPK implements Serializable {
         this.codMatricula = codMatricula;
     }
 
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
-    public short getCodNrc() {
+    public Integer getCodNrc() {
         return codNrc;
     }
 
-    public void setCodNrc(short codNrc) {
+    public void setCodNrc(Integer codNrc) {
         this.codNrc = codNrc;
     }
 
-    public short getCodPeriodo() {
+    public Integer getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(short codPeriodo) {
+    public void setCodPeriodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
-    public int getCodDepartamento() {
+    public Integer getCodDepartamento() {
         return codDepartamento;
     }
 
-    public void setCodDepartamento(int codDepartamento) {
+    public void setCodDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
     }
 
-    public int getCodMateria() {
+    public Integer getCodMateria() {
         return codMateria;
     }
 
-    public void setCodMateria(int codMateria) {
+    public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
 
@@ -89,11 +89,11 @@ public class MatriculaNrcPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (codMatricula != null ? codMatricula.hashCode() : 0);
-        hash += (int) codPersona;
-        hash += (int) codNrc;
-        hash += (int) codPeriodo;
-        hash += (int) codDepartamento;
-        hash += (int) codMateria;
+        hash += (Integer) codPersona;
+        hash += (Integer) codNrc;
+        hash += (Integer) codPeriodo;
+        hash += (Integer) codDepartamento;
+        hash += (Integer) codMateria;
         return hash;
     }
 

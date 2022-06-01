@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PeriodoRepository extends JpaRepository<Periodo, Short> {
+public interface PeriodoRepository extends JpaRepository<Periodo, Integer> {
 
     List<Periodo> findByNombreLikeAndNivel(String nombrePattern, String nivel);
 

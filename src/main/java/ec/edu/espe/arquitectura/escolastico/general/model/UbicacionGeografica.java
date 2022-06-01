@@ -31,7 +31,7 @@ public class UbicacionGeografica implements Serializable {
     private String codPais;
 
     @Column(name = "nivel", nullable = false)
-    private short nivel;
+    private Integer nivel;
 
     @Column(name = "cod_ubicacion_geo_padre", nullable = false)
     private Integer codUbicacionGeoPadre;
@@ -59,7 +59,7 @@ public class UbicacionGeografica implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)
     @ManyToOne
@@ -154,11 +154,11 @@ public class UbicacionGeografica implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
@@ -194,11 +194,11 @@ public class UbicacionGeografica implements Serializable {
         this.codPais = codPais;
     }
 
-    public short getNivel() {
+    public Integer getNivel() {
         return nivel;
     }
 
-    public void setNivel(short nivel) {
+    public void setNivel(Integer nivel) {
         this.nivel = nivel;
     }
 

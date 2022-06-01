@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 public class HistTipoPersonaPK implements Serializable {
 
     @Column(name = "cod_persona", nullable = false)
-    private int codPersona;
+    private Integer codPersona;
 
     @Column(name = "cod_tipo_persona", nullable = false, length = 3)
     private String codTipoPersona;
@@ -16,16 +16,16 @@ public class HistTipoPersonaPK implements Serializable {
     public HistTipoPersonaPK() {
     }
 
-    public HistTipoPersonaPK(int codPersona, String codTipoPersona) {
+    public HistTipoPersonaPK(Integer codPersona, String codTipoPersona) {
         this.codPersona = codPersona;
         this.codTipoPersona = codTipoPersona;
     }
 
-    public int getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(int codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
@@ -40,7 +40,7 @@ public class HistTipoPersonaPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codPersona;
+        hash += (Integer) codPersona;
         hash += (codTipoPersona != null ? codTipoPersona.hashCode() : 0);
         return hash;
     }

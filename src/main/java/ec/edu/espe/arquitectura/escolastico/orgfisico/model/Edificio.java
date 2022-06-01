@@ -45,7 +45,7 @@ public class Edificio implements Serializable {
     private String poseeAulas;
 
     @Column(name = "pisos", nullable = false)
-    private short pisos;
+    private Integer pisos;
 
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
@@ -58,7 +58,7 @@ public class Edificio implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_sede", referencedColumnName = "cod_sede", insertable = false, updatable = false)
     @ManyToOne
@@ -143,11 +143,11 @@ public class Edificio implements Serializable {
         this.poseeAulas = poseeAulas;
     }
 
-    public short getPisos() {
+    public Integer getPisos() {
         return pisos;
     }
 
-    public void setPisos(short pisos) {
+    public void setPisos(Integer pisos) {
         this.pisos = pisos;
     }
 
@@ -175,11 +175,11 @@ public class Edificio implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

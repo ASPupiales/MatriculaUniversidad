@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import ec.edu.espe.arquitectura.escolastico.general.model.UbicacionGeografica;
 import ec.edu.espe.arquitectura.escolastico.general.model.Pais;
@@ -100,7 +100,7 @@ public class Persona implements Serializable {
     private String discapacidad;
 
     @Column(name = "porcentaje_discapacidad")
-    private Short porcentajeDiscapacidad;
+    private Integer porcentajeDiscapacidad;
 
     @Column(name = "carnet_conadis", length = 10)
     private String carnetConadis;
@@ -116,7 +116,7 @@ public class Persona implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<Nrc> nrcs;
@@ -352,11 +352,11 @@ public class Persona implements Serializable {
         this.discapacidad = discapacidad;
     }
 
-    public Short getPorcentajeDiscapacidad() {
+    public Integer getPorcentajeDiscapacidad() {
         return porcentajeDiscapacidad;
     }
 
-    public void setPorcentajeDiscapacidad(Short porcentajeDiscapacidad) {
+    public void setPorcentajeDiscapacidad(Integer porcentajeDiscapacidad) {
         this.porcentajeDiscapacidad = porcentajeDiscapacidad;
     }
 
@@ -392,11 +392,11 @@ public class Persona implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

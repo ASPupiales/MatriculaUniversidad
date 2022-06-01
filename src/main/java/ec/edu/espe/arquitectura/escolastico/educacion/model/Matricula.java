@@ -1,6 +1,6 @@
 package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
+import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +25,6 @@ public class Matricula implements Serializable {
     private static final long serialVersionUID = 105L;
     @EmbeddedId
     private MatriculaPK pk;
-
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private short codPersona;
 
     @Column(name = "tipo", nullable = false, length = 3)
     private String tipo;
@@ -67,15 +64,7 @@ public class Matricula implements Serializable {
         this.pk = matriculaPK;
     }
 
-    public short getCodPersona() {
-        return codPersona;
-    }
-
-    public void setCodPersona(short codPersona) {
-        this.codPersona = codPersona;
-    }
-
-    public Matricula(String codMatricula, int codPersona) {
+    public Matricula(String codMatricula, Integer codPersona) {
         this.pk = new MatriculaPK(codMatricula, codPersona);
     }
 

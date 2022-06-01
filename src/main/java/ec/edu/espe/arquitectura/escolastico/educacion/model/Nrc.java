@@ -1,6 +1,6 @@
 package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
-import ec.edu.espe.arquitectura.escolastico.personal.model.Persona;
+import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -21,20 +21,14 @@ public class Nrc implements Serializable {
     @EmbeddedId
     private NrcPK pk;
     
-    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
-    private Integer codDepartamento;
-    
-    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
-    private short codPeriodo;
-    
     @Column(name = "cod_persona", nullable = false)
-    private short codPersona;
+    private Integer codPersona;
 
     @Column(name = "cupo_disponible", nullable = false)
-    private short cupoDisponible;
+    private Integer cupoDisponible;
 
     @Column(name = "cupo_registrado", nullable = false)
-    private short cupoRegistrado;
+    private Integer cupoRegistrado;
 
     @Column(name = "nombre", length = 255)
     private String nombre;
@@ -60,7 +54,7 @@ public class Nrc implements Serializable {
         this.pk = nrcPK;
     }
 
-    public Nrc(short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+    public Nrc(Integer codNrc, Integer codPeriodo, Integer codDepartamento, Integer codMateria) {
         this.pk = new NrcPK(codNrc, codPeriodo, codDepartamento, codMateria);
     }
 
@@ -68,11 +62,11 @@ public class Nrc implements Serializable {
         return pk;
     }
 
-    public short getCodPersona() {
+    public Integer getCodPersona() {
         return codPersona;
     }
 
-    public void setCodPersona(short codPersona) {
+    public void setCodPersona(Integer codPersona) {
         this.codPersona = codPersona;
     }
 
@@ -80,35 +74,19 @@ public class Nrc implements Serializable {
         this.pk = pk;
     }    
 
-    public Integer getCodDepartamento() {
-        return codDepartamento;
-    }
-
-    public void setCodDepartamento(Integer codDepartamento) {
-        this.codDepartamento = codDepartamento;
-    }
-
-    public short getCodPeriodo() {
-        return codPeriodo;
-    }
-
-    public void setCodPeriodo(short codPeriodo) {
-        this.codPeriodo = codPeriodo;
-    }
-
-    public short getCupoDisponible() {
+    public Integer getCupoDisponible() {
         return cupoDisponible;
     }
 
-    public void setCupoDisponible(short cupoDisponible) {
+    public void setCupoDisponible(Integer cupoDisponible) {
         this.cupoDisponible = cupoDisponible;
     }
 
-    public short getCupoRegistrado() {
+    public Integer getCupoRegistrado() {
         return cupoRegistrado;
     }
 
-    public void setCupoRegistrado(short cupoRegistrado) {
+    public void setCupoRegistrado(Integer cupoRegistrado) {
         this.cupoRegistrado = cupoRegistrado;
     }
 

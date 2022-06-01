@@ -8,66 +8,66 @@ import javax.persistence.Embeddable;
 public class NrcPK implements Serializable {
 
     @Column(name = "cod_nrc", nullable = false)
-    private short codNrc;
+    private Integer codNrc;
 
     @Column(name = "cod_periodo", nullable = false)
-    private short codPeriodo;
+    private Integer codPeriodo;
 
     @Column(name = "cod_departamento", nullable = false)
-    private int codDepartamento;
+    private Integer codDepartamento;
 
     @Column(name = "cod_materia", nullable = false)
-    private int codMateria;
+    private Integer codMateria;
 
     public NrcPK() {
     }
 
-    public NrcPK(short codNrc, short codPeriodo, int codDepartamento, int codMateria) {
+    public NrcPK(Integer codNrc, Integer codPeriodo, Integer codDepartamento, Integer codMateria) {
         this.codNrc = codNrc;
         this.codPeriodo = codPeriodo;
         this.codDepartamento = codDepartamento;
         this.codMateria = codMateria;
     }
 
-    public short getCodNrc() {
+    public Integer getCodNrc() {
         return codNrc;
     }
 
-    public void setCodNrc(short codNrc) {
+    public void setCodNrc(Integer codNrc) {
         this.codNrc = codNrc;
     }
 
-    public short getCodPeriodo() {
+    public Integer getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(short codPeriodo) {
+    public void setCodPeriodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
-    public int getCodDepartamento() {
+    public Integer getCodDepartamento() {
         return codDepartamento;
     }
 
-    public void setCodDepartamento(int codDepartamento) {
+    public void setCodDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
     }
 
-    public int getCodMateria() {
+    public Integer getCodMateria() {
         return codMateria;
     }
 
-    public void setCodMateria(int codMateria) {
+    public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codNrc;
-        hash += (int) codPeriodo;
-        hash += (int) codDepartamento;
-        hash += (int) codMateria;
+        hash += (Integer) codNrc;
+        hash += (Integer) codPeriodo;
+        hash += (Integer) codDepartamento;
+        hash += (Integer) codMateria;
         return hash;
     }
 

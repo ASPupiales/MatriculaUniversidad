@@ -22,9 +22,6 @@ public class Materia implements Serializable {
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
 
-    @Column(name = "cod_departamento", nullable = false, insertable = false, updatable = false)
-    private Integer codDepartamento;
-
     @Column(name = "creditos", nullable = false, precision = 4, scale = 2)
     private BigDecimal creditos;
 
@@ -48,7 +45,7 @@ public class Materia implements Serializable {
         this.pk = materiaPK;
     }
 
-    public Materia(int codMateria, int codDepartamento) {
+    public Materia(Integer codMateria, Integer codDepartamento) {
         this.pk = new MateriaPK(codMateria, codDepartamento);
     }
 
@@ -58,14 +55,6 @@ public class Materia implements Serializable {
 
     public void setPk(MateriaPK pk) {
         this.pk = pk;
-    }
-
-    public Integer getCodDepartamento() {
-        return codDepartamento;
-    }
-
-    public void setCodDepartamento(Integer codDepartamento) {
-        this.codDepartamento = codDepartamento;
     }
 
     public String getNombre() {

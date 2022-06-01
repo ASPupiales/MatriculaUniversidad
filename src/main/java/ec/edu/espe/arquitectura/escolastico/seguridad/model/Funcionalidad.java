@@ -49,7 +49,7 @@ public class Funcionalidad implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_modulo", referencedColumnName = "cod_modulo", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -126,11 +126,11 @@ public class Funcionalidad implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

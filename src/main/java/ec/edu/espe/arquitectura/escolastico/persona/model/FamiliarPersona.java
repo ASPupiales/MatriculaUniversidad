@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,10 +17,7 @@ public class FamiliarPersona implements Serializable {
 
     private static final long serialVersionUID = 125L;
     @EmbeddedId
-    private FamiliarPersonaPK pk;
-    
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private int codPersona;
+    private FamiliarPersonaPK pk; 
 
     @Column(name = "tipo_familiar", nullable = false, length = 3)
     private String tipoFamiliar;
@@ -52,7 +49,7 @@ public class FamiliarPersona implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -65,7 +62,7 @@ public class FamiliarPersona implements Serializable {
         this.pk = perFamiliarPersonaPK;
     }
 
-    public FamiliarPersona(int codPersona, short secFamiliarPersona) {
+    public FamiliarPersona(Integer codPersona, Integer secFamiliarPersona) {
         this.pk = new FamiliarPersonaPK(codPersona, secFamiliarPersona);
     }
 
@@ -75,14 +72,6 @@ public class FamiliarPersona implements Serializable {
 
     public void setPk(FamiliarPersonaPK pk) {
         this.pk = pk;
-    }
-
-    public int getCodPersona() {
-        return codPersona;
-    }
-
-    public void setCodPersona(int codPersona) {
-        this.codPersona = codPersona;
     }
 
     public String getTipoFamiliar() {
@@ -157,11 +146,11 @@ public class FamiliarPersona implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

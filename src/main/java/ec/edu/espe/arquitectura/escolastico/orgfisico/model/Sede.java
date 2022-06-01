@@ -21,7 +21,7 @@ public class Sede implements Serializable {
     private String codSede;
     
     @Column(name = "cod_institucion", nullable = false)
-    private Short codInstitucion;
+    private Integer codInstitucion;
 
     @Column(name = "nombre", nullable = false, length = 128)
     private String nombre;
@@ -43,7 +43,7 @@ public class Sede implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_institucion", referencedColumnName = "cod_institucion", nullable = false, insertable = false, updatable = false)
     @ManyToOne
@@ -64,11 +64,11 @@ public class Sede implements Serializable {
         this.codSede = codSede;
     }
 
-    public Short getCodInstitucion() {
+    public Integer getCodInstitucion() {
         return codInstitucion;
     }
 
-    public void setCodInstitucion(Short codInstitucion) {
+    public void setCodInstitucion(Integer codInstitucion) {
         this.codInstitucion = codInstitucion;
     }
 
@@ -120,11 +120,11 @@ public class Sede implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

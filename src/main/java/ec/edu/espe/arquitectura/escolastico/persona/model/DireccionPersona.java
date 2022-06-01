@@ -1,4 +1,4 @@
-package ec.edu.espe.arquitectura.escolastico.personal.model;
+package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,14 +19,11 @@ public class DireccionPersona implements Serializable {
     @EmbeddedId
     private DireccionPersonaPK pk;
 
-    @Column(name = "cod_persona", nullable = false, insertable = false, updatable = false)
-    private int codPersona;
-
     @Column(name = "tipo_direccion", nullable = false, length = 3)
     private String tipoDireccion;
 
     @Column(name = "cod_org_geo_direccion", nullable = false)
-    private int codOrgGeoDireccion;
+    private Integer codOrgGeoDireccion;
 
     @Column(name = "calle_principal", nullable = false, length = 100)
     private String callePrincipal;
@@ -63,7 +60,7 @@ public class DireccionPersona implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
@@ -76,7 +73,7 @@ public class DireccionPersona implements Serializable {
         this.pk = perDireccionPersonaPK;
     }
 
-    public DireccionPersona(int codPersona, short secDireccion) {
+    public DireccionPersona(Integer codPersona, Integer secDireccion) {
         this.pk = new DireccionPersonaPK(codPersona, secDireccion);
     }
 
@@ -87,15 +84,7 @@ public class DireccionPersona implements Serializable {
     public void setPk(DireccionPersonaPK pk) {
         this.pk = pk;
     }
-
-    public int getCodPersona() {
-        return codPersona;
-    }
-
-    public void setCodPersona(int codPersona) {
-        this.codPersona = codPersona;
-    }
-
+    
     public String getTipoDireccion() {
         return tipoDireccion;
     }
@@ -104,11 +93,11 @@ public class DireccionPersona implements Serializable {
         this.tipoDireccion = tipoDireccion;
     }
 
-    public int getCodOrgGeoDireccion() {
+    public Integer getCodOrgGeoDireccion() {
         return codOrgGeoDireccion;
     }
 
-    public void setCodOrgGeoDireccion(int codOrgGeoDireccion) {
+    public void setCodOrgGeoDireccion(Integer codOrgGeoDireccion) {
         this.codOrgGeoDireccion = codOrgGeoDireccion;
     }
 
@@ -200,11 +189,11 @@ public class DireccionPersona implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

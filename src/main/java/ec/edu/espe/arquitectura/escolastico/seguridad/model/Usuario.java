@@ -50,7 +50,7 @@ public class Usuario implements Serializable {
     private Date fechaCambioClave;
 
     @Column(name = "nro_intentos_fallidos", nullable = false)
-    private short nroIntentosFallidos;
+    private Integer nroIntentosFallidos;
 
     @Column(name = "fecha_ultima_sesion")
     @Temporal(TemporalType.TIMESTAMP)
@@ -67,7 +67,7 @@ public class Usuario implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioPerfil> usuarioPerfiles;
@@ -151,11 +151,11 @@ public class Usuario implements Serializable {
         this.fechaCambioClave = fechaCambioClave;
     }
 
-    public short getNroIntentosFallidos() {
+    public Integer getNroIntentosFallidos() {
         return nroIntentosFallidos;
     }
 
-    public void setNroIntentosFallidos(short nroIntentosFallidos) {
+    public void setNroIntentosFallidos(Integer nroIntentosFallidos) {
         this.nroIntentosFallidos = nroIntentosFallidos;
     }
 
@@ -191,11 +191,11 @@ public class Usuario implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 
