@@ -18,7 +18,7 @@ public class Periodo implements Serializable {
     private static final long serialVersionUID = 109L;
     @Id
     @Column(name = "cod_periodo", nullable = false)
-    private Short codPeriodo;
+    private Integer codPeriodo;
 
     @Column(name = "nombre", nullable = false, length = 255)
     private String nombre;
@@ -35,7 +35,7 @@ public class Periodo implements Serializable {
     private Date fechaFin;
 
     @Column(name = "parciales", nullable = false)
-    private short parciales;
+    private Integer parciales;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "periodo")
     private Nrc nrc;
@@ -46,15 +46,15 @@ public class Periodo implements Serializable {
     public Periodo() {
     }
 
-    public Periodo(Short codPeriodo) {
+    public Periodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
-    public Short getCodPeriodo() {
+    public Integer getCodPeriodo() {
         return codPeriodo;
     }
 
-    public void setCodPeriodo(Short codPeriodo) {
+    public void setCodPeriodo(Integer codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
 
@@ -90,11 +90,11 @@ public class Periodo implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public short getParciales() {
+    public Integer getParciales() {
         return parciales;
     }
 
-    public void setParciales(short parciales) {
+    public void setParciales(Integer parciales) {
         this.parciales = parciales;
     }
 

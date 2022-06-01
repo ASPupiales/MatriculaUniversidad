@@ -8,39 +8,39 @@ import javax.persistence.Embeddable;
 public class MateriaPK implements Serializable {
 
     @Column(name = "cod_materia", nullable = false)
-    private int codMateria;
+    private Integer codMateria;
 
     @Column(name = "cod_departamento", nullable = false)
-    private int codDepartamento;
+    private Integer codDepartamento;
 
     public MateriaPK() {
     }
-    public MateriaPK(int codMateria, int codDepartamento) {
+    public MateriaPK(Integer codMateria, Integer codDepartamento) {
         this.codMateria = codMateria;
         this.codDepartamento = codDepartamento;
     }
 
-    public int getCodMateria() {
+    public Integer getCodMateria() {
         return codMateria;
     }
 
-    public void setCodMateria(int codMateria) {
+    public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
 
-    public int getCodDepartamento() {
+    public Integer getCodDepartamento() {
         return codDepartamento;
     }
 
-    public void setCodDepartamento(int codDepartamento) {
+    public void setCodDepartamento(Integer codDepartamento) {
         this.codDepartamento = codDepartamento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codMateria;
-        hash += (int) codDepartamento;
+        hash += (Integer) codMateria;
+        hash += (Integer) codDepartamento;
         return hash;
     }
 

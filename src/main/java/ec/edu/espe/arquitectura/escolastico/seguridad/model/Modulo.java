@@ -25,7 +25,7 @@ public class Modulo implements Serializable {
     private String estado;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modulo")
     private List<Funcionalidad> funcionalidades;
@@ -61,11 +61,11 @@ public class Modulo implements Serializable {
         this.estado = estado;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

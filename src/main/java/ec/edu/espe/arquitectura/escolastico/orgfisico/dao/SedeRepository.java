@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SedeRepository extends JpaRepository<Sede, String> {
 
-    List<Sede> findByCodInstitucion(Short codInstitucion);
+    List<Sede> findByCodInstitucionOrderByNombreAsc(Integer codInstitucion);
 }

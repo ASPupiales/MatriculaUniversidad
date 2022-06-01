@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MateriaRepository extends JpaRepository<Materia, MateriaPK> {
 
-    List<Materia> findByCodDepartamento(Integer codDepartamento);
+    List<Materia> findByPkCodDepartamentoOrderByNombreAsc(Integer codDepartamento);
 
-    List<Materia> findByNombreLikeOrderByNombre(String nombre);
+    List<Materia> findByNombreLikeOrderByNombreAsc(String nombrePattern);
 }

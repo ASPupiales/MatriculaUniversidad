@@ -36,10 +36,10 @@ public class Aula implements Serializable {
     private String codAlterno;
 
     @Column(name = "capacidad", nullable = false)
-    private short capacidad;
+    private Integer capacidad;
 
     @Column(name = "piso", nullable = false)
-    private short piso;
+    private Integer piso;
 
     @Column(name = "aud_usuario", nullable = false, length = 30)
     private String audUsuario;
@@ -52,7 +52,7 @@ public class Aula implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
-    private int version;
+    private Integer version;
 
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio", insertable = false, updatable = false)
     @ManyToOne
@@ -113,19 +113,19 @@ public class Aula implements Serializable {
         this.codAlterno = codAlterno;
     }
 
-    public short getCapacidad() {
+    public Integer getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(short capacidad) {
+    public void setCapacidad(Integer capacidad) {
         this.capacidad = capacidad;
     }
 
-    public short getPiso() {
+    public Integer getPiso() {
         return piso;
     }
 
-    public void setPiso(short piso) {
+    public void setPiso(Integer piso) {
         this.piso = piso;
     }
 
@@ -153,11 +153,11 @@ public class Aula implements Serializable {
         this.audIp = audIp;
     }
 
-    public int getVersion() {
+    public Integer getVersion() {
         return version;
     }
 
-    public void setVersion(int version) {
+    public void setVersion(Integer version) {
         this.version = version;
     }
 

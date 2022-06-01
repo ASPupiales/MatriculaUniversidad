@@ -11,12 +11,12 @@ public class PerfilFuncionalidadPK implements Serializable {
     private String codPerfil;
 
     @Column(name = "cod_funcionalidad", nullable = false)
-    private int codFuncionalidad;
+    private Integer codFuncionalidad;
 
     public PerfilFuncionalidadPK() {
     }
 
-    public PerfilFuncionalidadPK(String codPerfil, int codFuncionalidad) {
+    public PerfilFuncionalidadPK(String codPerfil, Integer codFuncionalidad) {
         this.codPerfil = codPerfil;
         this.codFuncionalidad = codFuncionalidad;
     }
@@ -29,11 +29,11 @@ public class PerfilFuncionalidadPK implements Serializable {
         this.codPerfil = codPerfil;
     }
 
-    public int getCodFuncionalidad() {
+    public Integer getCodFuncionalidad() {
         return codFuncionalidad;
     }
 
-    public void setCodFuncionalidad(int codFuncionalidad) {
+    public void setCodFuncionalidad(Integer codFuncionalidad) {
         this.codFuncionalidad = codFuncionalidad;
     }
 
@@ -41,7 +41,7 @@ public class PerfilFuncionalidadPK implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (codPerfil != null ? codPerfil.hashCode() : 0);
-        hash += (int) codFuncionalidad;
+        hash += (Integer) codFuncionalidad;
         return hash;
     }
 
