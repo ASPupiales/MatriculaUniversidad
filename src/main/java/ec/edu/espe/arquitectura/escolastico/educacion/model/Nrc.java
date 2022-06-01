@@ -22,7 +22,7 @@ public class Nrc implements Serializable {
     private NrcPK pk;
     
     @Column(name = "cod_persona", nullable = false)
-    private Integer codPersona;
+    private Integer codDocente;
 
     @Column(name = "cupo_disponible", nullable = false)
     private Integer cupoDisponible;
@@ -45,7 +45,7 @@ public class Nrc implements Serializable {
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Persona persona;
+    private Persona docente;
 
     public Nrc() {
     }
@@ -62,12 +62,12 @@ public class Nrc implements Serializable {
         return pk;
     }
 
-    public Integer getCodPersona() {
-        return codPersona;
+    public Integer getCodDocente() {
+        return codDocente;
     }
 
-    public void setCodPersona(Integer codPersona) {
-        this.codPersona = codPersona;
+    public void setCodDocente(Integer codDocente) {
+        this.codDocente = codDocente;
     }
 
     public void setPk(NrcPK pk) {
@@ -114,12 +114,12 @@ public class Nrc implements Serializable {
         this.periodo = periodo;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Persona getDocente() {
+        return docente;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setDocente(Persona docente) {
+        this.docente = docente;
     }
 
     @Override

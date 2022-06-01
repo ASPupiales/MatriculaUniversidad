@@ -8,9 +8,9 @@ public interface CarreraRepository extends JpaRepository<Carrera,Integer> {
     
     Carrera findBySiglas(String siglas);
     
-    List<Carrera> findByCodDepartamento(Integer codDepartamento);
+    List<Carrera> findByCodDepartamentoOrderByNombreDesc(Integer codDepartamento);
     
-    List<Carrera> findByNombreLike(String nivel);
+    List<Carrera> findByNombreLikeOrderByNombreDesc(String nombre);
     
     List<Carrera> findByGradoAndModalidad(String grado, String modalidad);
 }

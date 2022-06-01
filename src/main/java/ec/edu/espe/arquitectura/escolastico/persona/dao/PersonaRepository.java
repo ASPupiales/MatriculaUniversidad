@@ -12,9 +12,9 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     Persona findByCodigoAlterno(String codigoAlterno);
     
-    List<Persona> findByNombreCompletoLike(String nombreCompletoPattern);
+    List<Persona> findByNombreCompletoLikeOrderByNombreCompleto(String nombreCompletoPattern);
 
     List<Persona> findByCodTipoPersonaAndEstado(String codTipoPersona, String estado);
 
-    List<Persona> findByCodTipoPersonaAndEstadoAndNombreCompletoLike(String codTipoPersona, String estado, String nombreCompletoPattern);
+    List<Persona> findByCodTipoPersonaAndEstadoAndNombreCompletoLikeOrderByNombreCompleto(String codTipoPersona, String estado, String nombreCompletoPattern);
 }

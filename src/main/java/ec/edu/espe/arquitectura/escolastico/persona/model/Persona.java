@@ -118,8 +118,6 @@ public class Persona implements Serializable {
     @Column(name = "version", nullable = false)
     private Integer version;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
-    private List<Nrc> nrcs;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private List<DireccionPersona> direccionesPersonas;
@@ -398,14 +396,6 @@ public class Persona implements Serializable {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-    public List<Nrc> getNrcs() {
-        return nrcs;
-    }
-
-    public void setNrcs(List<Nrc> nrcs) {
-        this.nrcs = nrcs;
     }
 
     public List<DireccionPersona> getDireccionesPersonas() {

@@ -12,6 +12,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
     List<Usuario> findByEstado(String estado);
 
-    List<Usuario> findByNombreLikeAndEstado(String nombrePattern, String estado);
+    List<Usuario> findByNombreLikeAndEstadoOrderByNombre(String nombrePattern, String estado);
 
 }

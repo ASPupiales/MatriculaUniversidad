@@ -52,7 +52,7 @@ public class Matricula implements Serializable {
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Persona persona;
+    private Persona alumno;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matricula")
     private List<MatriculaNrc> matriculaNrcs;
@@ -132,12 +132,12 @@ public class Matricula implements Serializable {
         this.periodo = periodo;
     }
 
-    public Persona getPersona() {
-        return persona;
+    public Persona getAlumno() {
+        return alumno;
     }
 
-    public void setPersona(Persona persona) {
-        this.persona = persona;
+    public void setAlumno(Persona alumno) {
+        this.alumno = alumno;
     }
 
     public List<MatriculaNrc> getMatriculaNrcs() {
