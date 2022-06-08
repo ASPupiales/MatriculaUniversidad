@@ -8,10 +8,10 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
-import ec.edu.espe.arquitectura.escolastico.seguridad.CambioClaveException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.EstadoPersonaEnum;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioPerfilRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioRepository;
+import ec.edu.espe.arquitectura.escolastico.seguridad.exception.CambioClaveException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
 
 @Service
@@ -58,12 +58,13 @@ public class UsuarioService {
         return this.usuarioRepository.findByEstado(estado.getValor());
     }
 
-    public void crear(Usuario usuario) {
+    public Usuario crear(Usuario usuario) {
         String clave = RandomStringUtils.randomAlphabetic(8);
         usuario.setClave(DigestUtils.sha256Hex(clave));
         usuario.setFechaCreacion(new Date());
         this.usuarioRepository.save(usuario);
         this.usuarioPerfilRepository.saveAll(usuario.getUsuarioPerfiles());
+        return usuario;
     }
 
     public void cambiarClave(String codigoOMail, String claveAntigua, String claveNueva) throws CambioClaveException {

@@ -3,16 +3,7 @@ package ec.edu.espe.arquitectura.escolastico.general.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gen_pais_estructura")
@@ -36,6 +27,7 @@ public class PaisEstructura implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", nullable = false, insertable = false, updatable = false)

@@ -3,14 +3,7 @@ package ec.edu.espe.arquitectura.escolastico.general.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gen_pais")
@@ -44,6 +37,7 @@ public class Pais implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")

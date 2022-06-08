@@ -3,15 +3,7 @@ package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "seg_usuario", uniqueConstraints = {
@@ -66,6 +58,7 @@ public class Usuario implements Serializable {
     @Column(name = "aud_ip", nullable = false, length = 30)
     private String audIp;
 
+    @Version
     @Column(name = "version", nullable = false)
     private Integer version;
 
