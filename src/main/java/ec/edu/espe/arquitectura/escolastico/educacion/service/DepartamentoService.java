@@ -43,7 +43,7 @@ public class DepartamentoService {
     }
 
     public List<Departamento> listarDepartamentosPorNombre(String nombrePattern) {
-        return  this.departamentoRepository.findByNombreLikeOrderByNombreAsc(nombrePattern);
+        return  this.departamentoRepository.findByNombreContainingIgnoreCaseOrderByNombreAsc(nombrePattern);
     }
 
     public List<Departamento> listarDepartamentos() {
