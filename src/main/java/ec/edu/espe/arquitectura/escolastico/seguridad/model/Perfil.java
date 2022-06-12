@@ -1,5 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +35,7 @@ public class Perfil implements Serializable {
     @Column(name = "version", nullable = false)
     @Version
     private Integer version;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "perfil", fetch = FetchType.EAGER)
     private List<PerfilFuncionalidad> perfilesFuncionalidad;
 

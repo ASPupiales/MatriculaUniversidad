@@ -40,7 +40,7 @@ public class FuncionalidadService {
 
     public Funcionalidad crear(Funcionalidad funcionalidad) throws UnknownHostException {
         InetAddress address = InetAddress.getLocalHost();
-        funcionalidad.setAudIp(address.getHostName());
+        funcionalidad.setAudIp(address.getHostAddress());
         funcionalidad.setAudFecha(new Date());
         funcionalidad.setAudUsuario("Admin");
         funcionalidad.setEstado(EstadoEnum.INACTIVO.getValor());

@@ -1,5 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
@@ -22,7 +24,7 @@ public class Modulo implements Serializable {
     @Column(name = "version", nullable = false)
     @Version
     private Integer version;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "modulo")
     private List<Funcionalidad> funcionalidades;
 

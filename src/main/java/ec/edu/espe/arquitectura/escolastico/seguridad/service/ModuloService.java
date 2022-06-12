@@ -11,13 +11,13 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.model.Modulo;
 @Service
 public class ModuloService {
 
-    private ModuloRepository moduloRespository;
+    private ModuloRepository moduloRepository;
 
-    public ModuloService(ModuloRepository moduloRespository) {
-        this.moduloRespository = moduloRespository;
+    public ModuloService(ModuloRepository moduloRepository) {
+        this.moduloRepository = moduloRepository;
     }
     public Modulo obtenerPorCodigo(String codigo) {
-        Optional<Modulo> moduloOpt = this.moduloRespository.findById(codigo);
+        Optional<Modulo> moduloOpt = this.moduloRepository.findById(codigo);
         if (moduloOpt.isPresent()) {
             return moduloOpt.get();
         } else {
@@ -27,18 +27,18 @@ public class ModuloService {
 
     public void crear(Modulo modulo) {
         modulo.setEstado(EstadoEnum.INACTIVO.getValor());
-        this.moduloRespository.save(modulo);
+        this.moduloRepository.save(modulo);
     }
 
     public void modificar(Modulo modulo) {
         Modulo moduloDB = this.obtenerPorCodigo(modulo.getCodModulo());
         moduloDB.setEstado(modulo.getEstado());
         moduloDB.setNombre(modulo.getNombre());
-        this.moduloRespository.save(moduloDB);
+        this.moduloRepository.save(moduloDB);
     }
 
     public List<Modulo> listarModulosActivos() {
-        return this.moduloRespository.findByEstado(EstadoEnum.ACTIVO.getValor());
+        return this.moduloRepository.findByEstado(EstadoEnum.ACTIVO.getValor());
     }
 
 }
