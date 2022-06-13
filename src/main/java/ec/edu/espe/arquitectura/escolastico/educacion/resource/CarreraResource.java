@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ec.edu.espe.arquitectura.escolastico.educacion.MallaCarreraException;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.Carrera;
+import ec.edu.espe.arquitectura.escolastico.educacion.model.MallaCarrera;
 import ec.edu.espe.arquitectura.escolastico.educacion.service.CarreraService;
 
 @RestController
@@ -55,6 +57,28 @@ public class CarreraResource {
             this.service.modificar(carrera);
             carrera = this.service.obtenerPorCodigo(carrera.getCodDepartamento());
             return ResponseEntity.ok(carrera);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @GetMapping(value = "/malla/{codigo}")
+    public ResponseEntity<List<MallaCarrera>> obtenerMalla(@PathVariable Integer codigo) throws MallaCarreraException {
+        return ResponseEntity.ok(this.service.obtenerMalla(codigo));
+    }
+
+    @GetMapping(value = "/malla/nivel/{codigo}/{nivel}")
+    public ResponseEntity<List<MallaCarrera>> obtenerMateriasYNivel(@PathVariable Integer codigo, @PathVariable Integer nivel) throws MallaCarreraException {
+        return ResponseEntity.ok(this.service.obtenerMateriasPorNivel(codigo, nivel));
+    }
+
+    @PutMapping(value = "/materia")
+    public ResponseEntity<String> modificarMateriaMalla(@RequestBody MallaCarrera materiaCarrera) {
+        try {
+            this.service.modificarMateriaMallaCarrera(materiaCarrera);
+            materiaCarrera = this.service.obtenerMallaCarreraPorCodigo(materiaCarrera.getCodMateriaCarrera());
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
