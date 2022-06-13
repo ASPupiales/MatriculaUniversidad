@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.MateriaRepository;
+import ec.edu.espe.arquitectura.escolastico.educacion.dao.NrcHorarioRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.NrcRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.PeriodoRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.Materia;
@@ -25,13 +26,16 @@ public class NrcService {
     private MateriaRepository materiaRepository;
     private PeriodoRepository periodoRepository;
     private PersonaRepository personaRepository;
+    private NrcHorarioRepository nrcHorarioRepository;
 
     public NrcService(NrcRepository nrcRepository, MateriaRepository materiaRepository,
-            PeriodoRepository periodoRepository, PersonaRepository personaRepository) {
+            PeriodoRepository periodoRepository, PersonaRepository personaRepository,
+            NrcHorarioRepository nrcHorarioRepository) {
         this.nrcRepository = nrcRepository;
         this.materiaRepository = materiaRepository;
         this.periodoRepository = periodoRepository;
         this.personaRepository = personaRepository;
+        this.nrcHorarioRepository = nrcHorarioRepository;
     }
 
     public Nrc obtenerPorCodigo(NrcPK pk) {
@@ -45,23 +49,8 @@ public class NrcService {
 
     public void crear(Nrc nrc) {
 
-        Optional<Periodo> periodoOpt = this.periodoRepository.findById(nrc.getPk().getCodPeriodo());
-        if (!periodoOpt.isPresent()) {
-            throw new EntityNotFoundException("Periodo no encontrado");
-        }
-
-        MateriaPK pk = new MateriaPK(nrc.getPk().getCodMateria(), nrc.getPk().getCodDepartamento());
-        Optional<Materia> materiaOpt = this.materiaRepository.findById(pk);
-        if (!materiaOpt.isPresent()) {
-            throw new EntityNotFoundException("Materia no encontrada");
-        }
-
-        Optional<Persona> personaOpt = this.personaRepository.findById(nrc.getCodDocente());
-        if (!personaOpt.isPresent()) {
-            throw new EntityNotFoundException("Docente no encontrado");
-        }
-
         this.nrcRepository.save(nrc);
+        this.nrcHorarioRepository.saveAll(nrc.getNrcHorarios());
 
     }
 
@@ -79,7 +68,8 @@ public class NrcService {
     }
 
     public List<Nrc> listarNrcPorPeriodoYDepartamento(Integer codPeriodo, Integer codDepartamento) {
-        return this.nrcRepository.findByPkCodPeriodoAndPkCodDepartamentoOrderByMateriaNombreAsc(codPeriodo, codDepartamento);
+        return this.nrcRepository.findByPkCodPeriodoAndPkCodDepartamentoOrderByMateriaNombreAsc(codPeriodo,
+                codDepartamento);
     }
 
 }
