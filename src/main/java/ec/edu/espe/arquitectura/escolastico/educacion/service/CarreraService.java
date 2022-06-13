@@ -3,12 +3,16 @@ package ec.edu.espe.arquitectura.escolastico.educacion.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import ec.edu.espe.arquitectura.escolastico.educacion.MallaCarreraException;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.CarreraRepository;
+import ec.edu.espe.arquitectura.escolastico.educacion.dao.DepartamentoRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.MallaCarreraRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.Carrera;
+import ec.edu.espe.arquitectura.escolastico.educacion.model.Departamento;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.MallaCarrera;
 
 @Service
@@ -16,10 +20,12 @@ public class CarreraService {
 
     private CarreraRepository carreraRepository;
     private MallaCarreraRepository mallaCarreraRepository;
+    private DepartamentoRepository departamentoRepository;
 
-    public CarreraService(CarreraRepository carreraRepository, MallaCarreraRepository mallaCarreraRepository) {
+    public CarreraService(CarreraRepository carreraRepository, MallaCarreraRepository mallaCarreraRepository, DepartamentoRepository departamentoRepository) {
         this.carreraRepository = carreraRepository;
         this.mallaCarreraRepository = mallaCarreraRepository;
+        this.departamentoRepository = departamentoRepository;
     }
 
     public Carrera obtenerPorCodigo(Integer codigo) {
@@ -41,6 +47,11 @@ public class CarreraService {
     }
 
     public void crear(Carrera carrera) {
+        Optional<Departamento> departamentoOpt = this.departamentoRepository.findById(carrera.getCodDepartamento());
+        if(!departamentoOpt.isPresent()) {
+            throw new EntityNotFoundException("No se encontró el Departamento recibido.");
+        }
+        carrera.setDepartamento(departamentoOpt.get());
         this.carreraRepository.save(carrera);
     }
 
@@ -68,7 +79,7 @@ public class CarreraService {
     }
 
     public List<Carrera> listarCarrerasPorNombre(String nombrePattern) {
-        return this.carreraRepository.findByNombreLikeOrderByNombreAsc(nombrePattern);
+        return this.carreraRepository.findByNombreContainingOrderByNombreAsc(nombrePattern);
     }
 
     public List<MallaCarrera> obtenerMalla(Integer codigo) throws MallaCarreraException {
