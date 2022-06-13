@@ -30,9 +30,6 @@ public class Departamento implements Serializable {
     @Column(name = "siglas", nullable = false, length = 32)
     private String siglas;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
-    private List<Carrera> carreras;
-
     public Departamento() {
     }
 
@@ -70,14 +67,6 @@ public class Departamento implements Serializable {
 
     public void setSiglas(String siglas) {
         this.siglas = siglas;
-    }
-
-    public List<Carrera> getCarreras() {
-        return carreras;
-    }
-
-    public void setCarreras(List<Carrera> carreras) {
-        this.carreras = carreras;
     }
 
     @Override
