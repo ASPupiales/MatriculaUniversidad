@@ -19,7 +19,6 @@ public class PerfilResource {
     @GetMapping(value = "{estado}")
     public ResponseEntity<List<Perfil>> listarPerfilPorEstado(@PathVariable String estado){
         try{
-//            List<Perfil> perfiles =this.perfilService.listarPerfilesPorEstado(estado);
             List<Perfil> perfiles =this.perfilService.listarPerfilesPorEstado(estado);
             return ResponseEntity.ok(perfiles);
         }catch(Exception e){
@@ -40,8 +39,7 @@ public class PerfilResource {
     @PutMapping
     public ResponseEntity<Perfil> modificar(@RequestBody Perfil perfil) {
         try {
-            this.perfilService.modificar(perfil);
-            perfil = this.perfilService.obtenerPorCodigo(perfil.getCodPerfil());
+            perfil = this.perfilService.modificar(perfil);
             return ResponseEntity.ok(perfil);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();

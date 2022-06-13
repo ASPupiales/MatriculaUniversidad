@@ -5,6 +5,7 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.dao.FuncionalidadRepositor
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.ModuloRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.PerfilFuncionalidadRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Funcionalidad;
+import ec.edu.espe.arquitectura.escolastico.seguridad.model.Perfil;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
@@ -46,5 +47,14 @@ public class FuncionalidadService {
         funcionalidad.setEstado(EstadoEnum.INACTIVO.getValor());
         this.funcionalidadRepository.save(funcionalidad);
         return funcionalidad;
+    }
+
+    public Funcionalidad modificar(Funcionalidad funcionalidad){
+        Funcionalidad funcionalidadDB = this.buscarPorCodigo(funcionalidad.getCodFuncionalidad());
+        funcionalidadDB.setEstado(funcionalidad.getEstado());
+        funcionalidadDB.setNombre(funcionalidad.getNombre());
+        funcionalidadDB.setDescripcion(funcionalidad.getDescripcion());
+        funcionalidadDB.setUrlPrincipal(funcionalidad.getUrlPrincipal());
+        return this.funcionalidadRepository.save(funcionalidadDB);
     }
 }

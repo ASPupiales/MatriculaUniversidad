@@ -1,5 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.seguridad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "seg_usuario", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"mail"})})
-public class Usuario implements Serializable {
+public class
+Usuario implements Serializable {
 
     private static final long serialVersionUID = 136L;
     @Id
@@ -61,7 +64,7 @@ public class Usuario implements Serializable {
     @Version
     @Column(name = "version", nullable = false)
     private Integer version;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioPerfil> usuarioPerfiles;
 

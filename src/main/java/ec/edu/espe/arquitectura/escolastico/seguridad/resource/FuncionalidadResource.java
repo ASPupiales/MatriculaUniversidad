@@ -31,4 +31,15 @@ public class FuncionalidadResource {
         }
     }
 
+    @PutMapping
+    public ResponseEntity<Funcionalidad> modificar(@RequestBody Funcionalidad funcionalidad) {
+        try {
+            this.funcionalidadService.modificar(funcionalidad);
+            funcionalidad = this.funcionalidadService.buscarPorCodigo(funcionalidad.getCodFuncionalidad());
+            return ResponseEntity.ok(funcionalidad);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
 }
