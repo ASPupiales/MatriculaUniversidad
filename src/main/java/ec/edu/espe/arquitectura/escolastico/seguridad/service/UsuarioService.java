@@ -68,6 +68,7 @@ public class UsuarioService {
         usuario.setAudIp(address.getHostAddress());
         usuario.setAudFecha(new Date());
         usuario.setAudUsuario("Admin");
+        usuario.setNroIntentosFallidos(0);
         usuario.setEstado(EstadoPersonaEnum.CREADO.getValor());
         this.usuarioRepository.save(usuario);
         this.usuarioPerfilRepository.saveAll(usuario.getUsuarioPerfiles());

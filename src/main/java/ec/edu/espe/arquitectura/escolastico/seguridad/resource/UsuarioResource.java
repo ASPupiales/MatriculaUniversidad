@@ -48,5 +48,16 @@ public class UsuarioResource {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping(value = "/clave")
+    public ResponseEntity<Usuario> cambiarClave(@RequestBody Usuario usuario) {
+        try {
+            this.usuarioService.cambiarClave(usuario.getCodUsuario(),usuario.getNombre(), usuario.getClave());
+            usuario = this.usuarioService.buscarPorCodigo(usuario.getCodUsuario());
+            return ResponseEntity.ok(usuario);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
 
