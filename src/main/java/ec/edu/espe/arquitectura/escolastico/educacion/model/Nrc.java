@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "edu_nrc")
 public class Nrc implements Serializable {
@@ -37,18 +40,22 @@ public class Nrc implements Serializable {
     @JoinColumns({
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false, insertable = false, updatable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)})
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Materia materia;
 
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false, insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Periodo periodo;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Persona docente;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "nrc")
+    @JsonManagedReference
     private List<NrcHorario> nrcHorarios;
 
     public Nrc() {

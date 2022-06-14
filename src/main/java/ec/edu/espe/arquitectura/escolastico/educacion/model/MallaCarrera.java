@@ -16,7 +16,7 @@ public class MallaCarrera implements Serializable {
     private static final long serialVersionUID = 103L;
     @Id
     @Column(name = "cod_materiacarrera", nullable = false)
-    private Integer codMateriacarrera;
+    private Integer codMateriaCarrera;
     
     @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
     private Integer codCarrera;
@@ -43,16 +43,16 @@ public class MallaCarrera implements Serializable {
     public MallaCarrera() {
     }
 
-    public MallaCarrera(Integer codMateriacarrera) {
-        this.codMateriacarrera = codMateriacarrera;
+    public MallaCarrera(Integer codMateriaCarrera) {
+        this.codMateriaCarrera = codMateriaCarrera;
     }
 
-    public Integer getCodMateriacarrera() {
-        return codMateriacarrera;
+    public Integer getCodMateriaCarrera() {
+        return codMateriaCarrera;
     }
 
-    public void setCodMateriacarrera(Integer codMateriacarrera) {
-        this.codMateriacarrera = codMateriacarrera;
+    public void setCodMateriaCarrera(Integer codMateriaCarrera) {
+        this.codMateriaCarrera = codMateriaCarrera;
     }
 
     public Integer getCodMateria() {
@@ -108,7 +108,7 @@ public class MallaCarrera implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codMateriacarrera != null ? codMateriacarrera.hashCode() : 0);
+        hash += (codMateriaCarrera != null ? codMateriaCarrera.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +118,7 @@ public class MallaCarrera implements Serializable {
             return false;
         }
         MallaCarrera other = (MallaCarrera) object;
-        if ((this.codMateriacarrera == null && other.codMateriacarrera != null) || (this.codMateriacarrera != null && !this.codMateriacarrera.equals(other.codMateriacarrera))) {
+        if ((this.codMateriaCarrera == null && other.codMateriaCarrera != null) || (this.codMateriaCarrera != null && !this.codMateriaCarrera.equals(other.codMateriaCarrera))) {
             return false;
         }
         return true;
@@ -126,7 +126,7 @@ public class MallaCarrera implements Serializable {
 
     @Override
     public String toString() {
-        return "codMateriacarrera=" + codMateriacarrera;
+        return "codMateriaCarrera=" + codMateriaCarrera;
     }
 
 }

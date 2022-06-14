@@ -8,5 +8,5 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Inte
 
     Departamento findBySiglas(String siglas);
 
-    List<Departamento> findByNombreLikeOrderByNombreAsc(String nombrePattern);
+    List<Departamento> findByNombreContainingIgnoreCaseOrderByNombreAsc(String nombrePattern);
 }

@@ -2,14 +2,7 @@ package ec.edu.espe.arquitectura.escolastico.persona.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "per_direccion_persona")
@@ -19,7 +12,7 @@ public class DireccionPersona implements Serializable {
     @EmbeddedId
     private DireccionPersonaPK pk;
 
-    @Column(name = "tipo_direccion", nullable = false, length = 3)
+    @Column(name = "cod_tipo_direccion", nullable = false, length = 3)
     private String tipoDireccion;
 
     @Column(name = "cod_org_geo_direccion", nullable = false)
@@ -60,6 +53,7 @@ public class DireccionPersona implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)

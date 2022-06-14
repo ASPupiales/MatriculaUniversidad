@@ -2,14 +2,18 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "edu_periodo")
@@ -37,11 +41,13 @@ public class Periodo implements Serializable {
     @Column(name = "parciales", nullable = false)
     private Integer parciales;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "periodo")
-    private Nrc nrc;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "periodo")
+    @JsonIgnore
+    private List<Nrc> nrcs;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "periodo")
-    private Matricula matricula;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "periodo")
+    @JsonIgnore
+    private List<Matricula> matriculas;
 
     public Periodo() {
     }
@@ -98,20 +104,20 @@ public class Periodo implements Serializable {
         this.parciales = parciales;
     }
 
-    public Nrc getNrc() {
-        return nrc;
+    public List<Nrc> getNrcs() {
+        return nrcs;
     }
 
-    public void setNrc(Nrc nrc) {
-        this.nrc = nrc;
+    public void setNrcs(List<Nrc> nrcs) {
+        this.nrcs = nrcs;
     }
 
-    public Matricula getMatricula() {
-        return matricula;
+    public List<Matricula> getMatriculas() {
+        return matriculas;
     }
 
-    public void setMatricula(Matricula matricula) {
-        this.matricula = matricula;
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 
     @Override

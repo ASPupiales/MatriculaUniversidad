@@ -13,4 +13,6 @@ public interface MatriculaRepository extends JpaRepository<Matricula, MatriculaP
 
     List<Matricula> findByTipoAndCodPeriodoAndCodCarreraOrderByFechaDesc(String tipo, Integer codPeriodo, Integer codCarrera);
 
+    List<Matricula> findByPkCodAlumnoOrderByFechaDesc(Integer codAlumno);
+
 }
