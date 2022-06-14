@@ -108,7 +108,7 @@ public class CarreraService {
         }
     }
 
-    public void modificarMateriMallaCarrera(MallaCarrera materiaCarrera) {
+    public void modificarMateriaMallaCarrera(MallaCarrera materiaCarrera) {
         MallaCarrera materiaCarreraBD = this.obtenerMallaCarreraPorCodigo(materiaCarrera.getCodMateriaCarrera());
         materiaCarreraBD.setNivel(materiaCarrera.getNivel());
         this.mallaCarreraRepository.save(materiaCarreraBD);
