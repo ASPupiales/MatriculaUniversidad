@@ -17,6 +17,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "edu_matricula")
 public class Matricula implements Serializable {
@@ -42,18 +45,22 @@ public class Matricula implements Serializable {
     private Integer codPeriodo;
 
     @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = true, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Carrera carrera;
 
     @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = true, insertable = false, updatable = false)
-    @OneToOne(optional = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Periodo periodo;
 
     @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = true, insertable = false, updatable = false)
     @ManyToOne(optional = true)
+    @JsonIgnore
     private Persona alumno;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matricula")
+    @JsonManagedReference
     private List<MatriculaNrc> matriculaNrcs;
 
     public Matricula() {
