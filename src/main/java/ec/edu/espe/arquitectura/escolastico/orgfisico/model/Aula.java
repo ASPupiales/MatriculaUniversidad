@@ -2,16 +2,9 @@ package ec.edu.espe.arquitectura.escolastico.orgfisico.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "ofi_aula")
@@ -52,18 +45,22 @@ public class Aula implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     @JoinColumn(name = "cod_edificio", referencedColumnName = "cod_edificio", insertable = false, updatable = false)
     @ManyToOne
+    @JsonIgnore
     private Edificio edificio;
 
     @JoinColumn(name = "cod_edificio_bloque", referencedColumnName = "cod_edificio_bloque", insertable = false, updatable = false)
     @ManyToOne
+    @JsonIgnore
     private EdificioBloque edificioBloque;
 
     @JoinColumn(name = "cod_tipo_aula", referencedColumnName = "cod_tipo_aula", insertable = false, updatable = false)
     @ManyToOne
+    @JsonIgnore
     private TipoAula tipoAula;
 
     public Aula() {

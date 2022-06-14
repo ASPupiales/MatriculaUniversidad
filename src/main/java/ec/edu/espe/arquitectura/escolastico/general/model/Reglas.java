@@ -2,12 +2,7 @@ package ec.edu.espe.arquitectura.escolastico.general.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gen_reglas")
@@ -50,6 +45,7 @@ public class Reglas implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     public Reglas() {

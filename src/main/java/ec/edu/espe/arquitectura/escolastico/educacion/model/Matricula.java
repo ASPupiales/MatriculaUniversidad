@@ -2,6 +2,7 @@ package ec.edu.espe.arquitectura.escolastico.educacion.model;
 
 import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -15,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "edu_matricula")
@@ -31,28 +35,32 @@ public class Matricula implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    @Column(name = "costo", nullable = false)
-    private double costo;
+    @Column(name = "costo", nullable = false, precision = 4, scale = 2)
+    private BigDecimal costo;
 
-    @Column(name = "cod_carrera", nullable = false, insertable = false, updatable = false)
+    @Column(name = "cod_carrera", nullable = false)
     private Integer codCarrera;
 
-    @Column(name = "cod_periodo", nullable = false, insertable = false, updatable = false)
+    @Column(name = "cod_periodo", nullable = false)
     private Integer codPeriodo;
 
-    @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cod_carrera", referencedColumnName = "cod_carrera", nullable = true, insertable = false, updatable = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Carrera carrera;
 
-    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = false)
-    @OneToOne(optional = false)
+    @JoinColumn(name = "cod_periodo", referencedColumnName = "cod_periodo", nullable = true, insertable = false, updatable = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Periodo periodo;
 
-    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = false, insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cod_persona", referencedColumnName = "cod_persona", nullable = true, insertable = false, updatable = false)
+    @ManyToOne(optional = true)
+    @JsonIgnore
     private Persona alumno;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "matricula")
+    @JsonManagedReference
     private List<MatriculaNrc> matriculaNrcs;
 
     public Matricula() {
@@ -90,11 +98,11 @@ public class Matricula implements Serializable {
         this.fecha = fecha;
     }
 
-    public double getCosto() {
+    public BigDecimal getCosto() {
         return costo;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(BigDecimal costo) {
         this.costo = costo;
     }
 
