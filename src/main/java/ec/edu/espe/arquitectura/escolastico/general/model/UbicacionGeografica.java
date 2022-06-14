@@ -2,17 +2,7 @@ package ec.edu.espe.arquitectura.escolastico.general.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "gen_ubicacion_geografica")
@@ -59,6 +49,7 @@ public class UbicacionGeografica implements Serializable {
     private String audIp;
 
     @Column(name = "version", nullable = false)
+    @Version
     private Integer version;
 
     @JoinColumn(name = "cod_pais", referencedColumnName = "cod_pais", insertable = false, updatable = false)

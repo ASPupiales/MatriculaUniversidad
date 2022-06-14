@@ -1,5 +1,7 @@
 package ec.edu.espe.arquitectura.escolastico.seguridad.service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -8,10 +10,10 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
-import ec.edu.espe.arquitectura.escolastico.seguridad.CambioClaveException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.EstadoPersonaEnum;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioPerfilRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioRepository;
+import ec.edu.espe.arquitectura.escolastico.seguridad.exception.CambioClaveException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
 
 @Service
@@ -58,12 +60,19 @@ public class UsuarioService {
         return this.usuarioRepository.findByEstado(estado.getValor());
     }
 
-    public void crear(Usuario usuario) {
+    public Usuario crear(Usuario usuario) throws UnknownHostException {
         String clave = RandomStringUtils.randomAlphabetic(8);
+        InetAddress address = InetAddress.getLocalHost();
         usuario.setClave(DigestUtils.sha256Hex(clave));
         usuario.setFechaCreacion(new Date());
+        usuario.setAudIp(address.getHostAddress());
+        usuario.setAudFecha(new Date());
+        usuario.setAudUsuario("Admin");
+        usuario.setNroIntentosFallidos(0);
+        usuario.setEstado(EstadoPersonaEnum.CREADO.getValor());
         this.usuarioRepository.save(usuario);
         this.usuarioPerfilRepository.saveAll(usuario.getUsuarioPerfiles());
+        return usuario;
     }
 
     public void cambiarClave(String codigoOMail, String claveAntigua, String claveNueva) throws CambioClaveException {
@@ -78,6 +87,15 @@ public class UsuarioService {
         usuario.setClave(DigestUtils.sha256Hex(claveNueva));
         usuario.setFechaCambioClave(new Date());
         this.usuarioRepository.save(usuario);
+    }
+
+    public Usuario modificar(Usuario usuario){
+        Usuario usuarioDB = this.buscarPorCodigo(usuario.getCodUsuario());
+        usuarioDB.setEstado(usuario.getEstado());
+        usuarioDB.setNombre(usuario.getNombre());
+        usuarioDB.setTelefono(usuario.getTelefono());
+        usuarioDB.setOrigen(usuario.getOrigen());
+        return this.usuarioRepository.save(usuarioDB);
     }
 
 }
