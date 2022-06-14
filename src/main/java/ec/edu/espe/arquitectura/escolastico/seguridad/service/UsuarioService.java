@@ -14,6 +14,7 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.EstadoPersonaEnum;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioPerfilRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.exception.CambioClaveException;
+import ec.edu.espe.arquitectura.escolastico.seguridad.exception.InciarSesionException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
 
 @Service
@@ -96,6 +97,18 @@ public class UsuarioService {
         usuarioDB.setTelefono(usuario.getTelefono());
         usuarioDB.setOrigen(usuario.getOrigen());
         return this.usuarioRepository.save(usuarioDB);
+    }
+
+    public Usuario iniciarSesion(String codigoOMail, String clave) throws InciarSesionException{
+        Usuario usuario = this.buscarPorCodigoOMail(codigoOMail);
+        if (usuario == null) {
+            throw new InciarSesionException("No existe el usuario para el codigo o correo provisto");
+        }
+        clave = DigestUtils.sha256Hex(clave);
+        if (!usuario.getClave().equals(clave)) {
+            throw new InciarSesionException("La clave antigua no coincide");
+        }
+        return usuario;
     }
 
 }
