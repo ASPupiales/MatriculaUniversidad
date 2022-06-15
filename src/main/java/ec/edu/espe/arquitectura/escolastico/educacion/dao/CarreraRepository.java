@@ -10,6 +10,6 @@ public interface CarreraRepository extends JpaRepository<Carrera, Integer> {
 
     List<Carrera> findByCodDepartamentoOrderByNombreAsc(Integer codDepartamento);
 
-    List<Carrera> findByNombreLikeOrderByNombreAsc(String nombrePattern);
+    List<Carrera> findByNombreContainingOrderByNombreAsc(String nombrePattern);
 
 }
