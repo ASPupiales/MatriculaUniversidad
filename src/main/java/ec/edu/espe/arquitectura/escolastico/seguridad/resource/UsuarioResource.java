@@ -59,5 +59,15 @@ public class UsuarioResource {
             return ResponseEntity.internalServerError().build();
         }
     }
+    @PostMapping(value = "/iniciarSesion")
+    public ResponseEntity<Usuario> iniciarSesion(@RequestBody Usuario usuario) {
+        try {
+            this.usuarioService.iniciarSesion(usuario.getCodUsuario(),usuario.getClave());
+            usuario = this.usuarioService.buscarPorCodigo(usuario.getCodUsuario());
+            return ResponseEntity.ok(usuario);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
 
