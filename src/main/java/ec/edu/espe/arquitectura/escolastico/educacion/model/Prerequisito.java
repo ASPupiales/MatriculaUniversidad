@@ -9,6 +9,9 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "edu_prerequisito")
 public class Prerequisito implements Serializable {
@@ -31,12 +34,14 @@ public class Prerequisito implements Serializable {
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Materia materia;
 
     @JoinColumns({
         @JoinColumn(name = "cod_materia_prerequisito", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
+    @JsonIgnoreProperties({"prerequisitos"})
     private Materia materia1;
 
     public Prerequisito() {

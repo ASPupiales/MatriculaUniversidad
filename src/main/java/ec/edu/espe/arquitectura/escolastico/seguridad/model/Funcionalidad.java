@@ -10,7 +10,7 @@ public class Funcionalidad implements Serializable {
 
     private static final long serialVersionUID = 131L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "cod_funcionalidad", nullable = false)
     private Integer codFuncionalidad;
 
