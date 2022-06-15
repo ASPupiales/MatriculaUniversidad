@@ -3,9 +3,11 @@ package ec.edu.espe.arquitectura.escolastico.seguridad.resource;
 import ec.edu.espe.arquitectura.escolastico.seguridad.EstadoPersonaEnum;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Modulo;
 import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
+import ec.edu.espe.arquitectura.escolastico.seguridad.service.RegistroSesionService;
 import ec.edu.espe.arquitectura.escolastico.seguridad.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.json.*;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class UsuarioResource {
 
     private UsuarioService usuarioService;
+    private RegistroSesionService registroSesionService;
 
     public UsuarioResource(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -29,10 +32,12 @@ public class UsuarioResource {
         return ResponseEntity.ok(this.usuarioService.buscarPorNombre(nombre));
     }
     @PostMapping
-    public ResponseEntity<Usuario> crear(@RequestBody Usuario usuario) {
+    public ResponseEntity crear(@RequestBody Usuario usuario) {
         try {
-            usuario = this.usuarioService.crear(usuario);
-            return ResponseEntity.ok(usuario);
+            String clave = this.usuarioService.crear(usuario);
+            JSONObject response = new JSONObject();
+            response.put("clave",clave);
+            return ResponseEntity.ok(response.toMap());
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
@@ -60,11 +65,12 @@ public class UsuarioResource {
         }
     }
     @PostMapping(value = "/iniciarSesion")
-    public ResponseEntity<Usuario> iniciarSesion(@RequestBody Usuario usuario) {
+    public ResponseEntity iniciarSesion(@RequestBody Usuario usuario) {
         try {
-            this.usuarioService.iniciarSesion(usuario.getCodUsuario(),usuario.getClave());
-            usuario = this.usuarioService.buscarPorCodigo(usuario.getCodUsuario());
-            return ResponseEntity.ok(usuario);
+            String respuestaAcceso = this.usuarioService.iniciarSesion(usuario.getCodUsuario(),usuario.getClave());
+            JSONObject response = new JSONObject();
+            response.put("Info",respuestaAcceso);
+            return ResponseEntity.ok(response.toMap());
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
