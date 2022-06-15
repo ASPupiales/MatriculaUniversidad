@@ -42,23 +42,23 @@ public class Prerequisito implements Serializable {
         @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
     @JsonIgnoreProperties({"prerequisitos"})
-    private Materia materia1;
-
+    private Materia prerequisito;
+    
     public Prerequisito() {
     }
-
+    
     public Prerequisito(Integer codPrerequisito) {
         this.codPrerequisito = codPrerequisito;
     }
-
+    
     public Integer getCodMateria() {
         return codMateria;
     }
-
+    
     public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
-
+    
     public Integer getCodDepartamento() {
         return codDepartamento;
     }
@@ -93,14 +93,14 @@ public class Prerequisito implements Serializable {
         this.materia = materia;
     }
 
-    public Materia getMateria1() {
-        return materia1;
+    public Materia getPrerequisito() {
+        return prerequisito;
     }
 
-    public void setMateria1(Materia materia1) {
-        this.materia1 = materia1;
+    public void setPrerequisito(Materia prerequisito) {
+        this.prerequisito = prerequisito;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
