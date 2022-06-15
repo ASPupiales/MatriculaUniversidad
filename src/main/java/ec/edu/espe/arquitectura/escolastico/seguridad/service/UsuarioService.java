@@ -108,6 +108,7 @@ public class UsuarioService {
         if (!usuario.getClave().equals(clave)) {
             throw new InciarSesionException("La clave antigua no coincide");
         }
+
         return usuario;
     }
 
