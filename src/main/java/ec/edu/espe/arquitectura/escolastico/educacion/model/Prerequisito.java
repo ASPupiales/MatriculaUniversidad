@@ -9,6 +9,9 @@ import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "edu_prerequisito")
 public class Prerequisito implements Serializable {
@@ -31,29 +34,31 @@ public class Prerequisito implements Serializable {
         @JoinColumn(name = "cod_materia", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Materia materia;
 
     @JoinColumns({
         @JoinColumn(name = "cod_materia_prerequisito", referencedColumnName = "cod_materia", nullable = false),
         @JoinColumn(name = "edu_cod_departamento", referencedColumnName = "cod_departamento", nullable = false)})
     @ManyToOne(optional = false)
-    private Materia materia1;
-
+    @JsonIgnoreProperties({"prerequisitos"})
+    private Materia prerequisito;
+    
     public Prerequisito() {
     }
-
+    
     public Prerequisito(Integer codPrerequisito) {
         this.codPrerequisito = codPrerequisito;
     }
-
+    
     public Integer getCodMateria() {
         return codMateria;
     }
-
+    
     public void setCodMateria(Integer codMateria) {
         this.codMateria = codMateria;
     }
-
+    
     public Integer getCodDepartamento() {
         return codDepartamento;
     }
@@ -88,14 +93,14 @@ public class Prerequisito implements Serializable {
         this.materia = materia;
     }
 
-    public Materia getMateria1() {
-        return materia1;
+    public Materia getPrerequisito() {
+        return prerequisito;
     }
 
-    public void setMateria1(Materia materia1) {
-        this.materia1 = materia1;
+    public void setPrerequisito(Materia prerequisito) {
+        this.prerequisito = prerequisito;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

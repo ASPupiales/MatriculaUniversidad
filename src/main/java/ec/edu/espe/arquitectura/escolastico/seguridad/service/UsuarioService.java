@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import ec.edu.espe.arquitectura.escolastico.seguridad.RegistroSesionEnum;
+import ec.edu.espe.arquitectura.escolastico.seguridad.dao.RegistroSesionRepository;
+import ec.edu.espe.arquitectura.escolastico.seguridad.model.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
@@ -15,7 +18,6 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioPerfilRepositor
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.UsuarioRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.exception.CambioClaveException;
 import ec.edu.espe.arquitectura.escolastico.seguridad.exception.InciarSesionException;
-import ec.edu.espe.arquitectura.escolastico.seguridad.model.Usuario;
 
 @Service
 public class UsuarioService {
@@ -23,9 +25,12 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
     private UsuarioPerfilRepository usuarioPerfilRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioPerfilRepository usuarioPerfilRepository) {
+    private RegistroSesionRepository registroSesionRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioPerfilRepository usuarioPerfilRepository, RegistroSesionRepository registroSesionRepository) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioPerfilRepository = usuarioPerfilRepository;
+        this.registroSesionRepository = registroSesionRepository;
     }
 
     public Usuario buscarPorCodigo(String codigo) {
@@ -61,7 +66,7 @@ public class UsuarioService {
         return this.usuarioRepository.findByEstado(estado.getValor());
     }
 
-    public Usuario crear(Usuario usuario) throws UnknownHostException {
+    public String crear(Usuario usuario) throws UnknownHostException {
         String clave = RandomStringUtils.randomAlphabetic(8);
         InetAddress address = InetAddress.getLocalHost();
         usuario.setClave(DigestUtils.sha256Hex(clave));
@@ -72,8 +77,16 @@ public class UsuarioService {
         usuario.setNroIntentosFallidos(0);
         usuario.setEstado(EstadoPersonaEnum.CREADO.getValor());
         this.usuarioRepository.save(usuario);
-        this.usuarioPerfilRepository.saveAll(usuario.getUsuarioPerfiles());
-        return usuario;
+        UsuarioPerfil usuarioPerfil = new UsuarioPerfil();
+        UsuarioPerfilPK usuarioPerfilPK = new UsuarioPerfilPK();
+        usuarioPerfilPK.setCodPerfil("INVI");
+        usuarioPerfilPK.setCodUsuario(usuario.getCodUsuario());
+        usuarioPerfil.setPk(usuarioPerfilPK);
+        usuarioPerfil.setAudIp(address.getHostAddress());
+        usuarioPerfil.setAudFecha(new Date());
+        usuarioPerfil.setAudUsuario("Admin");
+        this.usuarioPerfilRepository.save(usuarioPerfil);
+        return clave;
     }
 
     public void cambiarClave(String codigoOMail, String claveAntigua, String claveNueva) throws CambioClaveException {
@@ -99,17 +112,53 @@ public class UsuarioService {
         return this.usuarioRepository.save(usuarioDB);
     }
 
-    public Usuario iniciarSesion(String codigoOMail, String clave) throws InciarSesionException{
+    public String iniciarSesion(String codigoOMail, String clave) throws InciarSesionException, UnknownHostException {
         Usuario usuario = this.buscarPorCodigoOMail(codigoOMail);
-        if (usuario == null) {
-            throw new InciarSesionException("No existe el usuario para el codigo o correo provisto");
+        RegistroSesion registroSesion = new RegistroSesion();
+        String respuesta ="False";
+        String claveEncriptada = DigestUtils.sha256Hex(clave);
+        if (usuario != null && usuario.getClave().equals(claveEncriptada)){
+            usuario.setFechaUltimaSesion(new Date());
+            this.usuarioRepository.save(usuario);
+            respuesta="True";
+        } else if (!usuario.getClave().equals(claveEncriptada)) {
+            respuesta="Error";
+            usuario.setNroIntentosFallidos(usuario.getNroIntentosFallidos()+1);
+            this.usuarioRepository.save(usuario);
         }
-        clave = DigestUtils.sha256Hex(clave);
-        if (!usuario.getClave().equals(clave)) {
-            throw new InciarSesionException("La clave antigua no coincide");
+        if (respuesta.equals("True")){
+            InetAddress address = InetAddress.getLocalHost();
+            registroSesion.setCodUsuario(usuario.getCodUsuario());
+            registroSesion.setIpConexion(address.getHostAddress());
+            registroSesion.setFechaConexion(new Date());
+            registroSesion.setResultado(RegistroSesionEnum.SATISFACTORIO.getValor());
+            this.registroSesionRepository.save(registroSesion);
+            return "Exito al Iniciar Sesion";
+        } else if (respuesta.equals("Error")) {
+            InetAddress address = InetAddress.getLocalHost();
+            registroSesion.setCodUsuario(usuario.getCodUsuario());
+            registroSesion.setIpConexion(address.getHostAddress());
+            registroSesion.setFechaConexion(new Date());
+            registroSesion.setResultado(RegistroSesionEnum.FALLIDO.getValor());
+            registroSesion.setError("401");
+            this.registroSesionRepository.save(registroSesion);
+            return "Error: Verifique su clave de acceso";
+        }else{
+            return respuesta="No se encuentra en el sistema, Registrese primero";
         }
+    }
 
-        return usuario;
+    public void asignarPerfilUsuario(String codUsuario, String codPerfil) throws UnknownHostException {
+        UsuarioPerfil usuarioPerfil = new UsuarioPerfil();
+        UsuarioPerfilPK usuarioPerfilPK = new UsuarioPerfilPK();
+        InetAddress address = InetAddress.getLocalHost();
+        usuarioPerfilPK.setCodPerfil(codPerfil);
+        usuarioPerfilPK.setCodUsuario(codUsuario);
+        usuarioPerfil.setPk(usuarioPerfilPK);
+        usuarioPerfil.setAudIp(address.getHostAddress());
+        usuarioPerfil.setAudFecha(new Date());
+        usuarioPerfil.setAudUsuario("Admin");
+        this.usuarioPerfilRepository.save(usuarioPerfil);
     }
 
 }

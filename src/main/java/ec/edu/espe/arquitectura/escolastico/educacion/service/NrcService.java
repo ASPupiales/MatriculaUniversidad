@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import ec.edu.espe.arquitectura.escolastico.educacion.NotFoundException;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.MateriaRepository;
-import ec.edu.espe.arquitectura.escolastico.educacion.dao.NrcHorarioRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.NrcRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.dao.PeriodoRepository;
 import ec.edu.espe.arquitectura.escolastico.educacion.model.Materia;
@@ -22,17 +21,15 @@ import ec.edu.espe.arquitectura.escolastico.persona.model.Persona;
 public class NrcService {
 
     private NrcRepository nrcRepository;
-    private NrcHorarioRepository nrcHorarioRepository;
     private PeriodoRepository periodoRepository;
     private PersonaRepository personaRepository;
     private MateriaRepository materiaRepository;
     
 
-    public NrcService(NrcRepository nrcRepository, NrcHorarioRepository nrcHorarioRepository,
+    public NrcService(NrcRepository nrcRepository,
             PeriodoRepository periodoRepository, PersonaRepository personaRepository,
             MateriaRepository materiaRepository) {
         this.nrcRepository = nrcRepository;
-        this.nrcHorarioRepository = nrcHorarioRepository;
         this.periodoRepository = periodoRepository;
         this.personaRepository = personaRepository;
         this.materiaRepository = materiaRepository;
