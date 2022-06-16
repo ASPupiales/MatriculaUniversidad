@@ -3,8 +3,7 @@ package ec.edu.espe.arquitectura.escolastico.seguridad.service;
 import ec.edu.espe.arquitectura.escolastico.seguridad.EstadoEnum;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.PerfilFuncionalidadRepository;
 import ec.edu.espe.arquitectura.escolastico.seguridad.dao.PerfilRepository;
-import ec.edu.espe.arquitectura.escolastico.seguridad.model.Perfil;
-import ec.edu.espe.arquitectura.escolastico.seguridad.model.PerfilFuncionalidad;
+import ec.edu.espe.arquitectura.escolastico.seguridad.model.*;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
@@ -52,6 +51,19 @@ public class PerfilService {
         perfilDB.setEstado(perfil.getEstado());
         perfilDB.setNombre(perfil.getNombre());
         return this.perfilRepository.save(perfilDB);
+    }
+
+    public void asignarFuncionalidadPerfil(String codPerfil, String codFuncionalidad) throws UnknownHostException {
+        PerfilFuncionalidad perfilFuncionalidad = new PerfilFuncionalidad();
+        PerfilFuncionalidadPK perfilFuncionalidadPK = new PerfilFuncionalidadPK();
+        InetAddress address = InetAddress.getLocalHost();
+        perfilFuncionalidadPK.setCodPerfil(codPerfil);
+        perfilFuncionalidadPK.setCodFuncionalidad(Integer.parseInt(codFuncionalidad));
+        perfilFuncionalidad.setPk(perfilFuncionalidadPK);
+        perfilFuncionalidad.setAudIp(address.getHostAddress());
+        perfilFuncionalidad.setAudFecha(new Date());
+        perfilFuncionalidad.setAudUsuario("Admin");
+        this.perfilFuncionalidadRepository.save(perfilFuncionalidad);
     }
 
 
