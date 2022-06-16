@@ -8,8 +8,8 @@ import ec.edu.espe.arquitectura.escolastico.seguridad.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.json.*;
-
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/usuario")
@@ -31,12 +31,13 @@ public class UsuarioResource {
     public ResponseEntity<List<Usuario>> ObtenerUsuariosPorNombre(@PathVariable String nombre) {
         return ResponseEntity.ok(this.usuarioService.buscarPorNombre(nombre));
     }
+
     @PostMapping
     public ResponseEntity crear(@RequestBody Usuario usuario) {
         try {
             String clave = this.usuarioService.crear(usuario);
             JSONObject response = new JSONObject();
-            response.put("clave",clave);
+            response.put("clave", clave);
             return ResponseEntity.ok(response.toMap());
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -55,22 +56,32 @@ public class UsuarioResource {
     }
 
     @PostMapping(value = "/clave")
-    public ResponseEntity<Usuario> cambiarClave(@RequestBody Usuario usuario) {
+    public ResponseEntity cambiarClave(@RequestBody Map<String,String> json) {
         try {
-            this.usuarioService.cambiarClave(usuario.getCodUsuario(),usuario.getNombre(), usuario.getClave());
-            usuario = this.usuarioService.buscarPorCodigo(usuario.getCodUsuario());
-            return ResponseEntity.ok(usuario);
+            this.usuarioService.cambiarClave(json.get("codUsuario"),json.get("claveAntigua"),json.get("clave"));
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
     }
+
     @PostMapping(value = "/iniciarSesion")
     public ResponseEntity iniciarSesion(@RequestBody Usuario usuario) {
         try {
-            String respuestaAcceso = this.usuarioService.iniciarSesion(usuario.getCodUsuario(),usuario.getClave());
+            String respuestaAcceso = this.usuarioService.iniciarSesion(usuario.getCodUsuario(), usuario.getClave());
             JSONObject response = new JSONObject();
-            response.put("Info",respuestaAcceso);
+            response.put("Info", respuestaAcceso);
             return ResponseEntity.ok(response.toMap());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping(value = "/asignarPerfil")
+    public ResponseEntity asignarPerfil(@RequestBody Map<String,String> json) {
+        try {
+            this.usuarioService.asignarPerfilUsuario(json.get("codUsuario"), json.get("codPerfil"));
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }

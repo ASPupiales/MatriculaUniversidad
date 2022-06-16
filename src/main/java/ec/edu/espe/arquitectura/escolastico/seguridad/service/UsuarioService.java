@@ -148,4 +148,17 @@ public class UsuarioService {
         }
     }
 
+    public void asignarPerfilUsuario(String codUsuario, String codPerfil) throws UnknownHostException {
+        UsuarioPerfil usuarioPerfil = new UsuarioPerfil();
+        UsuarioPerfilPK usuarioPerfilPK = new UsuarioPerfilPK();
+        InetAddress address = InetAddress.getLocalHost();
+        usuarioPerfilPK.setCodPerfil(codPerfil);
+        usuarioPerfilPK.setCodUsuario(codUsuario);
+        usuarioPerfil.setPk(usuarioPerfilPK);
+        usuarioPerfil.setAudIp(address.getHostAddress());
+        usuarioPerfil.setAudFecha(new Date());
+        usuarioPerfil.setAudUsuario("Admin");
+        this.usuarioPerfilRepository.save(usuarioPerfil);
+    }
+
 }
