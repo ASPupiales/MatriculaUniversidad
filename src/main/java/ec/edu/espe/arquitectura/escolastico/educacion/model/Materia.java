@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "edu_materia")
 public class Materia implements Serializable {
@@ -36,6 +38,7 @@ public class Materia implements Serializable {
 
     @JoinColumn(name = "cod_departamento", referencedColumnName = "cod_departamento", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Departamento departamento;
 
     public Materia() {
